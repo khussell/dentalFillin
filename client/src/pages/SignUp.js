@@ -34,13 +34,15 @@ class SignUp extends React.Component {
 
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Are you a sub or an office?</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
+                        <select class="form-control" id="subOrOffice">
                             <option>Pick one</option>
                             <option>I am a sub</option>
                             <option>I am an office</option>
                         </select>
                     </div>
+                    <Link to={let which= document.getElementById("subOrOffice")>
                     <button className="btn btn-primary">Enter</button>
+                    </Link>
                 </form>
             </div>
         )
