@@ -3,9 +3,28 @@ import Welcome from './pages/Welcome'
 import Login from './pages/Login'
 import SignUp from './pages/SignUp'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
+import SubSignUp from "./components/SubSignUp"
 
 
 function App() {
+
+ // state = {
+
+ // }
+
+ // componentDidMount = () => {
+// }
+
+ // handleInputChange = (event) => {
+    //  const name = event.target.name
+    //  const value = event.target.value
+    //  this.setState({[name]: value})
+  //}
+
+ // handleFormSubmit = (event) => {
+  //  event.preventDefault()
+  //}
+
   return (
     <Router>
       <Switch>
@@ -13,6 +32,7 @@ function App() {
           <Route exact path="/" component={Welcome} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signUp" component={SignUp} />
+          <Route path="/signup/sub" component={SubSignUp} />
         </div>
       </Switch>
     </Router>
