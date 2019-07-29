@@ -1,5 +1,7 @@
 import React from "react"
-import {Link} from "react-router-dom"
+import { Route, Link } from "react-router-dom"
+import SubSignUp from "../components/SubSignUp"
+import OfficeSignUp from "../components/OfficeSignUp"
 
 class SignUp extends React.Component {
     render() {
@@ -34,17 +36,21 @@ class SignUp extends React.Component {
 
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Are you a sub or an office?</label>
-                        <select class="form-control" id="subOrOffice">
-                            <option>Pick one</option>
-                            <option>I am a sub</option>
-                            <option>I am an office</option>
-                        </select>
+                        <Link to={`${this.props.match.url}/sub`} role="button" className="btn btn-link">
+                            I am a sub
+                        </Link>{" "}
+                        <Link to={`${this.props.match.url}/office`} role="button" className="btn btn-link">
+                            I am an office
+                        </Link>
+                        <Route exact path={`${this.props.match.url}/sub`} component={SubSignUp} />
+                        <Route exact path={`${this.props.match.url}/office`} component={OfficeSignUp} />
                     </div>
-                    <Link to={let which= document.getElementById("subOrOffice")>
-                    <button className="btn btn-primary">Enter</button>
-                    </Link>
+
+
+
+
                 </form>
-            </div>
+            </div >
         )
     }
 }
