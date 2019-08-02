@@ -3,7 +3,7 @@ import { Route, Link } from "react-router-dom"
 import SubSignUp from "../components/SubSignUp"
 import OfficeSignUp from "../components/OfficeSignUp"
 
-function SignUp(props) {
+function SignUp (props) {
     
     
         return (
@@ -12,8 +12,9 @@ function SignUp(props) {
                 <h1>Sign Up!</h1>
                 <form>
                     <div className="form-group">
-                        <label htmlFor="firstName">{props.firstName}</label>
+                        <label htmlFor="firstName">First Name</label>
                         <input type="text" 
+                               key="editor1"
                                className="form-control" 
                                id="firstName" 
                                aria-describedby="emailHelp" 
@@ -31,7 +32,8 @@ function SignUp(props) {
                                aria-describedby="emailHelp" 
                                placeholder="Enter last name"
                                onChange={props.handleInputChange}
-                               name="lasttName" />
+                               name="lasttName"
+                               value={props.lastName} />
                     </div>
 
                     <div className="form-group">
@@ -42,7 +44,8 @@ function SignUp(props) {
                                aria-describedby="emailHelp"
                                placeholder="Enter a username" 
                                onChange={props.handleInputChange}
-                               name="userName"/>
+                               name="userName"
+                               value={props.userName}/>
                     </div>
 
                     <div className="form-group">
@@ -53,7 +56,8 @@ function SignUp(props) {
                                aria-describedby="emailHelp" 
                                placeholder="Enter a password"
                                onChange={props.handleInputChange}
-                               name="password1" />
+                               name="password1"
+                               value={props.password} />
                     </div>
 
                     <div className="form-group">
@@ -80,12 +84,12 @@ function SignUp(props) {
                     </div>
 
 
+        
 
-
-                </form>
+                </form> 
             </div >
         )
-    
+        
 }
 
 export default SignUp

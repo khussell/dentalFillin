@@ -7,10 +7,11 @@ import { BrowserRouter as Router, Route} from "react-router-dom"
 
 class App extends React.Component {
 
+
   state = {
      results: [],
      
-      firstName: "hi",
+      firstName: "",
       lastName: "",
       userName: "",
       password: "",
@@ -47,8 +48,7 @@ class App extends React.Component {
       const name = event.target.name
       const value = event.target.value
       this.setState({[name]: value})
-
-      console.log(this.state.name)
+      
   }
 
  
@@ -65,11 +65,29 @@ class App extends React.Component {
           <Route exact path="/" component={Welcome} />
           <Route exact path="/login" component={Login} />
           <Route path="/signUp" 
-                 component={SignUp}
-                 results={this.state.results}
-                 handleFormSubmit={this.handleFormSubmit}
-                 handleInputChange={this.handleInputChange}
-                 firstName={this.state.firstName}
+                 render={(props)=> <SignUp results={this.state.results}
+                 
+                                         handleInputChange={this.handleInputChange}
+                                         
+                                         firstName={this.state.firstName}
+                                         lastName={this.state.lastName}
+                                         userName={this.state.userName}
+                                         password={this.state.password}
+                                         sub={this.state.sub}
+                                         photo={this.state.photo}
+                                         location={this.state.location}
+                                         yearsExp={this.state.yearsExp}
+                                         about={this.state.about}
+                                         anesthesia={this.state.anesthesia}
+                                         nitrous={this.state.nitrous}
+                                         avail={this.state.avail}
+                                         officeName={this.state.officeName}
+                                         doctors={this.state.doctors}
+                                         datesNeeded={this.state.datesNeeded}
+                                         kindOfPerson={this.state.kindOfPerson}
+                                         
+                                         handleFormSubmit={this.handleFormSubmit}    
+                                         {...props} />}
            />
         </div>
       
