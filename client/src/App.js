@@ -3,6 +3,7 @@ import Welcome from './pages/Welcome'
 import Login from './pages/Login'
 import SignUp from './pages/SignUp'
 import { BrowserRouter as Router, Route} from "react-router-dom"
+import API from './utils/API'
 
 
 class App extends React.Component {
@@ -10,7 +11,7 @@ class App extends React.Component {
 
   state = {
      results: [],
-     
+     userInfo:{
       firstName: "",
       lastName: "",
       userName: "",
@@ -20,8 +21,8 @@ class App extends React.Component {
       location: "",
       yearsExp: 0,
       about: "",
-      anesthesia: false,
-      nitrous: false,
+      anesthesia: "",
+      nitrous: "",
       avail: [],
       officeName: "",
       doctors: [],
@@ -34,23 +35,99 @@ class App extends React.Component {
       currentJobs: [],
       pastSubs: [],
       currentSubs: [],
-      searchParams: [],
+      searchParams: []
+     }
       
      
   }
 
   componentDidMount = () => {
-    console.log(this.state.firstName)
+    
+    console.log(this.state.userInfo.firstName)
  }
 
 
   handleInputChange = (event) => {
       const name = event.target.name
       const value = event.target.value
-      this.setState({[name]: value})
+      
+      this.setState({userInfo: {[name]: value}}) 
       
   }
 
+  handleNitrousRadioChange= (event) =>{
+    this.setState({
+      userInfo: {nitrous: event.target.value}
+    })
+  }
+
+  handleAnesthesiaRadioChange= (event) =>{
+    this.setState({
+      userInfo: {anesthesia: event.target.value}
+    })
+  }
+
+
+  signUpSubmit= (event) =>{
+    event.preventDefault()
+     API.saveUser({
+      firstName: this.state.userInfo.firstName,
+      lastName: this.state.userInfo.lastName,
+      userName: this.state.userInfo.userName,
+      password: this.state.userInfo.password,
+      sub: this.state.userInfo.sub,
+      photo: this.state.userInfo.photo,
+      location: this.state.userInfo.location,
+      yearsExp: this.state.userInfo.yearsExp,
+      about: this.state.userInfo.about,
+      anesthesia: this.state.userInfo.anesthesia,
+      nitrous: this.state.userInfo.nitrous,
+      avail: this.state.userInfo.avail,
+      officeName: this.state.userInfo.officeName,
+      doctors: this.state.userInfo.doctors,
+      datesNeeded: this.state.userInfo.datesNeeded,
+      kindOfPerson: this.state.userInfo.kindOfPerson,
+      starRating: this.state.userInfo.starRating,
+      howManyTimesSubbed: this.state.userInfo.howManyTimesSubbed,
+      howManySubsHaveYouHad: this.state.userInfo.howManySubsHaveYouHad,
+      pastJobs: this.state.userInfo.pastJobs,
+      currentJobs: this.state.userInfo.currentJobs,
+      pastSubs: this.state.userInfo.pastSubs,
+      currentSubs: this.state.userInfo.currentSubs,
+      searchParams: this.state.userInfo.searchParams
+     }).then(res => this.loadUsers())
+       .catch(err => console.log(err));
+  }
+
+  loadUsers = () => {
+    API.getUsers()
+       .then(res => this.setState({userInfo:{
+        firstName: "",
+        lastName: "",
+        userName: "",
+        password: "",
+        sub: false,
+        photo: "",
+        location: "",
+        yearsExp: 0,
+        about: "",
+        anesthesia: "",
+        nitrous: "",
+        avail: [],
+        officeName: "",
+        doctors: [],
+        datesNeeded: [],
+        kindOfPerson: "",
+        starRating: 0,
+        howManyTimesSubbed: 0,
+        howManySubsHaveYouHad: 0,
+        pastJobs: [],
+        currentJobs: [],
+        pastSubs: [],
+        currentSubs: [],
+        searchParams: []
+       }})).catch(err => console.log(err));
+  }
  
 
   //handleFormSubmit = (event) => {
@@ -58,6 +135,7 @@ class App extends React.Component {
   //}
 
   render() {
+    console.log(this.state.userInfo.nitrous)
   return (
     <Router>
       
@@ -68,25 +146,29 @@ class App extends React.Component {
                  render={(props)=> <SignUp results={this.state.results}
                  
                                          handleInputChange={this.handleInputChange}
-                                         
-                                         firstName={this.state.firstName}
-                                         lastName={this.state.lastName}
-                                         userName={this.state.userName}
-                                         password={this.state.password}
-                                         sub={this.state.sub}
-                                         photo={this.state.photo}
-                                         location={this.state.location}
-                                         yearsExp={this.state.yearsExp}
-                                         about={this.state.about}
-                                         anesthesia={this.state.anesthesia}
-                                         nitrous={this.state.nitrous}
-                                         avail={this.state.avail}
-                                         officeName={this.state.officeName}
-                                         doctors={this.state.doctors}
-                                         datesNeeded={this.state.datesNeeded}
-                                         kindOfPerson={this.state.kindOfPerson}
-                                         
+                                         userInfo={this.state.userInfo}
+/*
+                                         firstName={this.state.userInfo.firstName}
+                                         lastName={this.state.userInfo.lastName}
+                                         userName={this.state.userInfo.userName}
+                                         password={this.state.userInfo.password}
+                                         sub={this.state.userInfo.sub}
+                                         photo={this.state.userInfo.photo}
+                                         location={this.state.userInfo.location}
+                                         yearsExp={this.state.userInfo.yearsExp}
+                                         about={this.state.userInfo.about}
+                                         anesthesia={this.state.userInfo.anesthesia}
+                                         nitrous={this.userInfo.state.nitrous}
+                                         avail={this.userInfo.state.avail}
+                                         officeName={this.state.userInfo.officeName}
+                                         doctors={this.state.userInfo.doctors}
+                                         datesNeeded={this.state.userInfo.datesNeeded}
+                                         kindOfPerson={this.state.userInfo.kindOfPerson}
+  */
                                          handleFormSubmit={this.handleFormSubmit}    
+                                         signUpSubmit={this.signUpSubmit}
+                                         handleNitrousRadioChange={this.handleNitrousRadioChange}
+                                         handleAnesthesiaRadioChange={this.handleAnesthesiaRadioChange}
                                          {...props} />}
            />
         </div>

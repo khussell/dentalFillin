@@ -13,7 +13,8 @@ class SubSignUp extends React.Component {
                                className="form-control" 
                                id="photoLink"
                                onChange={this.props.handleInputChange}
-                               name="photoLink" />
+                               name="photoLink"
+                               value={this.props.userInfo.photo} />
                     </div>
                     <div className="form-group">
                         <label htmlFor="location">Location</label>
@@ -21,7 +22,8 @@ class SubSignUp extends React.Component {
                                className="form-control" 
                                id="location" 
                                onChange={this.props.handleInputChange}
-                               name="location"/>
+                               name="location"
+                               value={this.props.userInfo.location}/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="yearsExperience">Years Experience</label>
@@ -29,7 +31,8 @@ class SubSignUp extends React.Component {
                                className="form-control" 
                                id="yearsExperience"
                                onChange={this.props.handleInputChange}
-                               name="yearsExperience" />
+                               name="yearsExperience"
+                               value={this.props.userInfo.yearsExp} />
                     </div>
                     <div className="form-group">
                         <label htmlFor="about">About</label>
@@ -37,17 +40,19 @@ class SubSignUp extends React.Component {
                                   id="about" 
                                   rows="3"
                                   onChange={this.props.handleInputChange}
-                                  name="about"></textarea>
+                                  name="about"
+                                  value={this.props.userInfo.about}></textarea>
                     </div>
 
                     <p>Nitrous Certified?</p>
                     <div className="form-check">
                         <input className="form-check-input" 
                                type="radio" 
-                               name="nitrous"
+                               
                                id="nitrousYes" 
-                               value="true" 
-                               onChange={this.props.handleInputChange}
+                               value={true} 
+                               checked={this.props.userInfo.nitrous === "true"}
+                               onChange={this.props.handleNitrousRadioChange}
                                />
                         <label className="form-check-label" htmlFor="nitrousYes">
                             Yes
@@ -56,10 +61,11 @@ class SubSignUp extends React.Component {
                     <div className="form-check">
                         <input className="form-check-input" 
                                type="radio" 
-                               name="nitrous" 
+                               
                                id="nitrousNo" 
-                               value="false"
-                               onChange={this.props.handleInputChange}
+                               value={false}
+                               checked={this.props.userInfo.nitrous === "false"}
+                               onChange={this.props.handleNitrousRadioChange}
                               />
                         <label className="form-check-label" htmlFor="nitrousNo">
                             No
@@ -70,10 +76,11 @@ class SubSignUp extends React.Component {
                     <div className="form-check">
                         <input className="form-check-input" 
                                type="radio" 
-                               name="anesthesia" 
+                               
                                id="anesthesiaYes" 
                                value="true" 
-                               onChange={this.props.handleInputChange}
+                               onChange={this.props.handleAnesthesiaRadioChange}
+                               checked={this.props.userInfo.anesthesia === "true"}
                                />
                         <label className="form-check-label" htmlFor="anesthesiaYes">
                             Yes
@@ -82,10 +89,11 @@ class SubSignUp extends React.Component {
                     <div className="form-check">
                         <input className="form-check-input" 
                                type="radio"
-                               name="anesthesia" 
+                               
                                id="anesthesiaNo"
                                value="false"
-                               onChange={this.props.handleInputChange}
+                               onChange={this.props.handleAnesthesiaRadioChange}
+                               checked={this.props.userInfo.anesthesia === "false"}
                                />
                         <label className="form-check-label" htmlFor="anesthesiaNo">
                             No
@@ -93,9 +101,14 @@ class SubSignUp extends React.Component {
                     </div>
                     <div className="form-group">
                         <label htmlFor="datesAvailable">Dates Available to Work: Example input:  1/7/2020, 1/8,2020</label>
-                        <input type="text" className="form-control" id="datesAvailable" />
+                        <input type="text" 
+                               className="form-control" 
+                               id="datesAvailable"
+                               onChange={this.props.handleInputChange}
+                               name="avail"
+                               value={this.props.userInfo.avail} />
                     </div>
-                    <Link to="/login" className="btn btn-primary">Sign up and go to login</Link>
+                    <Link to="/login" className="btn btn-primary" onClick={this.props.signUpSubmit}>Sign up and go to login</Link>
                     
 
              

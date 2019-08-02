@@ -13,7 +13,8 @@ class OfficeSignUp extends React.Component{
                                className="form-control" 
                                id="photoLink" 
                                onChange={this.props.handleInputChange}
-                               name="photoLink"/>
+                               name="photoLink"
+                               value={this.props.userInfo.photo}/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="location">Location</label>
@@ -21,7 +22,8 @@ class OfficeSignUp extends React.Component{
                                className="form-control"
                                id="location" 
                                onChange={this.props.handleInputChange}
-                               name="location"/>
+                               name="location"
+                               value={this.props.userInfo.location}/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="officeName">Office Name</label>
@@ -29,7 +31,8 @@ class OfficeSignUp extends React.Component{
                                className="form-control" 
                                id="officeName"
                                onChange={this.props.handleInputChange}
-                               name="officeName" />
+                               name="officeName"
+                               value={this.props.userInfo.officeName} />
                     </div>
                     <div className="form-group">
                         <label htmlFor="about">About</label>
@@ -37,7 +40,8 @@ class OfficeSignUp extends React.Component{
                                   id="about" 
                                   rows="3"
                                   onChange={this.props.handleInputChange}
-                                  name="about"></textarea>
+                                  name="about"
+                                  value={this.props.userInfo.about}></textarea>
                     </div>
                     <div className="form-group">
                         <label htmlFor="datesNeeded">Dates Needed: Example input:  1/7/2020, 1/8,2020</label>
@@ -45,7 +49,8 @@ class OfficeSignUp extends React.Component{
                                className="form-control" 
                                id="datesNeeded" 
                                onChange={this.props.handleInputChange}
-                               name="datesNeeded"/>
+                               name="datesNeeded"
+                               value={this.props.userInfo.datesNeeded}/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="whatKindOfHygienist">What kind of hygienist?</label>
@@ -53,7 +58,8 @@ class OfficeSignUp extends React.Component{
                                   id="whatKindOfHygienist" 
                                   rows="3"
                                   onChange={this.props.handleInputChange}
-                                  name="whatKindOfHygienist"></textarea>
+                                  name="whatKindOfHygienist"
+                                  value={this.props.userInfo.whatKindOfHygienist}></textarea>
                     </div>
                     <div className="form-group">
                         <label htmlFor="doctorsNames">Doctors' Names: Example input:  Dr. Smith, Dr. Lin</label>
@@ -61,10 +67,11 @@ class OfficeSignUp extends React.Component{
                                className="form-control" 
                                id="doctorsNames" 
                                onChange={this.props.handleInputChange}
-                               name="doctorsNames"/>
+                               name="doctorsNames"
+                               value={this.props.userInfo.doctorsNames}/>
                     </div>
                     
-                    <Link to="/login" className="btn btn-primary">Sign up and go to login</Link>
+                    <Link to="/login" className="btn btn-primary" onClick={this.props.signUpSubmit}>Sign up and go to login</Link>
                 
             </div>
         )

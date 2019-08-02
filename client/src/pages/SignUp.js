@@ -8,20 +8,18 @@ function SignUp (props) {
     
         return (
             <div>
-                {console.log(props.firstName)}
                 <h1>Sign Up!</h1>
                 <form>
                     <div className="form-group">
                         <label htmlFor="firstName">First Name</label>
                         <input type="text" 
-                               key="editor1"
                                className="form-control" 
                                id="firstName" 
                                aria-describedby="emailHelp" 
                                placeholder="Enter first name"
                                onChange={props.handleInputChange}
                                name="firstName" 
-                               value={props.firstName}/>
+                               value={props.userInfo.firstName}/>
                     </div>
 
                     <div className="form-group">
@@ -33,7 +31,7 @@ function SignUp (props) {
                                placeholder="Enter last name"
                                onChange={props.handleInputChange}
                                name="lasttName"
-                               value={props.lastName} />
+                               value={props.userInfo.lastName} />
                     </div>
 
                     <div className="form-group">
@@ -45,7 +43,7 @@ function SignUp (props) {
                                placeholder="Enter a username" 
                                onChange={props.handleInputChange}
                                name="userName"
-                               value={props.userName}/>
+                               value={props.userInfo.userName}/>
                     </div>
 
                     <div className="form-group">
@@ -57,7 +55,7 @@ function SignUp (props) {
                                placeholder="Enter a password"
                                onChange={props.handleInputChange}
                                name="password1"
-                               value={props.password} />
+                               value={props.userInfo.password} />
                     </div>
 
                     <div className="form-group">
@@ -79,14 +77,15 @@ function SignUp (props) {
                         <Link to={`${props.match.url}/office`} role="button" id="officeClick" className="btn btn-link">
                             I am an office
                         </Link>
-                        <Route exact path={`${props.match.url}/sub`} component={SubSignUp} />
-                        <Route exact path={`${props.match.url}/office`} component={OfficeSignUp} />
+                        <Route exact path={`${props.match.url}/sub`} render={()=><SubSignUp {...props}/>} />
+                        <Route exact path={`${props.match.url}/office`} render={()=><OfficeSignUp {...props}/>} />
                     </div>
 
 
         
 
                 </form> 
+            
             </div >
         )
         
