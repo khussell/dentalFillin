@@ -42,7 +42,7 @@ class App extends React.Component {
   }
 
   componentDidMount = () => {
-    
+    this.loadUsers()
     console.log(this.state.userInfo.firstName)
  }
 
@@ -51,25 +51,36 @@ class App extends React.Component {
       const name = event.target.name
       const value = event.target.value
       
-      this.setState({userInfo: {[name]: value}}) 
-      
+      this.setState({userInfo: {...this.state.userInfo, [name]: value}}) 
+      console.log(this.state.userInfo)
   }
 
   handleNitrousRadioChange= (event) =>{
     this.setState({
-      userInfo: {nitrous: event.target.value}
+      userInfo: { ...this.state.userInfo, nitrous: event.target.value}
     })
+    console.log(this.state.userInfo)
   }
 
   handleAnesthesiaRadioChange= (event) =>{
     this.setState({
-      userInfo: {anesthesia: event.target.value}
+      userInfo: {...this.state.userInfo, anesthesia: event.target.value}
     })
+    console.log(this.state.userInfo)
   }
 
 
   signUpSubmit= (event) =>{
     event.preventDefault()
+
+    if(this.state.userInfo.yearsExp < 0){
+      this.setState({userInfo: {...this.state.userInfo, sub: true}})
+    }else{
+      this.setState({userInfo: {...this.state.userInfo, sub: false}})
+    }
+    console.log(this.state.userInfo)
+    console.log(this.state)
+    console.log(this.state.userInfo.firstName)
      API.saveUser({
       firstName: this.state.userInfo.firstName,
       lastName: this.state.userInfo.lastName,
@@ -101,7 +112,9 @@ class App extends React.Component {
 
   loadUsers = () => {
     API.getUsers()
-       .then(res => this.setState({userInfo:{
+       .then(res => {
+         console.log(res.data)
+        this.setState({results: res.data, userInfo:{
         firstName: "",
         lastName: "",
         userName: "",
@@ -126,7 +139,7 @@ class App extends React.Component {
         pastSubs: [],
         currentSubs: [],
         searchParams: []
-       }})).catch(err => console.log(err));
+       }})}).catch(err => console.log(err));
   }
  
 
@@ -136,18 +149,19 @@ class App extends React.Component {
 
   render() {
     console.log(this.state.userInfo.nitrous)
+    console.log(this.state.results)
   return (
     <Router>
       
         <div className="App">
           <Route exact path="/" component={Welcome} />
-          <Route exact path="/login" component={Login} />
+          <Route exact path="/login" render={(props) => <Login {...props} results={this.state.results}/>} />
           <Route path="/signUp" 
                  render={(props)=> <SignUp results={this.state.results}
                  
                                          handleInputChange={this.handleInputChange}
                                          userInfo={this.state.userInfo}
-/*
+
                                          firstName={this.state.userInfo.firstName}
                                          lastName={this.state.userInfo.lastName}
                                          userName={this.state.userInfo.userName}
@@ -158,13 +172,13 @@ class App extends React.Component {
                                          yearsExp={this.state.userInfo.yearsExp}
                                          about={this.state.userInfo.about}
                                          anesthesia={this.state.userInfo.anesthesia}
-                                         nitrous={this.userInfo.state.nitrous}
-                                         avail={this.userInfo.state.avail}
+                                         nitrous={this.state.userInfo.nitrous}
+                                         avail={this.state.userInfo.avail}
                                          officeName={this.state.userInfo.officeName}
                                          doctors={this.state.userInfo.doctors}
                                          datesNeeded={this.state.userInfo.datesNeeded}
                                          kindOfPerson={this.state.userInfo.kindOfPerson}
-  */
+  
                                          handleFormSubmit={this.handleFormSubmit}    
                                          signUpSubmit={this.signUpSubmit}
                                          handleNitrousRadioChange={this.handleNitrousRadioChange}
