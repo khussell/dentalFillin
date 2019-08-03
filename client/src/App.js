@@ -16,7 +16,7 @@ class App extends React.Component {
       lastName: "",
       userName: "",
       password: "",
-      sub: false,
+      sub: "",
       photo: "",
       location: "",
       yearsExp: 0,
@@ -43,15 +43,30 @@ class App extends React.Component {
 
   componentDidMount = () => {
     this.loadUsers()
-    console.log(this.state.userInfo.firstName)
  }
 
+ 
+ 
+ 
 
   handleInputChange = (event) => {
       const name = event.target.name
       const value = event.target.value
+
+      if(name === "yearsExp"){
+        console.log("hi")
+        
+         
+        this.setState({userInfo: {...this.state.userInfo, [name]: value}}) 
+        
+        console.log("did it")
+      }
+
       
-      this.setState({userInfo: {...this.state.userInfo, [name]: value}}) 
+        this.setState({userInfo: {...this.state.userInfo, [name]: value}}) 
+      
+      
+      
       console.log(this.state.userInfo)
   }
 
@@ -60,6 +75,7 @@ class App extends React.Component {
       userInfo: { ...this.state.userInfo, nitrous: event.target.value}
     })
     console.log(this.state.userInfo)
+   
   }
 
   handleAnesthesiaRadioChange= (event) =>{
@@ -70,17 +86,19 @@ class App extends React.Component {
   }
 
 
+
+  handleLicenseRadioChange= (event) =>{
+    this.setState({
+      userInfo: {...this.state.userInfo, sub: event.target.value}
+    })
+    console.log(this.state.userInfo)
+  }
+  
+
   signUpSubmit= (event) =>{
     event.preventDefault()
-
-    if(this.state.userInfo.yearsExp < 0){
-      this.setState({userInfo: {...this.state.userInfo, sub: true}})
-    }else{
-      this.setState({userInfo: {...this.state.userInfo, sub: false}})
-    }
     console.log(this.state.userInfo)
-    console.log(this.state)
-    console.log(this.state.userInfo.firstName)
+   
      API.saveUser({
       firstName: this.state.userInfo.firstName,
       lastName: this.state.userInfo.lastName,
@@ -119,7 +137,7 @@ class App extends React.Component {
         lastName: "",
         userName: "",
         password: "",
-        sub: false,
+        sub: "",
         photo: "",
         location: "",
         yearsExp: 0,
@@ -161,6 +179,7 @@ class App extends React.Component {
                  
                                          handleInputChange={this.handleInputChange}
                                          userInfo={this.state.userInfo}
+                                        
 
                                          firstName={this.state.userInfo.firstName}
                                          lastName={this.state.userInfo.lastName}
@@ -183,6 +202,7 @@ class App extends React.Component {
                                          signUpSubmit={this.signUpSubmit}
                                          handleNitrousRadioChange={this.handleNitrousRadioChange}
                                          handleAnesthesiaRadioChange={this.handleAnesthesiaRadioChange}
+                                         handleLicenseRadioChange={this.handleLicenseRadioChange}
                                          {...props} />}
            />
         </div>

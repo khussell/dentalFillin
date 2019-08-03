@@ -27,6 +27,7 @@ class Login extends React.Component {
                            <div key={user._id}>
                        <h1>{user._id}</h1>
                        <p>{user.firstName}</p>
+                       <p>{user.sub}</p>
                        </div>
                        )
                    })}

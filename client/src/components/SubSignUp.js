@@ -2,6 +2,7 @@ import React from "react"
 import {Link} from "react-router-dom"
 
 class SubSignUp extends React.Component {
+    
     render() {
         return (
             <div>
@@ -103,13 +104,42 @@ class SubSignUp extends React.Component {
                                   value={this.props.userInfo.about}></textarea>
                     </div>
 
+                    <p>Licensed in the State of Florida?</p>
+                    <div className="form-check">
+                        <input className="form-check-input" 
+                               type="radio" 
+                               
+                               id="licenseYes" 
+                               value="true"
+                               checked={this.props.userInfo.sub === "true"}
+                               onChange={this.props.handleLicenseRadioChange}
+                               />
+                        <label className="form-check-label" htmlFor="nitrousYes">
+                            Yes
+                    </label>
+                    </div>
+                    <div className="form-check">
+                        <input className="form-check-input" 
+                               type="radio" 
+                               
+                               id="licenseNo" 
+                               value="false"
+                               checked={this.props.userInfo.sub === "false"}
+                               onChange={this.props.handleLicenseRadioChange}
+                              />
+                        <label className="form-check-label" htmlFor="nitrousNo">
+                            No
+                        </label>
+                    </div>
+
+
                     <p>Nitrous Certified?</p>
                     <div className="form-check">
                         <input className="form-check-input" 
                                type="radio" 
                                
                                id="nitrousYes" 
-                               value={true} 
+                               value="true" 
                                checked={this.props.userInfo.nitrous === "true"}
                                onChange={this.props.handleNitrousRadioChange}
                                />
@@ -122,7 +152,7 @@ class SubSignUp extends React.Component {
                                type="radio" 
                                
                                id="nitrousNo" 
-                               value={false}
+                               value="false"
                                checked={this.props.userInfo.nitrous === "false"}
                                onChange={this.props.handleNitrousRadioChange}
                               />
