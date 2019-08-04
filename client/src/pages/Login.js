@@ -24,7 +24,7 @@ submit = (event) => {
         
         }
     }).catch(error =>{
-        
+        alert("Email or password not valid")
         console.log(error)
     })
 }

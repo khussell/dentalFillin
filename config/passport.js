@@ -16,16 +16,25 @@ passport.use(
                 }
                console.log(password)
                console.log(user.password)
+
+               const isPasswordValid = bcrypt.compareSync(password, user.password)
+                   if(!isPasswordValid) {
+                       return done('Email or Password not valid', null)
+                   }else{
+                       return done(null, user)
+                   }
+
+
                 //match password
-                bcrypt.compare(password, user.password, (err, isMatch)=>{
-                    if(err) throw err;
+               // bcrypt.compare(password, user.password, (err, isMatch)=>{
+               //     if(err) throw err;
   
-                    if(isMatch) {
-                        return done(null, user)
-                    }else{
-                        return done(null, false, {message: 'Password incorrect'})
-                    }
-                })
+                //    if(isMatch) {
+               //         return done(null, user)
+                //    }else{
+                //        return done(null, false, {message: 'Password incorrect'})
+                //    }
+                //})
             }).catch(err => console.log(err))
 
 
