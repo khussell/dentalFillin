@@ -1,5 +1,7 @@
 const router = require("express").Router();
 const usersController = require("../../controllers/usersController");
+const passport = require('passport')
+
 
 // Matches with "/api/users"
 router.route("/")
@@ -12,5 +14,6 @@ router
   .get(usersController.findById)
   .put(usersController.update)
   .delete(usersController.remove);
+
 
 module.exports = router;

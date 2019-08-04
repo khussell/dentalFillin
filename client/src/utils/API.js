@@ -8,5 +8,9 @@ export default {
 
     getUsers: function(){
         return axios.get("/api/users")
+    },
+
+    loginInput: function(userInput){
+        return axios.post('/login', userInput)
     }
 }

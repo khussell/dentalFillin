@@ -1,4 +1,5 @@
 const db = require("../models");
+const bcrypt = require('bcryptjs') 
 
 // Defining methods for the usersController
 module.exports = {
@@ -15,11 +16,21 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+
   create: function(req, res) {
-    db.User
-      .create(req.body)
-      .then(dbModel => res.json(dbModel))
+    let userInfo = req.body
+    
+    bcrypt.genSalt(10, (err,salt)=> bcrypt.hash(userInfo.password, salt, (err, hash) =>{
+      if(err) throw err
+      console.log(hash)
+      userInfo.password = hash
+      console.log(userInfo)
+      db.User
+      .create(userInfo)
+      .then(dbModel => res.redirect('/login'))
       .catch(err => res.status(422).json(err));
+    }))
+  
   },
   update: function(req, res) {
     db.User

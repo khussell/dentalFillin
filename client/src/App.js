@@ -4,6 +4,7 @@ import Login from './pages/Login'
 import SignUp from './pages/SignUp'
 import { BrowserRouter as Router, Route} from "react-router-dom"
 import API from './utils/API'
+import Dashboard from "./pages/Dashboard"
 
 
 class App extends React.Component {
@@ -204,7 +205,9 @@ class App extends React.Component {
                                          handleAnesthesiaRadioChange={this.handleAnesthesiaRadioChange}
                                          handleLicenseRadioChange={this.handleLicenseRadioChange}
                                          {...props} />}
+                                        
            />
+           <Route exact path="/dashboard" component={Dashboard}/>
         </div>
       
     </Router>

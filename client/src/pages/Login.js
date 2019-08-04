@@ -1,7 +1,34 @@
 import React from "react"
 import { Link } from "react-router-dom";
+import API from '../utils/API'
 
 class Login extends React.Component {
+    state = {
+        userName: '',
+        password: ''
+    }
+
+submit = (event) => {
+    event.preventDefault()
+
+    let userName= document.getElementById('usernameInput').value
+    let password= document.getElementById('passwordInput').value
+    let userInput = {
+        userName: userName,
+        password: password
+    }
+    
+    API.loginInput(userInput).then(res => {
+        this.props.history.push("/dashboard")
+        if(res.status === 200){
+        
+        }
+    }).catch(error =>{
+        
+        console.log(error)
+    })
+}
+
     render() {
         return (
             <div>
@@ -15,7 +42,7 @@ class Login extends React.Component {
                         <label htmlFor="passwordInput">Password</label>
                         <input type="password" className="form-control" id="passwordInput" placeholder="Password" />
                     </div>
-                    <button type="submit" className="btn btn-primary">Submit</button>
+                    <button  className="btn btn-primary" onClick={this.submit}>Login</button>
                 </form>
 
                 <Link to={"/signup"}>

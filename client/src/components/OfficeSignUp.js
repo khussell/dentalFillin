@@ -27,7 +27,7 @@ class OfficeSignUp extends React.Component{
                                aria-describedby="emailHelp" 
                                placeholder="Enter last name"
                                onChange={this.props.handleInputChange}
-                               name="lasttName"
+                               name="lastName"
                                value={this.props.userInfo.lastName} />
                     </div>
 
@@ -51,7 +51,7 @@ class OfficeSignUp extends React.Component{
                                aria-describedby="emailHelp" 
                                placeholder="Enter a password"
                                onChange={this.props.handleInputChange}
-                               name="password1"
+                               name="password"
                                value={this.props.userInfo.password} />
                     </div>
 
@@ -72,7 +72,7 @@ class OfficeSignUp extends React.Component{
                                className="form-control" 
                                id="photoLink" 
                                onChange={this.props.handleInputChange}
-                               name="photoLink"
+                               name="photo"
                                value={this.props.userInfo.photo}/>
                     </div>
                     <div className="form-group">
