@@ -1,13 +1,16 @@
 import React from "react"
 import API from "../utils/API";
+import Navbar from "../components/Navbar"
+import ProfileSub from "../components/ProfileSub"
+import ProfileOffice from "../components/ProfileOffice"
 
 
 
 class Dashboard extends React.Component {
-  
+
   getUserName = () => {
     API.loggedInUserInfo().then(user => {
-      return(user.userName)
+      return (user.userName)
     })
   }
 
@@ -18,15 +21,18 @@ class Dashboard extends React.Component {
     this.props.history.push("/login")
   }
 
-  render(){
+  render() {
+    const isSub = window.localStorage.getItem('sub')
     
-return(
-     
+    return (
+      
+
       <div>
+        <Navbar logout={this.logout} />
         <h1>Dashboard for {window.localStorage.getItem('userName')}</h1>
-        <button onClick={this.logout}>Logout</button>
+        {isSub === "true"? <ProfileSub /> :  <ProfileOffice />}
         </div>
-      )
+    )
   }
 }
 
