@@ -12,5 +12,9 @@ export default {
 
     loginInput: function(userInput){
         return axios.post('/login', userInput)
+    },
+
+    loggedInUserInfo: function(){
+        return axios.get('/hello')
     }
 }

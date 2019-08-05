@@ -1,7 +1,8 @@
 const express = require("express");
 const passport = require('./config/passport')
-const cookieParser = require('cookie-parser')
+//const cookieParser = require('cookie-parser')
 const session = require('express-session')
+const cookieSession = require('cookie-session')
 
 
 
@@ -14,19 +15,26 @@ const PORT = process.env.PORT || 3001;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const routes = require("./routes");
 
 //Session middleware
-app.use(cookieParser())
-app.use(session({
-  secret:'thesecret',
-  saveUninitialized: false,
-  resave:false
+//app.use(cookieParser())
+app.use(cookieSession({
+  name: 'session',
+  keys: ['key1', 'key2']
 }))
+
+//app.use(session({
+//  secret:'thesecret',
+//  saveUninitialized: false,
+//  resave:false
+//}))
 
 //Passport middleware
 app.use(passport.initialize())
 app.use(passport.session())
+
+const routes = require("./routes");
+
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {

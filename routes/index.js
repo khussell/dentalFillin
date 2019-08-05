@@ -23,9 +23,26 @@ router.post('/login', (req,res, next) => {
           error: error.message 
         })
       }
-
-      return res.json(user)
+      //for persistant login
+      req.login(user, (error) => {
+         if(error) {
+           return res.status(500).json({
+             message: error || "Oops, something happened!"
+           })
+         }
+         
+         return res.json(user)
+               
+      })
   })(req,res, next)
+})
+
+
+router.get('/hello', (req, res)=>{
+  const userName = req.user.userName
+  res.json({
+    userName : userName
+  })
 })
 
 

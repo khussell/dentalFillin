@@ -207,7 +207,7 @@ class App extends React.Component {
                                          {...props} />}
                                         
            />
-           <Route exact path="/dashboard" component={Dashboard}/>
+           <Route exact path="/dashboard" component={Dashboard} />
         </div>
       
     </Router>

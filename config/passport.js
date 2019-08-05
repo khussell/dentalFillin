@@ -86,12 +86,12 @@ passport.use(
 
 
     passport.serializeUser(function(user, done){
-        done(null, user.id)
+        done(null, user.userName)
     })
 
-    passport.deserializeUser(function(id, done){
-        db.User.findById(id, function(err, user){
-            done(err, user)
+    passport.deserializeUser((userName, done) =>{
+        db.User.findOne({userName}).lean().exec((err, user) => {
+            done(err,user)
         })
     })
 module.exports = passport

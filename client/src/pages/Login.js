@@ -1,5 +1,5 @@
 import React from "react"
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import API from '../utils/API'
 
 class Login extends React.Component {
@@ -19,10 +19,16 @@ submit = (event) => {
     }
     
     API.loginInput(userInput).then(res => {
-        this.props.history.push("/dashboard")
-        if(res.status === 200){
-        
+        console.log(res.data)
+        if(res.data){
+            const isAuthenticated = true
+            window.localStorage.setItem('isAuthenticated', isAuthenticated)
+            window.localStorage.setItem('userName', res.data.userName)
         }
+        //const isAuthenticated = res.data.isAuthenticated
+        
+        this.props.history.push("/dashboard", userInput)
+        
     }).catch(error =>{
         alert("Email or password not valid")
         console.log(error)
@@ -30,6 +36,11 @@ submit = (event) => {
 }
 
     render() {
+
+        const isAuthenticated = window.localStorage.getItem('isAuthenticated')
+        if(isAuthenticated === true){
+         return <Redirect to='/dashboard'/>
+        }  
         return (
             <div>
                 <h1>Login</h1>
