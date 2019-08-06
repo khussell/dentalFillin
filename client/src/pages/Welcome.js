@@ -1,5 +1,6 @@
 import React from "react"
 import { Link } from "react-router-dom";
+import Calendar from "../components/Calendar"
 
 class Welcome extends React.Component {
     render() {
@@ -15,6 +16,7 @@ class Welcome extends React.Component {
                             <button  className="btn btn-primary">Get Started</button>
                         </Link>
                     </div>
+                    <Calendar />
                 </div>
             </div>
         )
