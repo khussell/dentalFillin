@@ -3,6 +3,8 @@ import API from "../utils/API";
 import Navbar from "../components/Navbar"
 import ProfileSub from "../components/ProfileSub"
 import ProfileOffice from "../components/ProfileOffice"
+import {Route, Switch} from "react-router-dom"
+import Find from "./Find"
 
 
 
@@ -54,15 +56,21 @@ class Dashboard extends React.Component {
     const isSub = localStorage.getItem('sub')
     
     const firstName = window.localStorage.getItem('firstName')
-   
+    
     return (
       
 
-      <div>
-        <Navbar logout={this.logout} />
+      <div className="dashboardContent">
+        <Navbar {...this.props} logout={this.logout} />
         <h1>Dashboard for {firstName}</h1>
-        {isSub === "true"? <ProfileSub /> :  <ProfileOffice />}
+        <Switch>
+          <Route exact path={`${this.props.match.url}/find`} render={() => <Find {...this.props} />} />
+          {isSub === "true" && `${this.props.match.url}` !== '/dashboard/find'? <ProfileSub /> :  <ProfileOffice />}
+        </Switch>
+        
+        
         </div>
+
     )
   }
 }

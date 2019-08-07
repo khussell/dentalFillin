@@ -44,5 +44,17 @@ module.exports = {
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+  },
+
+
+
+  findByIsSub: function(req,res) {
+    console.log(req.query)
+    db.User.find({})
+          .sort({starRating: 1})
+          .then(dbModel =>{
+            console.log(dbModel)
+            res.json(dbModel)})
+          .catch(err => res.status(422).json(err));
   }
 };

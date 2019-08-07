@@ -5,6 +5,7 @@ import SignUp from './pages/SignUp'
 import { BrowserRouter as Router, Route } from "react-router-dom"
 import API from './utils/API'
 import Dashboard from "./pages/Dashboard"
+import Find from "./pages/Find"
 
 
 class App extends React.Component {
@@ -132,7 +133,6 @@ class App extends React.Component {
   loadUsers = () => {
     API.getUsers()
       .then(res => {
-        console.log(res.data)
         this.setState({
           results: res.data, userInfo: {...this.state.userInfo,
             firstName: "",
@@ -227,7 +227,8 @@ class App extends React.Component {
               {...props} />}
 
           />
-          <Route exact path="/dashboard" component={Dashboard} />
+          <Route path="/dashboard" component={Dashboard} />
+          
         </div>
 
       </Router>

@@ -1,5 +1,6 @@
 import React from "react"
-import {Link} from "react-router-dom"
+import { Link, Route } from "react-router-dom"
+import Find from "../pages/Find"
 
 class Navbar extends React.Component {
     render() {
@@ -10,10 +11,13 @@ class Navbar extends React.Component {
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
+                    
                     <div className="collapse navbar-collapse" id="navbarNav">
+                        
                         <ul className="navbar-nav">
                             <li className="nav-item active">
-                                <Link to="/find" className="nav-link" >Find</Link>
+                                <Link to={`${this.props.match.url}/find`} className="nav-link" >Find</Link>
+
                             </li>
                             <li className="nav-item">
                                 <Link to="/chat" className="nav-link" >Chat</Link>
@@ -28,7 +32,7 @@ class Navbar extends React.Component {
                                 <Link to="edit" className="nav-link" >Edit</Link>
                             </li>
                             <li className="nav-item">
-                                <Link onClick={this.props.logout} className="nav-link">Logout</Link>
+                                <Link to="#" onClick={this.props.logout} className="nav-link">Logout</Link>
                             </li>
                         </ul>
                     </div>

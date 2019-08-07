@@ -8,12 +8,18 @@ router.route("/")
   .get(usersController.findAll)
   .post(usersController.create);
 
+    //matches "/api/users/allOffices"
+    router.route('/allOffices')
+    .get(usersController.findByIsSub)
+
 // Matches with "/api/users/:id"
 router
   .route("/:id")
   .get(usersController.findById)
   .put(usersController.update)
   .delete(usersController.remove);
+
+
 
 
 module.exports = router;

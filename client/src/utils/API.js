@@ -16,5 +16,9 @@ export default {
 
     loggedInUserInfo: function(){
         return axios.get('/hello')
+    },
+
+    getAllOffices: function(){
+        return axios.get('/api/users/allOffices')
     }
 }
