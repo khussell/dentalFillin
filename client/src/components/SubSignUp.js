@@ -1,5 +1,6 @@
 import React from "react"
 import {Link} from "react-router-dom"
+import Flatpickr from './Calendar'
 
 class SubSignUp extends React.Component {
     
@@ -188,7 +189,7 @@ class SubSignUp extends React.Component {
                             No
                         </label>
                     </div>
-                    <div className="form-group">
+                {/*<div className="form-group">
                         <label htmlFor="datesAvailable">Dates Available to Work: Example input:  1/7/2020, 1/8,2020</label>
                         <input type="text" 
                                className="form-control" 
@@ -196,6 +197,11 @@ class SubSignUp extends React.Component {
                                onChange={this.props.handleInputChange}
                                name="avail"
                                value={this.props.userInfo.avail} />
+                    </div>
+        */}
+                    <div>
+                    <label>What dates are you available to work?</label>
+                    <Flatpickr {...this.props} />
                     </div>
 
                     <Link to="/login" className="btn btn-primary" onClick={this.props.signUpSubmit}>Sign up and go to login</Link>

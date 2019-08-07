@@ -1,5 +1,6 @@
 import React from "react"
 import {Link} from "react-router-dom"
+import Flatpickr from "./Calendar"
 
 class OfficeSignUp extends React.Component{
     render(){
@@ -111,6 +112,12 @@ class OfficeSignUp extends React.Component{
                                name="datesNeeded"
                                value={this.props.userInfo.datesNeeded}/>
                     </div>
+
+                    <div>
+                    <label>What dates do you need a sub?</label>
+                    <Flatpickr {...this.props} />
+                    </div>
+
                     <div className="form-group">
                         <label htmlFor="whatKindOfHygienist">What kind of hygienist?</label>
                         <textarea className="form-control" 

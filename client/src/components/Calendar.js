@@ -9,16 +9,18 @@ class App extends Component {
     super();
 
     this.state = {
-      date: new Date()
+      avail: new Date()
     };
   }
 
+
   render() {
-    const { date } = this.state;
+    const  avail  = this.props.avail;
     return (
       <Flatpickr 
-        value={date}
-        onChange={date => { this.setState({date}) }} 
+        id='dates'
+        value={avail}
+        onChange={avail => {this.props.handleDate(avail)}} 
         options={{
             mode: "multiple",
             dateFormat: "Y-m-d"
