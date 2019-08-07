@@ -48,13 +48,21 @@ module.exports = {
 
 
 
-  findByIsSub: function(req,res) {
+  findByNotSub: function(req,res) {
     console.log(req.query)
-    db.User.find({})
+    db.User.find({sub: ""})
           .sort({starRating: 1})
           .then(dbModel =>{
             console.log(dbModel)
             res.json(dbModel)})
           .catch(err => res.status(422).json(err));
+  },
+
+  findByIsSub: function(req, res){
+    console.log(req.query)
+    db.User.find({sub: 'true'})
+      .sort({starRating: 1})
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
   }
 };

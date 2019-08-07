@@ -7,6 +7,7 @@ class Find extends React.Component {
         super();
     
         this.state = {
+          results: [],
           date: new Date()
         };
       }
@@ -19,6 +20,14 @@ class Find extends React.Component {
         if(isSub){
             API.getAllOffices().then(res =>{
                 console.log(res.data)
+                this.setState({results: res.data})
+
+                
+            })
+        }else{
+            API.getAllSubs().then(res =>{
+                console.log(res.data)
+                this.setState({results : res.data})
             })
         }
     }
@@ -38,6 +47,16 @@ class Find extends React.Component {
                     options={{
                         dateFormat: "Y-m-d"
                     }} />
+                <div>
+                    {this.state.results.map(data => {
+                        return(
+                            <div key={data._id}>
+                                <h1>{data.officeName}</h1>
+                                <h1>{data.userName}</h1>
+                            </div>
+                        )
+                    })}
+                </div>
             </div>
         )
     }

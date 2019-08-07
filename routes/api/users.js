@@ -10,7 +10,10 @@ router.route("/")
 
     //matches "/api/users/allOffices"
     router.route('/allOffices')
-    .get(usersController.findByIsSub)
+    .get(usersController.findByNotSub)
+
+    router.route('/allSubs')
+      .get(usersController.findByIsSub)
 
 // Matches with "/api/users/:id"
 router

@@ -20,5 +20,9 @@ export default {
 
     getAllOffices: function(){
         return axios.get('/api/users/allOffices')
+    },
+
+    getAllSubs: function(){
+        return axios.get('/api/users/allSubs')
     }
 }
