@@ -1,6 +1,6 @@
 import React from "react"
-import { Link, Route } from "react-router-dom"
-import Find from "../pages/Find"
+import { Link,  } from "react-router-dom"
+
 
 class Navbar extends React.Component {
     render() {

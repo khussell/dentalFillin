@@ -1,6 +1,8 @@
 import React from "react"
 import { Link } from "react-router-dom";
 import Calendar from "../components/Calendar"
+import Map from "../components/Map"
+
 
 class Welcome extends React.Component {
     render() {
@@ -17,6 +19,10 @@ class Welcome extends React.Component {
                         </Link>
                     </div>
                     <Calendar />
+                    <br></br>
+                    <h6>Map</h6>
+                    
+                    <Map />
                 </div>
             </div>
         )
