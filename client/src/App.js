@@ -134,7 +134,7 @@ class App extends React.Component {
       .then(res => {
         console.log(res.data)
         this.setState({
-          results: res.data, userInfo: {
+          results: res.data, userInfo: {...this.state.userInfo,
             firstName: "",
             lastName: "",
             userName: "",
@@ -146,7 +146,7 @@ class App extends React.Component {
             about: "",
             anesthesia: "",
             nitrous: "",
-            avail: new Date(),
+            avail: [],
             officeName: "",
             doctors: [],
             datesNeeded: "",

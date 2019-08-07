@@ -18,18 +18,49 @@ class Dashboard extends React.Component {
     console.log('hi')
     const isAuthenticated = false
     window.localStorage.setItem('isAuthenticated', isAuthenticated)
+    window.localStorage.removeItem('sub')
+    window.localStorage.removeItem('firstName')
+    window.localStorage.removeItem('lastName')
+    window.localStorage.removeItem('userName')
+    window.localStorage.removeItem('_id')
+    window.localStorage.removeItem('about')
+    window.localStorage.removeItem('location')
+    window.localStorage.removeItem('photo')
+    window.localStorage.removeItem('starRating')
+
+  
+        window.localStorage.removeItem('avail' )
+        window.localStorage.removeItem('pastJobs')
+        window.localStorage.removeItem('currentJobs')
+        window.localStorage.removeItem('searchParams')
+        window.localStorage.removeItem('yearsExp')
+        window.localStorage.removeItem('nitrous')
+        window.localStorage.removeItem('anesthesia')
+        window.localStorage.removeItem('howManyTimesSubbed')
+    
+
+        window.localStorage.removeItem('doctors')
+        window.localStorage.removeItem('datesNeeded')
+        window.localStorage.removeItem('pastSubs')
+        window.localStorage.removeItem('currentSubs')
+        window.localStorage.removeItem('officeName')
+        window.localStorage.removeItem('kindOfPerson')
+        window.localStorage.removeItem('howManySubsHaveYouHad')
+        window.localStorage.removeItem('searchParams')
     this.props.history.push("/login")
   }
 
   render() {
-    const isSub = window.localStorage.getItem('sub')
+    const isSub = localStorage.getItem('sub')
     
+    const firstName = window.localStorage.getItem('firstName')
+   
     return (
       
 
       <div>
         <Navbar logout={this.logout} />
-        <h1>Dashboard for {window.localStorage.getItem('userName')}</h1>
+        <h1>Dashboard for {firstName}</h1>
         {isSub === "true"? <ProfileSub /> :  <ProfileOffice />}
         </div>
     )
