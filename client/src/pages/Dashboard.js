@@ -46,6 +46,7 @@ class Dashboard extends React.Component {
     window.localStorage.removeItem('kindOfPerson')
     window.localStorage.removeItem('howManySubsHaveYouHad')
     window.localStorage.removeItem('searchParams')
+    window.localStorage.removeItem('invitations')
     this.props.history.push("/login")
   }
 

@@ -45,5 +45,9 @@ export default {
         let queryUrl = "/api/users" + url
         console.log(queryUrl)
         return axios.get(queryUrl)
+    },
+
+    inviteUser: function(info){
+        return axios.get('/invite', {info: info})
     }
 }

@@ -87,6 +87,18 @@ module.exports = {
     console.log(req.params.user)
     let user = req.params.user
     db.User.findOne({userName: user}).then(dbModel => res.json(dbModel))
+  },
+
+  updateInvitations: function(req, res) {
+    console.log("here")
+    console.log(req.body)
+    let info = {
+      inviter: req.body.inviter,
+      date: req.body.date
+    }
+    
+    db.User.findOneAndUpdate({userName : req.body.invitee}, { $push : {"invitations" : info}}).then(dbModel =>res.json(dbModel))
+
   }
 
   //email: function(req,res){

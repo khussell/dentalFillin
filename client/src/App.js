@@ -5,7 +5,7 @@ import SignUp from './pages/SignUp'
 import { BrowserRouter as Router, Route } from "react-router-dom"
 import API from './utils/API'
 import Dashboard from "./pages/Dashboard"
-import Find from "./pages/Find"
+
 
 
 class App extends React.Component {
@@ -37,7 +37,8 @@ class App extends React.Component {
       currentJobs: [],
       pastSubs: [],
       currentSubs: [],
-      searchParams: []
+      searchParams: [],
+      invitations: []
     }
 
 
@@ -125,7 +126,8 @@ class App extends React.Component {
       currentJobs: this.state.userInfo.currentJobs,
       pastSubs: this.state.userInfo.pastSubs,
       currentSubs: this.state.userInfo.currentSubs,
-      searchParams: this.state.userInfo.searchParams
+      searchParams: this.state.userInfo.searchParams,
+      invitations: this.state.userInfo.invitations
     }).then(res => this.loadUsers())
       .catch(err => console.log(err));
   }
@@ -158,7 +160,8 @@ class App extends React.Component {
             currentJobs: [],
             pastSubs: [],
             currentSubs: [],
-            searchParams: []
+            searchParams: [],
+            invitations: []
           }
         })
       }).catch(err => console.log(err));
@@ -210,6 +213,7 @@ class App extends React.Component {
               doctors={this.state.userInfo.doctors}
               datesNeeded={this.state.userInfo.datesNeeded}
               kindOfPerson={this.state.userInfo.kindOfPerson}
+              invitations={this.state.userInfo.invitations}
 
 
               handleDate={this.handleDate}

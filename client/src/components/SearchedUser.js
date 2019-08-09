@@ -1,5 +1,6 @@
 import React from 'react'
 import API from '../utils/API'
+import EmailForm from '../components/EmailForm'
 
 class SearchedUser extends React.Component {
     state = {
@@ -34,15 +35,42 @@ class SearchedUser extends React.Component {
                 currentJobs:res.data.currentJobs,
                 pastSubs: res.data.pastSubs,
                 currentSubs: res.data.currentSubs,
-                searchParams: res.data.searchParams
+                searchParams: res.data.searchParams,
+                invitations: res.data.invitations
             })
         })
     }
 
+   invite= (event) => {
+       event.preventDefault()
+       let userBeingInvited = this.state.userName
+       let inviteDate = document.getElementById('inviteDate').value
+       let inviter = window.localStorage.getItem('officeName')
+       let info = {
+           invitee : userBeingInvited,
+           date : inviteDate,
+           inviter: inviter
+       }
+
+       console.log(info)
+       API.inviteUser(info).then(res => {
+           console.log(res.data)
+       })
+   }
+
     render() {
 
         return (
-            <div>{this.state.userName}</div>
+            <div>
+            <h1>{this.state.userName}</h1>
+            <EmailForm />
+            <form>
+                <label>If you would like to invite for work, please enter a date</label>
+                <input id="inviteDate" type="text" />
+            <button onClick={this.invite}>Invite for work</button>
+            </form>
+            </div>
+            
         )
     }
 }

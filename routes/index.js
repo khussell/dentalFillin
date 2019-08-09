@@ -46,7 +46,8 @@ router.get('/hello', (req, res)=>{
   })
 })
 
-
+router.route('/invite')
+.get(usersController.updateInvitations)
 
 
 

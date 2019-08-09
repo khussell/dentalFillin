@@ -22,6 +22,8 @@ router.route('/allSubsFromDate')
     router.route('/allSubs')
       .get(usersController.findByIsSub)
 
+    
+
       router.route('/dashboard/find/searched/:user')
       .get(usersController.findByUserName)
 

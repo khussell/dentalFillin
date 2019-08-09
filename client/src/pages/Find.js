@@ -2,8 +2,8 @@ import React from "react"
 import Flatpickr from 'react-flatpickr'
 import API from '../utils/API'
 import Map from "../components/Map"
-import {Link, Route} from "react-router-dom"
-import SearchedUser from "../components/SearchedUser"
+import {Link, } from "react-router-dom"
+
 
 class Find extends React.Component {
     constructor() {
@@ -115,7 +115,7 @@ class Find extends React.Component {
                                     <h1>{data.officeName}</h1>
                                     <h1>{data.userName}</h1>
                                     <Map />
-                                    <Link to={`${this.props.match.url}/find/searched`} />
+                                    <Link className="btn btn-primary" to={`${this.props.match.url}/find/searched/${data.userName}`} >Profile</Link>
                                     
                                 </div>
                             )
@@ -127,6 +127,7 @@ class Find extends React.Component {
                                     <h1>{data.officeName}</h1>
                                     <h1>{data.userName}</h1>
                                     <Map />
+                                    <Link className="btn btn-primary" to={`${this.props.match.url}/find/searched/${data.userName}`} >Profile</Link>
                             
                                 </div>
                             )

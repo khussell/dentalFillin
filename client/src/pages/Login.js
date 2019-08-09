@@ -32,6 +32,7 @@ submit = (event) => {
             window.localStorage.setItem('location', res.data.location)
             window.localStorage.setItem('photo', res.data.photo)
             window.localStorage.setItem('starRating', res.data.starRating)
+            window.localStorage.setItem('invitations', res.data.invitations)
 
             if(res.data.sub === "true"){
                 window.localStorage.setItem('avail', res.data.avail)
