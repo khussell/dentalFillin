@@ -8,6 +8,13 @@ router.route("/")
   .get(usersController.findAll)
   .post(usersController.create);
 
+router.route('/allOfficesFromDate')
+  .post(usersController.findAllOfficesFromDate)
+
+router.route('/allSubsFromDate')
+  .post(usersController.findAllSubsFromDate)
+
+
     //matches "/api/users/allOffices"
     router.route('/allOffices')
     .get(usersController.findByNotSub)
@@ -15,11 +22,7 @@ router.route("/")
     router.route('/allSubs')
       .get(usersController.findByIsSub)
 
-    router.route('allOfficesFromProfileDates')
-       .get(usersController.findAllOfficesFromProfile)
-
-    router.route('allSubsFromProfileDates')
-       .get(usersController.findAllSubsFromProfile)
+    
 
 // Matches with "/api/users/:id"
 router

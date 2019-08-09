@@ -6,75 +6,79 @@ import Map from "../components/Map"
 class Find extends React.Component {
     constructor() {
         super();
-    
+
         this.state = {
-          results1: [],
-          results2: [],
-          results3: [],
-          date: new Date()
+            results1: [],
+            results2: [],
+            date: new Date()
         };
-      }
+    }
 
-      componentDidMount = () =>{
-          this.setState({
-              results1: [],
-              results2: [],
-              results3: [],
-              load1: "false",
-              load2: "false",
-              load3: "false"
-          })
-      }
+    componentDidMount = () => {
+        this.setState({
+            results1: [],
+            results2: [],
+            load1: "false",
+            load2: "false"
+        })
+    }
 
-    findAll = (event) =>{
+    findAll = (event) => {
         event.preventDefault()
         const isSub = window.localStorage.getItem('sub')
         console.log(isSub)
-        if(isSub){
-            API.getAllOffices().then(res =>{
+        if (isSub) {
+            API.getAllOffices().then(res => {
                 console.log(res.data)
                 this.setState({
-                    results: res.data,
-                    load1 : "true",
+                    results1: res.data,
+                    results2: [],
+                    load1: "true",
                     load2: 'false',
-                    load3: 'false' 
-                })    
+
+                })
             })
-        }else{
-            API.getAllSubs().then(res =>{
+        } else {
+            API.getAllSubs().then(res => {
                 console.log(res.data)
                 this.setState({
-                    results1 : res.data,
-                    load1 : "true",
+                    results1: res.data,
+                    results2: [],
+                    load1: "true",
                     load2: 'false',
-                    load3: 'false'      
+
                 })
             })
         }
     }
 
-    findAllProfileDates = (event) => {
+    findDate = (event) => {
         event.preventDefault()
         const isSub = window.localStorage.getItem('sub')
+        const date = this.state.date
         console.log(isSub)
-        if(isSub){
-            API.getAllOfficesFromProfileDates().then(res =>{
+        console.log(date)
+
+        if (isSub) {
+            API.getAllOfficesFromDate({ date: date }).then(res => {
                 console.log(res.data)
                 this.setState({
-                    results: res.data,
+                    results1: [],
+                    results2: res.data,
                     load1: 'false',
                     load2: "true",
-                    load3: 'false'
-                })    
+
+                })
             })
-        }else{
-            API.getAllSubsFromProfileDates().then(res =>{
+        } else {
+            API.getAllSubsFromDate({ date: date }).then(res => {
                 console.log(res.data)
                 this.setState({
-                    results1 : res.data,
-                    load1 : "false",
+                    results1: [],
+                    results2: res.data,
+                    load1: "false",
                     load2: "true",
-                    load3: 'false'      
+
                 })
             })
         }
@@ -85,7 +89,7 @@ class Find extends React.Component {
             <div>
                 <h1>Find</h1>
                 <button onClick={this.findAll}>Search all dates</button>
-                <button onClick={this.findAllProfileDates}>Search Profile Dates</button>
+
                 <br></br>
                 <label>Search certain day:</label>
                 <br></br>
@@ -95,15 +99,28 @@ class Find extends React.Component {
                     options={{
                         dateFormat: "Y-m-d"
                     }} />
+                <button onClick={this.findDate}>Search Date</button>
                 <div>
-                    {this.state.results.map(data => {
-                        return(
-                            <div key={data._id}>
-                                <h1>{data.officeName}</h1>
-                                <h1>{data.userName}</h1>
-                                <Map />
-                            </div>
-                        )
+                    {
+                        this.state.results1.map(data => {
+                            return (
+                                <div key={data._id}>
+                                    <h1>{data.officeName}</h1>
+                                    <h1>{data.userName}</h1>
+                                    <Map />
+                                </div>
+                            )
+                        })
+                    }
+                    {this.state.results2.map(data => {
+                            return (
+                                <div key={data._id}>
+                                    <h1>{data.officeName}</h1>
+                                    <h1>{data.userName}</h1>
+                                    <Map />
+                                </div>
+                            )
+                        
                     })}
                 </div>
             </div>

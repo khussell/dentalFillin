@@ -67,13 +67,42 @@ module.exports = {
   },
 
 
-  findAllOfficesFromProfile: function(req, res){
-    console.log(req.query)
-    db.User.find({sub: "false"})
+  findAllOfficesFromDate: function(req, res){
+    console.log(req.body.date.date[0])
+    let date = req.body.date.date[0]
+      db.User.find({datesNeeded: { "$in" : [date]}})
+             .sort({starRating: 1})
+             .then(dbModel => res.json(dbModel))
   },
 
-  findAllSubsFromProfile: function(req, res){
-    console.log(req.query)
-    db.User.find({sub: 'true'})
+  findAllSubsFromDate: function(req, res){
+    console.log(req.body.date.date[0])
+    let date = req.body.date.date[0]
+      db.User.find({avail: { "$in" : [date]}})
+             .sort({starRating: 1})
+             .then(dbModel => res.json(dbModel))
   }
 };
+
+
+
+     /*   
+        const parseDates = function(arr){
+            let needed=[]
+            for (let i = 0; i < arr.length; i++) {
+                let splitStr = arr[i].split('')
+                
+                
+                for (let j = 0; j < splitStr.length; j++) {
+                    if (splitStr[j] === "T") {
+                        let fixedDate =splitStr.slice(0, 10)
+                        let join =fixedDate.join('')
+                         needed.push(join)
+                        
+                    }
+                }
+
+            }
+            return needed
+        }
+        */

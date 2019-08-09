@@ -26,11 +26,21 @@ export default {
         return axios.get('/api/users/allSubs')
     },
 
-    getAllOfficesFromProfileDates: function(){
-        return axios.get('/api/users/allOfficesFromProfileDates')
+    getAllOfficesFromDate: function(date){
+       
+        return axios.post('/api/users/allOfficesFromDate', {
+            
+                date: date
+            }
+         )
     },
 
-    getAllSubsFromProfileDates: function(){
-        return axios.get('/api/users/allSubsFromProfileDates')
+    getAllSubsFromDate: function(date){
+       
+        return axios.post('/api/users/allSubsFromDate', {
+            
+                date : date
+            }
+        )
     }
 }
