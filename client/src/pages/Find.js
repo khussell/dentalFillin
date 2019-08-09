@@ -2,6 +2,8 @@ import React from "react"
 import Flatpickr from 'react-flatpickr'
 import API from '../utils/API'
 import Map from "../components/Map"
+import {Link, Route} from "react-router-dom"
+import SearchedUser from "../components/SearchedUser"
 
 class Find extends React.Component {
     constructor() {
@@ -10,7 +12,8 @@ class Find extends React.Component {
         this.state = {
             results1: [],
             results2: [],
-            date: new Date()
+            date: new Date(),
+            user: ""
         };
     }
 
@@ -84,9 +87,13 @@ class Find extends React.Component {
         }
     }
 
+  
+
+
+
     render() {
         return (
-            <div>
+            <div id="allFind">
                 <h1>Find</h1>
                 <button onClick={this.findAll}>Search all dates</button>
 
@@ -108,6 +115,8 @@ class Find extends React.Component {
                                     <h1>{data.officeName}</h1>
                                     <h1>{data.userName}</h1>
                                     <Map />
+                                    <Link to={`${this.props.match.url}/find/searched`} />
+                                    
                                 </div>
                             )
                         })
@@ -118,11 +127,13 @@ class Find extends React.Component {
                                     <h1>{data.officeName}</h1>
                                     <h1>{data.userName}</h1>
                                     <Map />
+                            
                                 </div>
                             )
                         
                     })}
                 </div>
+                
             </div>
         )
     }

@@ -22,7 +22,14 @@ router.route('/allSubsFromDate')
     router.route('/allSubs')
       .get(usersController.findByIsSub)
 
+      router.route('/dashboard/find/searched/:user')
+      .get(usersController.findByUserName)
+
     
+//router.route('/emailForm')
+//       post(usersController.email)
+
+
 
 // Matches with "/api/users/:id"
 router

@@ -29,18 +29,21 @@ export default {
     getAllOfficesFromDate: function(date){
        
         return axios.post('/api/users/allOfficesFromDate', {
-            
                 date: date
             }
          )
     },
 
     getAllSubsFromDate: function(date){
-       
         return axios.post('/api/users/allSubsFromDate', {
-            
                 date : date
             }
         )
+    },
+
+    findUser: function(url){
+        let queryUrl = "/api/users" + url
+        console.log(queryUrl)
+        return axios.get(queryUrl)
     }
 }

@@ -3,12 +3,14 @@ const passport = require('./config/passport')
 //const cookieParser = require('cookie-parser')
 const session = require('express-session')
 const cookieSession = require('cookie-session')
+const app = express();
+const nodemailer = require('nodemailer')
 
 
 
 const mongoose = require("mongoose");
 
-const app = express();
+
 const PORT = process.env.PORT || 3001;
 
 // Middleware, Body parser

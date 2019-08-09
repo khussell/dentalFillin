@@ -2,6 +2,7 @@
 const router = require("express").Router();
 const apiRoutes = require("./api");
 const passport = require('../config/passport')
+const usersController = require('../controllers/usersController')
 
 // API Routes
 router.use("/api", apiRoutes);
@@ -44,6 +45,8 @@ router.get('/hello', (req, res)=>{
     userName : userName
   })
 })
+
+
 
 
 

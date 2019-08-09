@@ -178,12 +178,6 @@ class App extends React.Component {
   }
 
 
-
-
-  //handleFormSubmit = (event) => {
-  //  event.preventDefault()
-  //}
-
   render() {
     console.log(this.state.userInfo.nitrous)
     console.log(this.state.results)

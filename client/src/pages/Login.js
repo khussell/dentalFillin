@@ -89,17 +89,7 @@ submit = (event) => {
                 <Link to={"/signup"}>
                     <button className="btn btn-primary">Sign Up</button>
                 </Link>
-                <div>
-                   {this.props.results.map(user =>{
-                       return(
-                           <div key={user._id}>
-                       <h1>{user._id}</h1>
-                       <p>{user.firstName}</p>
-                       <p>{user.sub}</p>
-                       </div>
-                       )
-                   })}
-                </div>
+                
             </div>
 
         )

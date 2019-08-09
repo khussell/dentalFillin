@@ -5,6 +5,7 @@ import ProfileSub from "../components/ProfileSub"
 import ProfileOffice from "../components/ProfileOffice"
 import {Route, Switch} from "react-router-dom"
 import Find from "./Find"
+import SearchedUser from '../components/SearchedUser'
 
 
 
@@ -29,26 +30,22 @@ class Dashboard extends React.Component {
     window.localStorage.removeItem('location')
     window.localStorage.removeItem('photo')
     window.localStorage.removeItem('starRating')
-
-  
-        window.localStorage.removeItem('avail' )
-        window.localStorage.removeItem('pastJobs')
-        window.localStorage.removeItem('currentJobs')
-        window.localStorage.removeItem('searchParams')
-        window.localStorage.removeItem('yearsExp')
-        window.localStorage.removeItem('nitrous')
-        window.localStorage.removeItem('anesthesia')
-        window.localStorage.removeItem('howManyTimesSubbed')
-    
-
-        window.localStorage.removeItem('doctors')
-        window.localStorage.removeItem('datesNeeded')
-        window.localStorage.removeItem('pastSubs')
-        window.localStorage.removeItem('currentSubs')
-        window.localStorage.removeItem('officeName')
-        window.localStorage.removeItem('kindOfPerson')
-        window.localStorage.removeItem('howManySubsHaveYouHad')
-        window.localStorage.removeItem('searchParams')
+    window.localStorage.removeItem('avail' )
+    window.localStorage.removeItem('pastJobs')
+    window.localStorage.removeItem('currentJobs')
+    window.localStorage.removeItem('searchParams')
+    window.localStorage.removeItem('yearsExp')
+    window.localStorage.removeItem('nitrous')
+    window.localStorage.removeItem('anesthesia')
+    window.localStorage.removeItem('howManyTimesSubbed')
+    window.localStorage.removeItem('doctors')
+    window.localStorage.removeItem('datesNeeded')
+    window.localStorage.removeItem('pastSubs')
+    window.localStorage.removeItem('currentSubs')
+    window.localStorage.removeItem('officeName')
+    window.localStorage.removeItem('kindOfPerson')
+    window.localStorage.removeItem('howManySubsHaveYouHad')
+    window.localStorage.removeItem('searchParams')
     this.props.history.push("/login")
   }
 
@@ -65,7 +62,8 @@ class Dashboard extends React.Component {
         <h1>Dashboard for {firstName}</h1>
         <Switch>
           <Route exact path={`${this.props.match.url}/find`} render={() => <Find {...this.props} />} />
-          {isSub === "true" && `${this.props.match.url}` !== '/dashboard/find'? <ProfileSub /> :  <ProfileOffice />}
+          <Route exact path={`${this.props.match.url}/find/searched/:user`} render={() => <SearchedUser {...this.props}/>}/>
+          {isSub === "true" && `${this.props.match.url}` !== '/dashboard/find' && `${this.props.match.url}` !== "/find/searched/"  ? <ProfileSub /> :  <ProfileOffice />}
         </Switch>
         
         

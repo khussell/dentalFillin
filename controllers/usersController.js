@@ -81,7 +81,17 @@ module.exports = {
       db.User.find({avail: { "$in" : [date]}})
              .sort({starRating: 1})
              .then(dbModel => res.json(dbModel))
+  },
+
+  findByUserName: function(req,res){
+    console.log(req.params.user)
+    let user = req.params.user
+    db.User.findOne({userName: user}).then(dbModel => res.json(dbModel))
   }
+
+  //email: function(req,res){
+  //  console.log(req.body.email)
+  //}
 };
 
 
