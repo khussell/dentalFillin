@@ -1,6 +1,7 @@
 import React from "react"
 import Flatpickr from 'react-flatpickr'
 import API from '../utils/API'
+import Map from "../components/Map"
 
 class Find extends React.Component {
     constructor() {
@@ -53,6 +54,7 @@ class Find extends React.Component {
                             <div key={data._id}>
                                 <h1>{data.officeName}</h1>
                                 <h1>{data.userName}</h1>
+                                <Map />
                             </div>
                         )
                     })}
