@@ -1,6 +1,7 @@
 import React from 'react'
 import GoogleMapReact from 'google-map-react'
 import Axios from 'axios';
+import Marker from "../components/Marker"
 
 
 
@@ -10,10 +11,10 @@ class Map extends React.Component {
 
     static defaultProps = {
         center: {
-            lat: -28.5383355,
-            lng: 81.3792365
+            lat: 28.5383355,
+            lng: -81.3792365
         },
-        zoom: 11
+        zoom: 9
     };
 
     state = {
@@ -23,8 +24,10 @@ class Map extends React.Component {
     }
 
     getCoords = () =>{
-        
-        Axios.get("https://maps.googleapis.com/maps/api/geocode/json?address=Orlando&key=AIzaSyAA5SlE2LTsTT6T1ly7vaSqbS3FL408yFg").then(res => {
+        let location = window.localStorage.getItem('location')
+        let queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + location + "&key=AIzaSyAA5SlE2LTsTT6T1ly7vaSqbS3FL408yFg"
+
+        Axios.get(queryURL).then(res => {
             //console.log(res.results[0].geometry.location)
             //coords = res.results[0].geometry.location
             //console.log(coords)
@@ -61,16 +64,16 @@ class Map extends React.Component {
         return (
             
             // Important! Always set the container height explicitly
-            <div style={{ height: '200px', width: '200px' }}>
+            <div style={{ height: '300px', width: '300px' }}>
                 <GoogleMapReact
                     bootstrapURLKeys={{ key: 'AIzaSyAA5SlE2LTsTT6T1ly7vaSqbS3FL408yFg' }}
                     defaultCenter={this.props.center}
                     defaultZoom={this.props.zoom}
                 >
-                    <AnyReactComponent
+                    <Marker
                         lat={this.state.lat}
                         lng={this.state.lng}
-                        text="My Marker"
+                        name="Dentist 1"
                     />
                 </GoogleMapReact>
             </div>

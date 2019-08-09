@@ -44,9 +44,11 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://user:password1@ds255107.mlab.com:55107/heroku_gmpz2nfn")
-.then(()=>console.log("connected"))
-.catch(err => console.log(err))
+//mongoose.connect(process.env.MONGODB_URI || "mongodb://user:password1@ds255107.mlab.com:55107/heroku_gmpz2nfn", { useNewUrlParser: true })
+//.then(()=>console.log("connected"))
+//.catch(err => console.log(err))
+
+mongoose.connect('mongodb://localhost:27017/dentalFillin', {useNewUrlParser: true});
 
 // Start the API server
 app.listen(PORT, function() {
