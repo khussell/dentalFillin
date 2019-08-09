@@ -15,6 +15,12 @@ router.route("/")
     router.route('/allSubs')
       .get(usersController.findByIsSub)
 
+    router.route('allOfficesFromProfileDates')
+       .get(usersController.findAllOfficesFromProfile)
+
+    router.route('allSubsFromProfileDates')
+       .get(usersController.findAllSubsFromProfile)
+
 // Matches with "/api/users/:id"
 router
   .route("/:id")

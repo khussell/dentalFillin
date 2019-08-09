@@ -64,5 +64,16 @@ module.exports = {
       .sort({starRating: 1})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+  },
+
+
+  findAllOfficesFromProfile: function(req, res){
+    console.log(req.query)
+    db.User.find({sub: "false"})
+  },
+
+  findAllSubsFromProfile: function(req, res){
+    console.log(req.query)
+    db.User.find({sub: 'true'})
   }
 };

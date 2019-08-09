@@ -8,27 +8,74 @@ class Find extends React.Component {
         super();
     
         this.state = {
-          results: [],
+          results1: [],
+          results2: [],
+          results3: [],
           date: new Date()
         };
       }
 
+      componentDidMount = () =>{
+          this.setState({
+              results1: [],
+              results2: [],
+              results3: [],
+              load1: "false",
+              load2: "false",
+              load3: "false"
+          })
+      }
+
     findAll = (event) =>{
         event.preventDefault()
-        console.log("hey")
         const isSub = window.localStorage.getItem('sub')
         console.log(isSub)
         if(isSub){
             API.getAllOffices().then(res =>{
                 console.log(res.data)
-                this.setState({results: res.data})
-
-                
+                this.setState({
+                    results: res.data,
+                    load1 : "true",
+                    load2: 'false',
+                    load3: 'false' 
+                })    
             })
         }else{
             API.getAllSubs().then(res =>{
                 console.log(res.data)
-                this.setState({results : res.data})
+                this.setState({
+                    results1 : res.data,
+                    load1 : "true",
+                    load2: 'false',
+                    load3: 'false'      
+                })
+            })
+        }
+    }
+
+    findAllProfileDates = (event) => {
+        event.preventDefault()
+        const isSub = window.localStorage.getItem('sub')
+        console.log(isSub)
+        if(isSub){
+            API.getAllOfficesFromProfileDates().then(res =>{
+                console.log(res.data)
+                this.setState({
+                    results: res.data,
+                    load1: 'false',
+                    load2: "true",
+                    load3: 'false'
+                })    
+            })
+        }else{
+            API.getAllSubsFromProfileDates().then(res =>{
+                console.log(res.data)
+                this.setState({
+                    results1 : res.data,
+                    load1 : "false",
+                    load2: "true",
+                    load3: 'false'      
+                })
             })
         }
     }
@@ -38,7 +85,7 @@ class Find extends React.Component {
             <div>
                 <h1>Find</h1>
                 <button onClick={this.findAll}>Search all dates</button>
-                <button >Search Profile Dates</button>
+                <button onClick={this.findAllProfileDates}>Search Profile Dates</button>
                 <br></br>
                 <label>Search certain day:</label>
                 <br></br>

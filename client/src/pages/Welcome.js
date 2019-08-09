@@ -1,7 +1,6 @@
 import React from "react"
 import { Link } from "react-router-dom";
-import Calendar from "../components/Calendar"
-import Map from "../components/Map"
+
 
 
 class Welcome extends React.Component {
@@ -18,11 +17,7 @@ class Welcome extends React.Component {
                             <button  className="btn btn-primary">Get Started</button>
                         </Link>
                     </div>
-                    <Calendar />
-                    <br></br>
-                    <h6>Map</h6>
-                    
-                    <Map />
+                   
                 </div>
             </div>
         )

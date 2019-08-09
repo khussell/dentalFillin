@@ -24,5 +24,13 @@ export default {
 
     getAllSubs: function(){
         return axios.get('/api/users/allSubs')
+    },
+
+    getAllOfficesFromProfileDates: function(){
+        return axios.get('/api/users/allOfficesFromProfileDates')
+    },
+
+    getAllSubsFromProfileDates: function(){
+        return axios.get('/api/users/allSubsFromProfileDates')
     }
 }
