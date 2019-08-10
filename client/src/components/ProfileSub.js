@@ -7,7 +7,8 @@ import {Link} from "react-router-dom"
 class ProfileSub extends React.Component {
     state = {
         invitations: [],
-        inviterUserName: ''
+        inviterUserName: '',
+        load: 'false'
     }
 
     componentDidMount = () => {
@@ -29,17 +30,21 @@ class ProfileSub extends React.Component {
         API.findUserInfo(userName).then(res => {
             console.log(res.data.userName)
             let inviterUser = res.data.userName
-            this.setState({inviterUserName: inviterUser})
+            this.setState({inviterUserName: inviterUser, load: 'true'})
         })
-//Async await
-        let url = `/dashboard/find/searched/${this.state.inviterUserName}`
-        console.log(url)
-        this.props.history.push(url)
+
+      
     }
 
     
     render() {
-       
+       console.log(this.state.invitations)
+
+       if(this.state.load === 'true'){
+        let url = `/dashboard/find/searched/${this.state.inviterUserName}`
+        console.log(url)
+        this.props.history.push(url)
+       }
 
         
         return (

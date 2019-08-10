@@ -65,6 +65,9 @@ export default {
         return axios.post('/findUserName', {userName: userName})
     },
      
+    acceptedInvite: function(invite){
+        return axios.post('/acceptedInvite', {invite : invite})
+    }
 
     
 }

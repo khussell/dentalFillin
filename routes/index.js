@@ -58,5 +58,8 @@ router.route('/findInvites')
 router.route('/findUserName')
 .post(usersController.findUserName)
 
+router.route('/acceptedInvite')
+.post(usersController.acceptedInvite)
+
 
 module.exports = router;

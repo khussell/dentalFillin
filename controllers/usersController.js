@@ -131,6 +131,20 @@ module.exports = {
     console.log(req.body.userName)
 
     db.User.findOne({officeName: req.body.userName}).then(dbModel => res.json(dbModel))
+  },
+
+
+  acceptedInvite: function(req,res){
+    console.log(req.body.invite)
+    db.User.findOneAndUpdate({officeName: req.body.invite.inviter},{ $push : {"currentSubs" : req.body.invite}}).then(dbModel =>{
+      db.User.findOneAndUpdate({userName: req.body.invite.invitee},{ $push : {"currentJobs" : req.body.invite}}).then(dbModel =>{
+        db.User.findOneAndUpdate({officeName: req.body.invite.inviter}, {$pull: {"invitations" : {date: req.body.invite.date} }},  { safe: true, multi:true }).then(dbModel =>{
+          db.User.findOneAndUpdate({userName: req.body.invite.invitee}, {$pull: {"invitations" : {date: req.body.invite.date} }},  { safe: true, multi:true }).then(dbModel =>{
+            res.json(dbModel)
+          })
+        })
+      })
+    })
   }
 
   //email: function(req,res){

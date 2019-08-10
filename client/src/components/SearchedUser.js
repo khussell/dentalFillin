@@ -4,7 +4,32 @@ import EmailForm from '../components/EmailForm'
 
 class SearchedUser extends React.Component {
     state = {
-        user: []
+        user: [],
+        firstName: "",
+        lastName: "",
+        userName: "",
+        password: "",
+        sub: "",
+        photo: "",
+        location: "",
+        yearsExp: 0,
+        about: "",
+        anesthesia: "",
+        nitrous: "",
+        avail: [],
+        officeName: "",
+        doctors: [],
+        datesNeeded: "",
+        kindOfPerson: "",
+        starRating: 0,
+        howManyTimesSubbed: 0,
+        howManySubsHaveYouHad: 0,
+        pastJobs: [],
+        currentJobs: [],
+        pastSubs: [],
+        currentSubs: [],
+        searchParams: [],
+        invitations: []
     }
     componentDidMount = () => {
         console.log(this.props.history.location.pathname)
@@ -62,6 +87,12 @@ class SearchedUser extends React.Component {
        })
    }
 
+   accepted = (invite) => {
+      API.acceptedInvite(invite).then(res =>{
+          console.log(res.data)
+      })
+   }
+
     render() {
         console.log(this.state)
           console.log("invites: " + this.state.invitations)
@@ -71,12 +102,13 @@ class SearchedUser extends React.Component {
         return (
             <div>
             <h1>{this.state.userName}</h1>
-            <h3>Invites?</h3>
+            <h3>They have invited you for?</h3>
             {this.state.invitations.map(invite => {
                 if(invite.invitee === window.localStorage.getItem('userName')){
                     return(
                         <div key={invite.date}>
-                            <button>{invite.date}</button>
+                            <p>{invite.date}</p>
+                            <button onClick={() => this.accepted(invite)}>Accept</button>
                         </div>
                     )
                 }else{
