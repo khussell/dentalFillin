@@ -6,6 +6,7 @@ import ProfileOffice from "../components/ProfileOffice"
 import {Route, Switch} from "react-router-dom"
 import Find from "./Find"
 import SearchedUser from '../components/SearchedUser'
+import Upcoming from '../components/Upcoming'
 
 
 
@@ -62,6 +63,7 @@ class Dashboard extends React.Component {
         <Navbar {...this.props} logout={this.logout} />
         <h1>Dashboard for {firstName}</h1>
         <Switch>
+          <Route exact path={`${this.props.match.url}/upcoming`}  component={Upcoming}/>
           <Route exact path={`${this.props.match.url}/find`} render={() => <Find {...this.props} />} />
           <Route exact path={`${this.props.match.url}/find/searched/:user`} render={() => <SearchedUser {...this.props}/>}/>
           {isSub === "true" && `${this.props.match.url}` !== '/dashboard/find' && `${this.props.match.url}` !== "/find/searched/"  ? <ProfileSub {...this.props}/> :  <ProfileOffice {...this.props} />}

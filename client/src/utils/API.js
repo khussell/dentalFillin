@@ -67,6 +67,11 @@ export default {
      
     acceptedInvite: function(invite){
         return axios.post('/acceptedInvite', {invite : invite})
+    },
+
+    findUpcoming: function(userName){
+        let url = `/findUpcoming/${userName}`
+        return axios.get(url)
     }
 
     

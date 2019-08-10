@@ -145,6 +145,11 @@ module.exports = {
         })
       })
     })
+  },
+
+  findUpcoming: function(req, res){
+    let userName= req.params.userName
+    db.User.find({userName: userName}).then(dbModel => res.json(dbModel))
   }
 
   //email: function(req,res){

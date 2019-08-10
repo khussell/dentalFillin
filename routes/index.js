@@ -61,5 +61,7 @@ router.route('/findUserName')
 router.route('/acceptedInvite')
 .post(usersController.acceptedInvite)
 
+router.route('/findUpcoming/:userName')
+.get(usersController.findUpcoming)
 
 module.exports = router;

@@ -20,7 +20,7 @@ class Navbar extends React.Component {
 
                             </li>
                             <li className="nav-item">
-                                <Link to="/upcoming" className="nav-link" >Upcoming</Link>
+                                <Link to={`${this.props.match.url}/upcoming`} className="nav-link" >Upcoming</Link>
                             </li>
                             <li className="nav-item">
                                 <Link to="/past" className="nav-link" >Past</Link>
