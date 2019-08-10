@@ -185,6 +185,7 @@ class App extends React.Component {
   render() {
     console.log(this.state.userInfo.nitrous)
     console.log(this.state.results)
+    
     return (
       <Router>
 

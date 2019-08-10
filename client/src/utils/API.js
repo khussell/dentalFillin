@@ -55,5 +55,16 @@ export default {
     putInviteIntoOffice: function(info){
         return axios.post('/putInvite', {info: info})
        
-     }
+     },
+     
+     findInvites: function(userName){
+         return axios.post('/findInvites', {userName: userName})
+     },
+
+     findUserInfo: function(userName){
+        return axios.post('/findUserName', {userName: userName})
+    },
+     
+
+    
 }

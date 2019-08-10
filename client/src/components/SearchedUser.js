@@ -63,10 +63,28 @@ class SearchedUser extends React.Component {
    }
 
     render() {
+        console.log(this.state)
+          console.log("invites: " + this.state.invitations)
+
+        
 
         return (
             <div>
             <h1>{this.state.userName}</h1>
+            <h3>Invites?</h3>
+            {this.state.invitations.map(invite => {
+                if(invite.invitee === window.localStorage.getItem('userName')){
+                    return(
+                        <div key={invite.date}>
+                            <button>{invite.date}</button>
+                        </div>
+                    )
+                }else{
+                    return(
+                        <div></div>
+                    )
+                }
+            })}
             <EmailForm />
             <form>
                 <label>If you would like to invite for work, please enter a date</label>

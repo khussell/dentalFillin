@@ -52,5 +52,11 @@ router.route('/invite')
 router.route('/putInvite')
 .post(usersController.putInvite)
 
+router.route('/findInvites')
+.post(usersController.findInvites)
+
+router.route('/findUserName')
+.post(usersController.findUserName)
+
 
 module.exports = router;

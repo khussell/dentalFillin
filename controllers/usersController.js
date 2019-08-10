@@ -118,6 +118,19 @@ module.exports = {
     
     db.User.findOneAndUpdate({officeName : req.body.info.inviter}, { $push : {"invitations" : info}}).then(dbModel =>res.json(dbModel))
 
+  },
+
+  findInvites: function(req, res){
+    console.log('here')
+    console.log(req.body.userName)
+
+    db.User.find({userName: req.body.userName}).then(dbModel =>res.json(dbModel))
+  },
+
+  findUserName: function(req, res){
+    console.log(req.body.userName)
+
+    db.User.findOne({officeName: req.body.userName}).then(dbModel => res.json(dbModel))
   }
 
   //email: function(req,res){

@@ -5,7 +5,8 @@ import API from '../utils/API'
 class Login extends React.Component {
     state = {
         userName: '',
-        password: ''
+        password: '',
+        invitations: []
     }
 
 submit = (event) => {
@@ -24,6 +25,10 @@ submit = (event) => {
             const isAuthenticated = true
             window.localStorage.setItem('isAuthenticated', isAuthenticated)
 
+            let invitations = res.data.invitations
+            this.setState({invitations: invitations})
+            console.log(this.state.invitations)
+
             window.localStorage.setItem('sub', res.data.sub)
             window.localStorage.setItem('firstName', res.data.firstName)
             window.localStorage.setItem('lastName', res.data.lastName)
@@ -33,6 +38,7 @@ submit = (event) => {
             window.localStorage.setItem('photo', res.data.photo)
             window.localStorage.setItem('starRating', res.data.starRating)
             window.localStorage.setItem('invitations', res.data.invitations)
+            window.localStorage.setItem('userName', res.data.userName)
 
             if(res.data.sub === "true"){
                 window.localStorage.setItem('avail', res.data.avail)
