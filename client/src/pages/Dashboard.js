@@ -64,7 +64,7 @@ class Dashboard extends React.Component {
         <Switch>
           <Route exact path={`${this.props.match.url}/find`} render={() => <Find {...this.props} />} />
           <Route exact path={`${this.props.match.url}/find/searched/:user`} render={() => <SearchedUser {...this.props}/>}/>
-          {isSub === "true" && `${this.props.match.url}` !== '/dashboard/find' && `${this.props.match.url}` !== "/find/searched/"  ? <ProfileSub /> :  <ProfileOffice />}
+          {isSub === "true" && `${this.props.match.url}` !== '/dashboard/find' && `${this.props.match.url}` !== "/find/searched/"  ? <ProfileSub {...this.props}/> :  <ProfileOffice {...this.props} />}
         </Switch>
         
         

@@ -91,13 +91,32 @@ module.exports = {
 
   updateInvitations: function(req, res) {
     console.log("here")
+   // console.log(req)
     console.log(req.body)
     let info = {
-      inviter: req.body.inviter,
-      date: req.body.date
+      inviter: req.body.info.inviter,
+      date: req.body.info.date,
+      invitee : req.body.info.invitee
     }
+    console.log(info)
     
-    db.User.findOneAndUpdate({userName : req.body.invitee}, { $push : {"invitations" : info}}).then(dbModel =>res.json(dbModel))
+    db.User.findOneAndUpdate({userName : info.invitee}, { $push : {"invitations" : info}}).then(dbModel =>res.json(dbModel))
+
+  },
+
+  putInvite: function(req, res) {
+    console.log("here")
+   // console.log(req)
+    console.log(req.body)
+
+    let info = {
+      inviter: req.body.info.inviter,
+      date: req.body.info.date,
+      invitee : req.body.info.invitee
+    }
+    console.log(info)
+    
+    db.User.findOneAndUpdate({officeName : req.body.info.inviter}, { $push : {"invitations" : info}}).then(dbModel =>res.json(dbModel))
 
   }
 

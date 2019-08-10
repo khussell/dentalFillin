@@ -48,6 +48,12 @@ export default {
     },
 
     inviteUser: function(info){
-        return axios.get('/invite', {info: info})
-    }
+       return axios.post('/invite', {info: info})
+      
+    },
+
+    putInviteIntoOffice: function(info){
+        return axios.post('/putInvite', {info: info})
+       
+     }
 }

@@ -45,6 +45,7 @@ class App extends React.Component {
   }
 
   componentDidMount = () => {
+    console.log(this.state.userInfo)
     this.loadUsers()
   }
 

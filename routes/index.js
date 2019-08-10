@@ -47,8 +47,10 @@ router.get('/hello', (req, res)=>{
 })
 
 router.route('/invite')
-.get(usersController.updateInvitations)
+.post(usersController.updateInvitations)
 
+router.route('/putInvite')
+.post(usersController.putInvite)
 
 
 module.exports = router;

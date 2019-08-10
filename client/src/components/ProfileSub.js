@@ -9,7 +9,7 @@ class ProfileSub extends React.Component {
     render() {
         return (
            <div>
-               <h1>ProfileSub</h1>
+               <h1>ProfileSub of {window.localStorage.getItem('userName')}</h1>
                <StaticCalendar />
            </div>
         )

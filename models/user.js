@@ -27,7 +27,8 @@ const userSchema = new Schema({
   pastSubs: {type: Array},
   currentSubs: {type: Array},
   searchParams: {type: Array},
-  date: { type: Date}
+  date: { type: Date},
+  invitations: {type: Array}
 });
 
 //making a variable user that makes a mongoose model call User useing userSchema

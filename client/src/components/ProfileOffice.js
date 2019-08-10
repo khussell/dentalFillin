@@ -8,7 +8,7 @@ class ProfileOffice extends React.Component {
     render() {
         return (
            <div>
-               <h1>ProfileOffice</h1>
+               <h1>ProfileOffice of {window.localStorage.getItem('firstName')}</h1>
                <StaticCalendar />
                <Map />
            </div>

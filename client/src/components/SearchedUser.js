@@ -56,6 +56,10 @@ class SearchedUser extends React.Component {
        API.inviteUser(info).then(res => {
            console.log(res.data)
        })
+
+       API.putInviteIntoOffice(info).then(res => {
+           console.log(res.data)
+       })
    }
 
     render() {
