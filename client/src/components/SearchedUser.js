@@ -1,6 +1,7 @@
 import React from 'react'
 import API from '../utils/API'
 import EmailForm from '../components/EmailForm'
+import Ratings from 'react-ratings-declarative'
 
 class SearchedUser extends React.Component {
     state = {
@@ -48,16 +49,16 @@ class SearchedUser extends React.Component {
                 about: res.data.about,
                 anesthesia: res.data.anesthesia,
                 nitrous: res.data.nitrous,
-                avail:res.data.avail,
+                avail: res.data.avail,
                 officeName: res.data.officeName,
                 doctors: res.data.doctors,
                 datesNeeded: res.data.datesNeeded,
-                kindOfPerson:res.data.kindOfPerson,
+                kindOfPerson: res.data.kindOfPerson,
                 starRating: res.data.starRating,
                 howManyTimesSubbed: res.data.howManyTimesSubbed,
                 howManySubsHaveYouHad: res.data.howManySubsHaveYouHad,
                 pastJobs: res.data.pastJobs,
-                currentJobs:res.data.currentJobs,
+                currentJobs: res.data.currentJobs,
                 pastSubs: res.data.pastSubs,
                 currentSubs: res.data.currentSubs,
                 searchParams: res.data.searchParams,
@@ -66,67 +67,81 @@ class SearchedUser extends React.Component {
         })
     }
 
-   invite= (event) => {
-       event.preventDefault()
-       let userBeingInvited = this.state.userName
-       let inviteDate = document.getElementById('inviteDate').value
-       let inviter = window.localStorage.getItem('officeName')
-       let inviterUser = window.localStorage.getItem('userName')
-       let info = {
-           invitee : userBeingInvited,
-           date : inviteDate,
-           inviter: inviter,
-           inviterUser : inviterUser
-       }
+    invite = (event) => {
+        event.preventDefault()
+        let userBeingInvited = this.state.userName
+        let inviteDate = document.getElementById('inviteDate').value
+        let inviter = window.localStorage.getItem('officeName')
+        let inviterUser = window.localStorage.getItem('userName')
+        let info = {
+            invitee: userBeingInvited,
+            date: inviteDate,
+            inviter: inviter,
+            inviterUser: inviterUser,
+            inviteeName: window.localStorage.firstName
+        }
 
-       console.log(info)
-       API.inviteUser(info).then(res => {
-           console.log(res.data)
-       })
+        console.log(info)
+        API.inviteUser(info).then(res => {
+            console.log(res.data)
+        })
 
-       API.putInviteIntoOffice(info).then(res => {
-           console.log(res.data)
-       })
-   }
+        API.putInviteIntoOffice(info).then(res => {
+            console.log(res.data)
+        })
+    }
 
-   accepted = (invite) => {
-      API.acceptedInvite(invite).then(res =>{
-          console.log(res.data)
-      })
-   }
+    accepted = (invite) => {
+        API.acceptedInvite(invite).then(res => {
+            console.log(res.data)
+        })
+    }
 
     render() {
         console.log(this.state)
-          console.log("invites: " + this.state.invitations)
+        console.log("invites: " + this.state.invitations)
 
-        
+
 
         return (
             <div>
-            <h1>{this.state.userName}</h1>
-            <h3>They have invited you for?</h3>
-            {this.state.invitations.map(invite => {
-                if(invite.invitee === window.localStorage.getItem('userName')){
-                    return(
-                        <div key={invite.date}>
-                            <p>{invite.date}</p>
-                            <button onClick={() => this.accepted(invite)}>Accept</button>
-                        </div>
-                    )
-                }else{
-                    return(
-                        <div></div>
-                    )
-                }
-            })}
-            <EmailForm />
-            <form>
-                <label>If you would like to invite for work, please enter a date</label>
-                <input id="inviteDate" type="text" />
-            <button onClick={this.invite}>Invite for work</button>
-            </form>
+                <Ratings
+
+                    widgetDimensions="40px"
+                    widgetSpacings="15px"
+                    rating={3}
+                    widgetRatedColors="orange"
+                >
+                    <Ratings.Widget />
+                    <Ratings.Widget />
+                    <Ratings.Widget  />
+                    <Ratings.Widget />
+                    <Ratings.Widget />
+                </Ratings>
+                <h1>{this.state.userName}</h1>
+                <h3>They have invited you for?</h3>
+                {this.state.invitations.map(invite => {
+                    if (invite.invitee === window.localStorage.getItem('userName')) {
+                        return (
+                            <div key={invite.date}>
+                                <p>{invite.date}</p>
+                                <button onClick={() => this.accepted(invite)}>Accept</button>
+                            </div>
+                        )
+                    } else {
+                        return (
+                            <div></div>
+                        )
+                    }
+                })}
+                <EmailForm />
+                <form>
+                    <label>If you would like to invite for work, please enter a date</label>
+                    <input id="inviteDate" type="text" />
+                    <button onClick={this.invite}>Invite for work</button>
+                </form>
             </div>
-            
+
         )
     }
 }

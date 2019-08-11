@@ -30,7 +30,7 @@ class App extends React.Component {
       doctors: [],
       datesNeeded: [],
       kindOfPerson: "",
-      starRating: 0,
+      starRating: [],
       howManyTimesSubbed: 0,
       howManySubsHaveYouHad: 0,
       pastJobs: [],
@@ -154,7 +154,7 @@ class App extends React.Component {
             doctors: [],
             datesNeeded: "",
             kindOfPerson: "",
-            starRating: 0,
+            starRating: [],
             howManyTimesSubbed: 0,
             howManySubsHaveYouHad: 0,
             pastJobs: [],
@@ -216,6 +216,7 @@ class App extends React.Component {
               datesNeeded={this.state.userInfo.datesNeeded}
               kindOfPerson={this.state.userInfo.kindOfPerson}
               invitations={this.state.userInfo.invitations}
+              starRating={this.state.userInfo.starRating}
 
 
               handleDate={this.handleDate}

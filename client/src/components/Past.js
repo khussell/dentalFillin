@@ -1,13 +1,15 @@
 import React from "react"
 import API from "../utils/API"
 import { Link, } from "react-router-dom"
+import Ratings from 'react-ratings-declarative';
 
 
 class Past extends React.Component {
     state = {
         pastJobs: [],
         pastSubs: [],
-        inviterUser: ''
+        inviterUser: '',
+        rating: 0
     }
 
     componentDidMount = () => {
@@ -30,6 +32,18 @@ class Past extends React.Component {
         })
     }
 
+    changeRating = (newRating) => {
+        this.setState({
+            rating: newRating
+        });
+    }
+
+    saveRate = (userName) => {
+        API.updateRate().then(res => {
+            console.log(res.data)
+        })
+    }
+
 
     render() {
         return (
@@ -42,31 +56,39 @@ class Past extends React.Component {
                             <Link to={`/dashboard/find/searched/${job.inviterUser}`} >{job.inviter}</Link>
                             <p>{job.date}</p>
 
-                            <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                            <button type="button" id={`${job.date}${job.inviterUser}`} className="btn btn-primary" data-toggle="modal" data-target={`${job.date}${job.inviterUser}`}>
                                 Rate
-</button>
+                             </button>
 
 
-                            <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div className="modal fade" id={`${job.date}${job.inviterUser}`} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div className="modal-dialog" role="document">
                                     <div className="modal-content">
                                         <div className="modal-header">
                                             <h5 className="modal-title" id="exampleModalLabel">Rate {job.inviterUser}</h5>
-                                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
+
                                         </div>
                                         <div className="modal-body">
-                                            ...
-      </div>
+                                            <Ratings
+                                                rating={this.state.rating}
+                                                widgetRatedColors="orange"
+                                                changeRating={this.changeRating}
+                                            >
+                                                <Ratings.Widget widgetHoverColor="orange" />
+                                                <Ratings.Widget widgetHoverColor="orange" />
+                                                <Ratings.Widget widgetHoverColor="orange" />
+                                                <Ratings.Widget widgetHoverColor="orange" />
+                                                <Ratings.Widget widgetHoverColor="orange" />
+                                            </Ratings>
+                                        </div>
                                         <div className="modal-footer">
-                                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="button" className="btn btn-primary">Save changes</button>
+
+                                            <button type="button" className="btn btn-primary" onClick={() => this.saveRate(job.inviterUser)}>Save changes</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                           
+
 
                         </div>
                     )
@@ -79,26 +101,33 @@ class Past extends React.Component {
                             <Link to={`/dashboard/find/searched/${sub.invitee}`} >{sub.invitee}</Link>
                             <p>{sub.date}</p>
 
-                            <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                Rate
-</button>
+                            <button type="button" id={`${sub.date}${sub.invitee}`} className="btn btn-primary" data-toggle="modal" data-target={`${sub.date}${sub.invitee}`}>
+                                Rate</button>
 
 
-                            <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div className="modal fade" id={`${sub.date}${sub.invitee}`} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div className="modal-dialog" role="document">
                                     <div className="modal-content">
                                         <div className="modal-header">
-                                            <h5 className="modal-title" id="exampleModalLabel">Rate {sub.invitee}</h5>
-                                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
+                                            <h5 className="modal-title" id="exampleModalLabel">Rate {sub.inviteeName}</h5>
+
                                         </div>
                                         <div className="modal-body">
-                                            ...
-      </div>
+                                            <Ratings
+                                                rating={this.state.rating}
+                                                widgetRatedColors="orange"
+                                                changeRating={this.changeRating}
+                                            >
+                                                <Ratings.Widget widgetHoverColor="orange" />
+                                                <Ratings.Widget widgetHoverColor="orange" />
+                                                <Ratings.Widget widgetHoverColor="orange" />
+                                                <Ratings.Widget widgetHoverColor="orange" />
+                                                <Ratings.Widget widgetHoverColor="orange" />
+                                            </Ratings>
+                                        </div>
                                         <div className="modal-footer">
-                                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="button" className="btn btn-primary">Save changes</button>
+
+                                            <button type="button" className="btn btn-primary" onClick={() => this.saveRate(sub.invitee)}>Save changes</button>
                                         </div>
                                     </div>
                                 </div>
