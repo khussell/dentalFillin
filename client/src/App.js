@@ -30,7 +30,7 @@ class App extends React.Component {
       doctors: [],
       datesNeeded: [],
       kindOfPerson: "",
-      starRating: [],
+      starRating: [0],
       howManyTimesSubbed: 0,
       howManySubsHaveYouHad: 0,
       pastJobs: [],
@@ -154,7 +154,7 @@ class App extends React.Component {
             doctors: [],
             datesNeeded: "",
             kindOfPerson: "",
-            starRating: [],
+            starRating: [0],
             howManyTimesSubbed: 0,
             howManySubsHaveYouHad: 0,
             pastJobs: [],
@@ -165,6 +165,9 @@ class App extends React.Component {
             invitations: []
           }
         })
+
+        
+        
       }).catch(err => console.log(err));
   }
 

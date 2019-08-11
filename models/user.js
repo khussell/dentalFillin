@@ -19,7 +19,7 @@ const userSchema = new Schema({
   doctors: {type: Array},
   datesNeeded: {type: Array},
   kindOfPerson: {type: String},
-  starRating: {type: Number},
+  starRating: {type: Array},
   howManyTimesSubbed: {type: Number},
   howManySubsHaveYouHad: {type: Number},
   pastJobs: {type: Array},

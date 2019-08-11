@@ -137,7 +137,7 @@ class OfficeSignUp extends React.Component{
                                value={this.props.userInfo.doctorsNames}/>
                     </div>
                     
-                    <Link to="/login" className="btn btn-primary" onClick={this.props.signUpSubmit}>Sign up and go to login</Link>
+                    <Link to="/login" className="btn btn-primary" onClick={()=>this.props.signUpSubmit}>Sign up and go to login</Link>
                     </form>
             </div>
         )

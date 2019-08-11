@@ -10,8 +10,10 @@ class ProfileOffice extends React.Component {
         rating: 0
     }
     componentDidMount = () =>{
-        let rates = this.props.starRating
+        let rates = window.localStorage.getItem('starRating').split(",")
+        console.log(rates)
         let total = 0
+        
         for (let i =0; i< rates.length; i++){
                total += rates[i]
         }

@@ -94,9 +94,12 @@ module.exports = {
    // console.log(req)
     console.log(req.body)
     let info = {
+      inviterUser: req.body.info.inviterUser,
       inviter: req.body.info.inviter,
       date: req.body.info.date,
-      invitee : req.body.info.invitee
+      invitee : req.body.info.invitee,
+      inviteeName: req.body.inviteeName
+
     }
     console.log(info)
     
@@ -110,9 +113,11 @@ module.exports = {
     console.log(req.body)
 
     let info = {
+      inviterUser: req.body.info.inviterUser,
       inviter: req.body.info.inviter,
       date: req.body.info.date,
-      invitee : req.body.info.invitee
+      invitee : req.body.info.invitee,
+      inviteeName: req.body.info.inviteeName
     }
     console.log(info)
     
@@ -172,6 +177,11 @@ module.exports = {
     db.User.findOne({officeName: req.body.userName}).then(dbModel => res.json(dbModel))
   },
 
+  findUserName3: function(req, res){
+    console.log(req.body.userName)
+
+    db.User.findOne({officeName: req.body.userName}).then(dbModel => res.json(dbModel))
+  },
   //email: function(req,res){
   //  console.log(req.body.email)
   //}

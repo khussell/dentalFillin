@@ -15,7 +15,7 @@ class ProfileSub extends React.Component {
 
     componentDidMount = () => {
         this.findInvites()
-        let rates = this.props.starRating
+        let rates = window.localStorage.getItem('starRating').split(",")
         let total = 0
         for (let i =0; i< rates.length; i++){
                total += rates[i]
@@ -41,7 +41,7 @@ class ProfileSub extends React.Component {
             let inviterUser = res.data.userName
             this.setState({ inviterUserName: inviterUser, load: 'true' })
         })
-
+        
 
     }
 

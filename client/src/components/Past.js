@@ -26,7 +26,7 @@ class Past extends React.Component {
 
 
     findUserInfo = (userName) => {
-        API.findUserInfo(userName).then(res => {
+        API.findUserInfo3(userName).then(res => {
             console.log(res.data)
             this.setState({ inviterUser: res.data.userName })
         })
@@ -56,12 +56,12 @@ class Past extends React.Component {
                             <Link to={`/dashboard/find/searched/${job.inviterUser}`} >{job.inviter}</Link>
                             <p>{job.date}</p>
 
-                            <button type="button" id={`${job.date}${job.inviterUser}`} className="btn btn-primary" data-toggle="modal" data-target={`${job.date}${job.inviterUser}`}>
+                            <button type="button"  className="btn btn-primary" data-toggle="modal" data-target="#hello">
                                 Rate
                              </button>
 
 
-                            <div className="modal fade" id={`${job.date}${job.inviterUser}`} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div className="modal fade" id="hello" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div className="modal-dialog" role="document">
                                     <div className="modal-content">
                                         <div className="modal-header">
@@ -101,7 +101,7 @@ class Past extends React.Component {
                             <Link to={`/dashboard/find/searched/${sub.invitee}`} >{sub.invitee}</Link>
                             <p>{sub.date}</p>
 
-                            <button type="button" id={`${sub.date}${sub.invitee}`} className="btn btn-primary" data-toggle="modal" data-target={`${sub.date}${sub.invitee}`}>
+                            <button type="button"  className="btn btn-primary" data-toggle="modal" data-target={`#${sub.date}${sub.invitee}`}>
                                 Rate</button>
 
 

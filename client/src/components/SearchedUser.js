@@ -89,6 +89,9 @@ class SearchedUser extends React.Component {
         API.putInviteIntoOffice(info).then(res => {
             console.log(res.data)
         })
+
+        document.getElementById('inviteDate').innerHTML = ""
+        alert('Invite Sent')
     }
 
     accepted = (invite) => {

@@ -70,4 +70,7 @@ router.route('/makePast')
 router.route('/findUserName2')
 .post(usersController.findUserName)
 
+router.route('/findUserName3')
+.post(usersController.findUserName)
+
 module.exports = router;

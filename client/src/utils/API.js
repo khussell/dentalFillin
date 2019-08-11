@@ -82,5 +82,8 @@ export default {
         return axios.post('/findUserName2', {userName: userName})
     },
 
+    findUserInfo3: function(userName){
+        return axios.post('/findUserName2', {userName: userName})
+    },
     
 }
