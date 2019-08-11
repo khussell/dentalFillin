@@ -71,10 +71,12 @@ class SearchedUser extends React.Component {
        let userBeingInvited = this.state.userName
        let inviteDate = document.getElementById('inviteDate').value
        let inviter = window.localStorage.getItem('officeName')
+       let inviterUser = window.localStorage.getItem('userName')
        let info = {
            invitee : userBeingInvited,
            date : inviteDate,
-           inviter: inviter
+           inviter: inviter,
+           inviterUser : inviterUser
        }
 
        console.log(info)

@@ -28,16 +28,21 @@ class Upcoming extends React.Component{
 
     //userName is acutally officeName
     findUserInfo = (userName) =>{
-        API.findUserInfo(userName).then(res =>{
+        API.findUserInfo2(userName).then(res =>{
             console.log(res.data)
             this.setState({inviterUser: res.data.userName})
         })
     }
 
+    makePast = (past =>{
+        
+      API.makePast(past).then(res =>{
+          console.log(res.data)
+      })
+    })
 
-done = () =>{
-    console.log('done')
-}
+
+
 
     render(){
         console.log(this.state)
@@ -46,12 +51,12 @@ done = () =>{
             <div>
               <h1>Upcoming for: {window.localStorage.getItem('userName')}</h1>
               {this.state.currentJobs.map(job => {
-                  this.findUserInfo(job.inviter)
+                  //this.findUserInfo(job.inviter)
                     return(
                         <div key={job.date}>
-                            <Link to={`/dashboard/find/searched/${this.state.inviterUser}`} >{job.inviter}</Link>
+                            <Link to={`/dashboard/find/searched/${job.inviterUser}`} >{job.inviter}</Link>
                             <p>{job.date}</p>
-                            <Link to={`/dashboard/find/searched/${this.state.inviterUser}`} >Did it!</Link>
+                            <Link to={`/dashboard/past`} onClick={() => this.makePast(job)}>Did it!</Link>
                         </div>
                     )
              
@@ -62,7 +67,7 @@ done = () =>{
                         <div key={sub.date}>
                             <Link to={`/dashboard/find/searched/${sub.invitee}`} >{sub.invitee}</Link>
                             <p>{sub.date}</p>
-                            <Link to={`/dashboard/find/searched/${sub.invitee}`} onClick={this.done}>Did it!</Link>
+                            <Link to={`/dashboard/past`} onClick={()=>this.makePast(sub)}>Did it!</Link>
                         </div>
                     )
                })}

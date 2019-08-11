@@ -72,7 +72,15 @@ export default {
     findUpcoming: function(userName){
         let url = `/findUpcoming/${userName}`
         return axios.get(url)
-    }
+    },
+
+    makePast: function(past){
+        return axios.post('/makePast', {past: past})
+    },
+
+    findUserInfo2: function(userName){
+        return axios.post('/findUserName2', {userName: userName})
+    },
 
     
 }

@@ -64,4 +64,10 @@ router.route('/acceptedInvite')
 router.route('/findUpcoming/:userName')
 .get(usersController.findUpcoming)
 
+router.route('/makePast')
+.post(usersController.makePast)
+
+router.route('/findUserName2')
+.post(usersController.findUserName)
+
 module.exports = router;

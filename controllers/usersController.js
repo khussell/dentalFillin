@@ -150,7 +150,27 @@ module.exports = {
   findUpcoming: function(req, res){
     let userName= req.params.userName
     db.User.find({userName: userName}).then(dbModel => res.json(dbModel))
-  }
+  },
+
+  
+  makePast: function(req,res){
+    console.log(req.body.past)
+    db.User.findOneAndUpdate({officeName: req.body.past.inviter},{ $push : {"pastSubs" : req.body.past}}).then(dbModel =>{
+      db.User.findOneAndUpdate({userName: req.body.past.invitee},{ $push : {"pastJobs" : req.body.past}}).then(dbModel =>{
+        db.User.findOneAndUpdate({officeName: req.body.past.inviter}, {$pull: {"currentSubs" : {date: req.body.past.date} }},  { safe: true, multi:true }).then(dbModel =>{
+          db.User.findOneAndUpdate({userName: req.body.past.invitee}, {$pull: {"currentJobs" : {date: req.body.past.date} }},  { safe: true, multi:true }).then(dbModel =>{
+            res.json(dbModel)
+          })
+        })
+      })
+    })
+  },
+
+  findUserName2: function(req, res){
+    console.log(req.body.userName)
+
+    db.User.findOne({officeName: req.body.userName}).then(dbModel => res.json(dbModel))
+  },
 
   //email: function(req,res){
   //  console.log(req.body.email)
