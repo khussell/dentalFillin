@@ -30,7 +30,7 @@ class App extends React.Component {
       doctors: [],
       datesNeeded: [],
       kindOfPerson: "",
-      starRating: [0],
+      starRating: [5],
       howManyTimesSubbed: 0,
       howManySubsHaveYouHad: 0,
       pastJobs: [],
@@ -102,6 +102,7 @@ class App extends React.Component {
   signUpSubmit = (event) => {
     event.preventDefault()
     console.log(this.state.userInfo)
+    console.log('here')
 
     API.saveUser({
       firstName: this.state.userInfo.firstName,
@@ -129,7 +130,9 @@ class App extends React.Component {
       currentSubs: this.state.userInfo.currentSubs,
       searchParams: this.state.userInfo.searchParams,
       invitations: this.state.userInfo.invitations
-    }).then(res => this.loadUsers())
+    }).then(res =>{ this.loadUsers()
+    
+    })
       .catch(err => console.log(err));
   }
 
@@ -154,7 +157,7 @@ class App extends React.Component {
             doctors: [],
             datesNeeded: "",
             kindOfPerson: "",
-            starRating: [0],
+            starRating: [5],
             howManyTimesSubbed: 0,
             howManySubsHaveYouHad: 0,
             pastJobs: [],
@@ -166,7 +169,7 @@ class App extends React.Component {
           }
         })
 
-        
+       
         
       }).catch(err => console.log(err));
   }

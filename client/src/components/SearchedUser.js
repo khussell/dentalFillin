@@ -22,7 +22,7 @@ class SearchedUser extends React.Component {
         doctors: [],
         datesNeeded: "",
         kindOfPerson: "",
-        starRating: 0,
+        starRating: [5],
         howManyTimesSubbed: 0,
         howManySubsHaveYouHad: 0,
         pastJobs: [],
@@ -30,11 +30,13 @@ class SearchedUser extends React.Component {
         pastSubs: [],
         currentSubs: [],
         searchParams: [],
-        invitations: []
+        invitations: [],
+        rating: 0
     }
     componentDidMount = () => {
         console.log(this.props.history.location.pathname)
         console.log(`${this.props.match.url}`)
+        
         API.findUser(this.props.history.location.pathname).then(res => {
             console.log(res.data)
             this.setState({
@@ -64,6 +66,17 @@ class SearchedUser extends React.Component {
                 searchParams: res.data.searchParams,
                 invitations: res.data.invitations
             })
+
+            let rates = this.state.starRating
+            console.log(rates)
+            let total = 0
+            
+            for (let i =0; i< rates.length; i++){
+                   total += rates[i]
+            }
+            let avg = total/ rates.length
+            
+            this.setState({rating: avg})
         })
     }
 
@@ -78,7 +91,8 @@ class SearchedUser extends React.Component {
             date: inviteDate,
             inviter: inviter,
             inviterUser: inviterUser,
-            inviteeName: window.localStorage.firstName
+            inviteeName: this.state.firstName,
+            buttonClicked: false
         }
 
         console.log(info)
@@ -112,7 +126,7 @@ class SearchedUser extends React.Component {
 
                     widgetDimensions="40px"
                     widgetSpacings="15px"
-                    rating={3}
+                    rating={this.state.rating}
                     widgetRatedColors="orange"
                 >
                     <Ratings.Widget />

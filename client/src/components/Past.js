@@ -38,9 +38,30 @@ class Past extends React.Component {
         });
     }
 
-    saveRate = (userName) => {
-        API.updateRate().then(res => {
+    saveRate = (inviter, invitee,date) => {
+        let rating = this.state.rating
+        API.updateRate(inviter, rating).then(res => {
             console.log(res.data)
+            let id = inviter + invitee + 'butt'
+            let button = document.getElementById(id)
+            button.disabled = true
+
+        })
+        API.buttonClicked(invitee,date).then(res =>{
+            console.log(res.data)
+        })
+    }
+
+    saveRate2 = (inviter, invitee,date) => {
+        let rating = this.state.rating
+        API.updateRate(invitee, rating).then(res => {
+            console.log(res.data)
+            let id = inviter + invitee + 'butt'
+            let button = document.getElementById(id)
+            button.disabled = true
+        })
+        API.buttonClicked2(inviter, date).then(res =>{
+           console.log(res.data)
         })
     }
 
@@ -56,12 +77,12 @@ class Past extends React.Component {
                             <Link to={`/dashboard/find/searched/${job.inviterUser}`} >{job.inviter}</Link>
                             <p>{job.date}</p>
 
-                            <button type="button"  className="btn btn-primary" data-toggle="modal" data-target="#hello">
+                            <button type="button" disabled={job.buttonClicked? true: false} id={`${job.inviterUser}${job.invitee}butt`} className="btn btn-primary" data-toggle="modal" data-target={`#${job.inviterUser}${job.invitee}`}>
                                 Rate
                              </button>
 
 
-                            <div className="modal fade" id="hello" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div className="modal fade" id={`${job.inviterUser}${job.invitee}`} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div className="modal-dialog" role="document">
                                     <div className="modal-content">
                                         <div className="modal-header">
@@ -83,7 +104,7 @@ class Past extends React.Component {
                                         </div>
                                         <div className="modal-footer">
 
-                                            <button type="button" className="btn btn-primary" onClick={() => this.saveRate(job.inviterUser)}>Save changes</button>
+                                            <button type="button" className="btn btn-primary" onClick={() => this.saveRate(job.inviterUser, job.invitee, job.date)}>Save changes</button>
                                         </div>
                                     </div>
                                 </div>
@@ -101,11 +122,11 @@ class Past extends React.Component {
                             <Link to={`/dashboard/find/searched/${sub.invitee}`} >{sub.invitee}</Link>
                             <p>{sub.date}</p>
 
-                            <button type="button"  className="btn btn-primary" data-toggle="modal" data-target={`#${sub.date}${sub.invitee}`}>
+                            <button type="button" disabled={sub.buttonClicked? true: false} id={`${sub.inviterUser}${sub.invitee}butt`} className="btn btn-primary" data-toggle="modal" data-target={`#${sub.inviterUser}${sub.invitee}`}>
                                 Rate</button>
 
 
-                            <div className="modal fade" id={`${sub.date}${sub.invitee}`} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div className="modal fade" id={`${sub.inviterUser}${sub.invitee}`} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div className="modal-dialog" role="document">
                                     <div className="modal-content">
                                         <div className="modal-header">
@@ -127,7 +148,7 @@ class Past extends React.Component {
                                         </div>
                                         <div className="modal-footer">
 
-                                            <button type="button" className="btn btn-primary" onClick={() => this.saveRate(sub.invitee)}>Save changes</button>
+                                            <button type="button" className="btn btn-primary" onClick={() => this.saveRate2(sub.inviterUser, sub.invitee, sub.date)}>Save changes</button>
                                         </div>
                                     </div>
                                 </div>

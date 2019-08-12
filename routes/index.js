@@ -73,4 +73,19 @@ router.route('/findUserName2')
 router.route('/findUserName3')
 .post(usersController.findUserName)
 
+router.route('/updateRate')
+.post(usersController.updateRate)
+
+router.route('/updateRate2')
+.post(usersController.updateRate2)
+
+router.route('/buttonClicked')
+.post(usersController.buttonClicked)
+
+router.route('/buttonClicked2')
+.post(usersController.buttonClicked2)
+
+router.route('/email')
+.post(usersController.email)
+
 module.exports = router;

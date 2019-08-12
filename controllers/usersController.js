@@ -1,5 +1,6 @@
 const db = require("../models");
 const bcrypt = require('bcryptjs') 
+const nodemailer = require('nodemailer')
 
 // Defining methods for the usersController
 module.exports = {
@@ -98,7 +99,8 @@ module.exports = {
       inviter: req.body.info.inviter,
       date: req.body.info.date,
       invitee : req.body.info.invitee,
-      inviteeName: req.body.inviteeName
+      inviteeName: req.body.info.inviteeName,
+      buttonClicked: req.body.info.buttonClicked
 
     }
     console.log(info)
@@ -117,7 +119,8 @@ module.exports = {
       inviter: req.body.info.inviter,
       date: req.body.info.date,
       invitee : req.body.info.invitee,
-      inviteeName: req.body.info.inviteeName
+      inviteeName: req.body.info.inviteeName,
+      buttonClicked: req.body.info.buttonClicked
     }
     console.log(info)
     
@@ -182,9 +185,71 @@ module.exports = {
 
     db.User.findOne({officeName: req.body.userName}).then(dbModel => res.json(dbModel))
   },
-  //email: function(req,res){
-  //  console.log(req.body.email)
-  //}
+
+
+updateRate: function(req,res){
+  console.log(req.body.userName)
+
+  db.User.findOneAndUpdate({userName: req.body.info.userName}, {$push: {starRating:req.body.info.rating}}).then(dbModel =>{
+      res.json(dbModel)
+  })
+},
+
+updateRate2: function(req,res){
+  console.log(req.body.userName)
+
+  db.User.findOneAndUpdate({userName: req.body.info.userName}, {$push: {starRating:req.body.info.rating}}).then(dbModel =>{
+      res.json(dbModel)
+  })
+},
+
+buttonClicked: function(req,res){
+  db.User.findOneAndUpdate({userName: req.body.info.userName, 'pastJobs.date': req.body.info.date}, {$set : {"pastJobs.buttonClicked": true}}).then(dbModel => res.json(dbModel))
+},
+
+buttonClicked2: function(req,res){
+  db.User.findOneAndUpdate({userName: req.body.info.userName, 'pastSubs.date' : req.body.info.date}, {$set : {"pastSubs.buttonClicked"  : true}}).then(dbModel=> res.json(dbModel))
+},
+
+  email: function(req,res){
+   console.log(req.body.emailInfo)
+   nodemailer.createTestAccount((err,account)=>{
+     const htmlEmail = `
+     <h3>Contact Details</h3>
+     <ul>
+       <li>Title: ${req.body.emailInfo.title}</li>
+       <li>Message: ${req.body.emailInfo.message}</li>
+    </ul>
+     `
+
+     let transporter = nodemailer.createTransport({
+      host: "smtp.ethereal.email",
+      port: 587,
+      secure: false, // true for 465, false for other ports
+      auth: {
+        user: 'romaine.osinski87@ethereal.email', // generated ethereal user
+        pass: 'DAZuxQnKKVUpx3KYy5' // generated ethereal password
+      }
+    });
+
+     let mailOptions = {
+       from:'test@testaccount.com',
+       to: 'romaine.osinski87@ethereal.email',
+       replyTo: 'test@testaccount.com',
+       subject: 'new message',
+       test: req.body.message,
+       html: htmlEmail
+     }
+
+     transporter.sendMail(mailOptions, (err,info) =>{
+       if(err){
+         return console.log(err)
+       }
+
+       console.log('Message Sent')
+     })
+   })
+  }
 };
 
 

@@ -7,7 +7,7 @@ import Ratings from 'react-ratings-declarative'
 
 class ProfileOffice extends React.Component {
     state = {
-        rating: 0
+        rating: 5
     }
     componentDidMount = () =>{
         let rates = window.localStorage.getItem('starRating').split(",")

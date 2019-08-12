@@ -85,5 +85,41 @@ export default {
     findUserInfo3: function(userName){
         return axios.post('/findUserName2', {userName: userName})
     },
+
+    updateRate: function(userName, rating){
+        let info = {
+            userName: userName,
+            rating: rating
+        }
+        return axios.post('/updateRate', {info: info})
+    },
+
+    updateRate2: function(userName, rating){
+        let info = {
+            userName: userName,
+            rating: rating
+        }
+        return axios.post('/updateRate2', {info: info})
+    },
+
+    buttonClicked: function(userName, date){
+        let info={
+            userName: userName,
+            date: date
+        }
+        return axios.post('/buttonClicked', {info: info})
+    },
+
+    buttonClicked2: function(userName, date){
+        let info={
+            userName: userName,
+            date: date
+        }
+        return axios.post('/buttonClicked2', {info: info})
+    },
+
+    email: function(emailInfo){
+        return axios.post('/email', {emailInfo: emailInfo})
+    }
     
 }

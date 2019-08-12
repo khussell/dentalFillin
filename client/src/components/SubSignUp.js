@@ -204,7 +204,7 @@ class SubSignUp extends React.Component {
                     <Flatpickr {...this.props} />
                     </div>
 
-                    <Link to={`/login`} className="btn btn-primary" onClick={()=>this.props.signUpSubmit}>Sign up and go to login</Link>
+                    <button className="btn btn-primary" onClick={this.props.signUpSubmit}>Sign up and go to login</button>
                   </form>  
 
              

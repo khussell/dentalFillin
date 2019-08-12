@@ -6,7 +6,8 @@ class Login extends React.Component {
     state = {
         userName: '',
         password: '',
-        invitations: []
+        invitations: [],
+       
     }
 
 submit = (event) => {
@@ -63,7 +64,6 @@ submit = (event) => {
            
         }
         //const isAuthenticated = res.data.isAuthenticated
-        
         this.props.history.push("/dashboard", userInput)
         
     }).catch(error =>{
