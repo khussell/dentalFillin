@@ -204,11 +204,11 @@ updateRate2: function(req,res){
 },
 
 buttonClicked: function(req,res){
-  db.User.findOneAndUpdate({userName: req.body.info.userName, 'pastJobs.date': req.body.info.date}, {$set : {"pastJobs.buttonClicked": true}}).then(dbModel => res.json(dbModel))
+  db.User.findOneAndUpdate({userName: req.body.info.userName, 'pastJobs.date': req.body.info.date}, {$set : {"pastJobs.$.buttonClicked": true}}).then(dbModel => res.json(dbModel))
 },
 
 buttonClicked2: function(req,res){
-  db.User.findOneAndUpdate({userName: req.body.info.userName, 'pastSubs.date' : req.body.info.date}, {$set : {"pastSubs.buttonClicked"  : true}}).then(dbModel=> res.json(dbModel))
+  db.User.findOneAndUpdate({userName: req.body.info.userName, 'pastSubs.date' : req.body.info.date}, {$set : {"pastSubs.$.buttonClicked"  : true}}).then(dbModel=> res.json(dbModel))
 },
 
   email: function(req,res){

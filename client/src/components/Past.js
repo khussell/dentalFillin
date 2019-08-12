@@ -9,7 +9,8 @@ class Past extends React.Component {
         pastJobs: [],
         pastSubs: [],
         inviterUser: '',
-        rating: 0
+        rating: 0,
+        count: 0
     }
 
     componentDidMount = () => {
@@ -38,11 +39,14 @@ class Past extends React.Component {
         });
     }
 
-    saveRate = (inviter, invitee,date) => {
+    saveRate = (event, inviter, invitee, date) => {
+        event.persist()
         let rating = this.state.rating
-        API.updateRate(inviter, rating).then(res => {
+        console.log(date)
+        API.updateRate( inviter, rating, date).then(res => {
             console.log(res.data)
-            let id = inviter + invitee + 'butt'
+            let id = event.target.id
+            console.log(id)
             let button = document.getElementById(id)
             button.disabled = true
 
@@ -56,7 +60,8 @@ class Past extends React.Component {
         let rating = this.state.rating
         API.updateRate(invitee, rating).then(res => {
             console.log(res.data)
-            let id = inviter + invitee + 'butt'
+            let id = inviter + invitee + 'butt' + date
+            console.log(id)
             let button = document.getElementById(id)
             button.disabled = true
         })
@@ -67,17 +72,18 @@ class Past extends React.Component {
 
 
     render() {
+        
         return (
             <div>
                 <h1>Past for: {window.localStorage.getItem('userName')}</h1>
-                {this.state.pastJobs.map(job => {
-
+                {this.state.pastJobs.map(job=> {
+                       
                     return (
                         <div key={job.date}>
                             <Link to={`/dashboard/find/searched/${job.inviterUser}`} >{job.inviter}</Link>
                             <p>{job.date}</p>
 
-                            <button type="button" disabled={job.buttonClicked? true: false} id={`${job.inviterUser}${job.invitee}butt`} className="btn btn-primary" data-toggle="modal" data-target={`#${job.inviterUser}${job.invitee}`}>
+                            <button type="button" data-date={job.date} data-inviter={job.inviterUser} data-invitee={job.invitee} disabled={job.buttonClicked? true: false} id={`${job.inviterUser}${job.invitee}butt${job.date}`} className="btn btn-primary" data-toggle="modal" data-target={`#${job.inviterUser}${job.invitee}`}>
                                 Rate
                              </button>
 
@@ -104,7 +110,7 @@ class Past extends React.Component {
                                         </div>
                                         <div className="modal-footer">
 
-                                            <button type="button" className="btn btn-primary" onClick={() => this.saveRate(job.inviterUser, job.invitee, job.date)}>Save changes</button>
+                                            <button type="button"  className='btn btn-primary' id={`${job.inviterUser}${job.invitee}${job.date}butt`} onClick={(event) => this.saveRate(event, job.inviterUser, job.invitee, job.date)}>Save changes</button>
                                         </div>
                                     </div>
                                 </div>
@@ -116,7 +122,7 @@ class Past extends React.Component {
 
                 })}
                 {this.state.pastSubs.map(sub => {
-
+                   
                     return (
                         <div key={sub.date}>
                             <Link to={`/dashboard/find/searched/${sub.invitee}`} >{sub.invitee}</Link>

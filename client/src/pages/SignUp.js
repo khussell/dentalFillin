@@ -1,10 +1,11 @@
 import React from "react"
-import { Route, Link } from "react-router-dom"
+import { Route, Redirect, Link } from "react-router-dom"
 import SubSignUp from "../components/SubSignUp"
 import OfficeSignUp from "../components/OfficeSignUp"
 
 class SignUp extends React.Component{
     render(){
+      
     
         return (
             <div>

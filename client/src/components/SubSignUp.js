@@ -1,10 +1,16 @@
 import React from "react"
-import {Link} from "react-router-dom"
+import {Redirect} from "react-router-dom"
 import Flatpickr from './Calendar'
 
 class SubSignUp extends React.Component {
     
     render() {
+        if(this.props.toLogin === true){
+            console.log('hey')
+            return(
+                <Redirect to='/login'/>
+              )
+        }
         return (
             <div>
                 <h1>sub</h1>

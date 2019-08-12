@@ -2,7 +2,7 @@ import React from 'react';
 import Welcome from './pages/Welcome'
 import Login from './pages/Login'
 import SignUp from './pages/SignUp'
-import { BrowserRouter as Router, Route } from "react-router-dom"
+import { BrowserRouter as Router, Route, Redirect} from "react-router-dom"
 import API from './utils/API'
 import Dashboard from "./pages/Dashboard"
 
@@ -13,6 +13,7 @@ class App extends React.Component {
 
   state = {
     results: [],
+    toLogin: false,
     userInfo: {
       firstName: "",
       lastName: "",
@@ -38,7 +39,8 @@ class App extends React.Component {
       pastSubs: [],
       currentSubs: [],
       searchParams: [],
-      invitations: []
+      invitations: [],
+
     }
 
 
@@ -46,7 +48,7 @@ class App extends React.Component {
 
   componentDidMount = () => {
     console.log(this.state.userInfo)
-    this.loadUsers()
+    //this.loadUsers()
   }
 
 
@@ -134,12 +136,17 @@ class App extends React.Component {
     
     })
       .catch(err => console.log(err));
+
+      console.log('hi')
+      console.log( this.props.history)
+     this.props.history.push('/login')
   }
 
   loadUsers = () => {
     API.getUsers()
       .then(res => {
         this.setState({
+          toLogin: true,
           results: res.data, userInfo: {...this.state.userInfo,
             firstName: "",
             lastName: "",
@@ -169,9 +176,10 @@ class App extends React.Component {
           }
         })
 
-       
+        
         
       }).catch(err => console.log(err));
+      
   }
 
   handleDate = (date) => {
@@ -197,12 +205,13 @@ class App extends React.Component {
 
         <div className="App">
           <Route exact path="/" component={Welcome} />
-          <Route exact path="/login" render={(props) => <Login {...props} results={this.state.results} />} />
+          <Route exact path="/login"  render={(props) => <Login {...props} results={this.state.results} />} />
           <Route path="/signUp"
-            render={(props) => <SignUp results={this.state.results}
+            render={(props) => <SignUp {...props} results={this.state.results}
 
               handleInputChange={this.handleInputChange}
               userInfo={this.state.userInfo}
+              toLogin={this.state.toLogin}
 
 
               firstName={this.state.userInfo.firstName}
