@@ -21,7 +21,7 @@ class Welcome extends React.Component {
                             <div className='row'>
                                 <div className="col text-center">
                                     <Link to={"/login"}>
-                                        <button id="welcomeBtn" className="btn btn-primary">Get Started</button>
+                                        <button id="welcomeBtn" className="btn btn-info">Get Started</button>
                                     </Link>
                                 </div>
                             </div>

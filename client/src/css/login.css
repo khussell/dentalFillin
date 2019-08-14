@@ -1,0 +1,26 @@
+#loginContent{
+    box-shadow: 3px 2px grey;
+    background-color: #bed6d6;
+    border: 3px white solid;
+    color: white;
+    margin-top: 100px;
+    width: 80%;
+}
+
+#loginButton{
+    background-color: rgb(104, 205, 212);
+    border: none;
+    box-shadow: 2px 2px grey;
+}
+
+#signUpIntro{
+    margin-top: 20px;
+
+}
+
+#signUpButton{
+    background-color: rgb(77, 148, 153);
+    border: none;
+    box-shadow: 2px 2px grey;
+    margin-bottom: 20px;
+}

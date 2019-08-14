@@ -46,13 +46,15 @@ class Past extends React.Component {
         
         API.updateRate( inviter, rating, id).then(res => {
             console.log(res.data)
-            let buttonId = id + "button"
-            
-            let button = document.getElementById(buttonId)
-            //button.disabled = true
-            
+           
 
         })
+
+        let buttonId = id + "button"
+            
+            let button = document.getElementById(buttonId)
+            button.disabled = true
+            
         API.buttonClicked(invitee, id).then(res =>{
             console.log(res.data)
         })
@@ -63,11 +65,13 @@ class Past extends React.Component {
         let rating = this.state.rating
         API.updateRate(invitee, rating, id ).then(res => {
             console.log(res.data)
-            let buttonId = id + "button"
             
-            let button = document.getElementById(buttonId)
-           // button.disabled = true
         })
+        let buttonId = id + "button"
+            
+        let button = document.getElementById(buttonId)
+        button.disabled = true
+
         API.buttonClicked2(inviter, id).then(res =>{
            console.log(res.data)
         })

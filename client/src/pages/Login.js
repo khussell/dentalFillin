@@ -1,6 +1,7 @@
 import React from "react"
 import { Link, Redirect } from "react-router-dom";
 import API from '../utils/API'
+import '../css/login.css'
 
 class Login extends React.Component {
     state = {
@@ -9,6 +10,10 @@ class Login extends React.Component {
         invitations: [],
        
     }
+
+componentDidMount = () => {
+
+}
 
 submit = (event) => {
     event.preventDefault()
@@ -64,7 +69,7 @@ submit = (event) => {
            
         }
         //const isAuthenticated = res.data.isAuthenticated
-       // this.props.history.push("/dashboard", userInput)
+        this.props.history.push("/dashboard", userInput)
         
     }).catch(error =>{
         alert("Email or password not valid")
@@ -76,12 +81,16 @@ submit = (event) => {
       
         const isAuthenticated = window.localStorage.getItem('isAuthenticated')
         if(isAuthenticated === true){
+            console.log('yoyo')
          return <Redirect to='/dashboard'/>
         }  
         return (
-            <div>
-                <h1>Login</h1>
-                <form>
+            <div id="loginContent" className="container">
+                <div className="row justify-content-center">
+                <h1 className="col-sm-12 text-center">Login</h1>
+
+                <div className="row ">
+                <form id="loginForm" className="col text-center">
                     <div className="form-group">
                         <label htmlFor="usernameInput">Username</label>
                         <input type="text" className="form-control" id="usernameInput" aria-describedby="emailHelp" placeholder="Enter Username" />
@@ -90,13 +99,19 @@ submit = (event) => {
                         <label htmlFor="passwordInput">Password</label>
                         <input type="password" className="form-control" id="passwordInput" placeholder="Password" />
                     </div>
-                    <button  className="btn btn-primary" onClick={this.submit}>Login</button>
+                    <button id="loginButton" className="btn btn-primary" onClick={this.submit}>Login</button>
                 </form>
+                </div>
+                </div>
 
+                <div className="row justify-content-center"> 
+                <p id="signUpIntro" className="col-sm-12 text-center">Don't have an account?</p>
                 <Link to={"/signup"}>
-                    <button className="btn btn-primary">Sign Up</button>
+                    <button id='signUpButton' className="col-sm-12 btn btn-primary">Sign Up</button>
                 </Link>
-                
+                </div>
+                 
+                 
             </div>
 
         )
