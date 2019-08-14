@@ -49,7 +49,7 @@ class Past extends React.Component {
             let buttonId = id + "button"
             
             let button = document.getElementById(buttonId)
-            button.disabled = true
+            //button.disabled = true
             
 
         })
@@ -66,7 +66,7 @@ class Past extends React.Component {
             let buttonId = id + "button"
             
             let button = document.getElementById(buttonId)
-            button.disabled = true
+           // button.disabled = true
         })
         API.buttonClicked2(inviter, id).then(res =>{
            console.log(res.data)
@@ -131,7 +131,7 @@ class Past extends React.Component {
                             <Link to={`/dashboard/find/searched/${sub.invitee}`} >{sub.invitee}</Link>
                             <p>{sub.date}</p>
 
-                            <button type="button" disabled={sub.buttonClicked? true: false} id={`${sub.inviterUser}${sub.invitee}butt`} className="btn btn-primary" data-toggle="modal" data-target={`#${sub.id}`}>
+                            <button type="button" disabled={sub.buttonClicked? true: false} id={`${sub.id}button`} className="btn btn-primary" data-toggle="modal" data-target={`#${sub.id}`}>
                                 Rate</button>
 
 
@@ -157,7 +157,7 @@ class Past extends React.Component {
                                         </div>
                                         <div className="modal-footer">
 
-                                            <button type="button" className="btn btn-primary" onClick={() => this.saveRate2(sub.inviterUser, sub.invitee, sub.id)}>Save changes</button>
+                                            <button type="button" className="btn btn-primary" onClick={(event) => this.saveRate2(event, sub.inviterUser, sub.invitee, sub.id)}>Save changes</button>
                                         </div>
                                     </div>
                                 </div>
