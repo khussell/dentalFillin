@@ -1,0 +1,22 @@
+#subClick, 
+#officeClick{
+   background-color: white;
+   border: rgb(77, 148, 153) 1px solid;
+   color: rgb(77, 148, 153);
+   box-shadow: 2px 2px grey;
+   margin-top: 10px;
+   margin: 10px;
+   padding: 10px;
+}
+
+#signUpTitle{
+    margin-top: 50px;
+    color: white;
+}
+
+#subOrOffice{
+    color: white;
+    margin-top: 20px;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
