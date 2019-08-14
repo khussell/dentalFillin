@@ -53,7 +53,7 @@ class Upcoming extends React.Component{
               {this.state.currentJobs.map(job => {
                   //this.findUserInfo(job.inviter)
                     return(
-                        <div key={job.date}>
+                        <div key={job.id}>
                             <Link to={`/dashboard/find/searched/${job.inviterUser}`} >{job.inviter}</Link>
                             <p>{job.date}</p>
                             <Link to={`/dashboard/past`} onClick={() => this.makePast(job)}>Did it!</Link>
@@ -64,7 +64,7 @@ class Upcoming extends React.Component{
            {this.state.currentSubs.map(sub => {
                
                     return(
-                        <div key={sub.date}>
+                        <div key={sub.id}>
                             <Link to={`/dashboard/find/searched/${sub.invitee}`} >{sub.invitee}</Link>
                             <p>{sub.date}</p>
                             <Link to={`/dashboard/past`} onClick={()=>this.makePast(sub)}>Did it!</Link>

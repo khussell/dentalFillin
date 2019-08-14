@@ -39,33 +39,36 @@ class Past extends React.Component {
         });
     }
 
-    saveRate = (event, inviter, invitee, date) => {
+    saveRate = (event, inviter, invitee, id) => {
         event.persist()
         let rating = this.state.rating
-        console.log(date)
-        API.updateRate( inviter, rating, date).then(res => {
+        console.log(id)
+        
+        API.updateRate( inviter, rating, id).then(res => {
             console.log(res.data)
-            let id = event.target.id
-            console.log(id)
-            let button = document.getElementById(id)
+            let buttonId = id + "button"
+            
+            let button = document.getElementById(buttonId)
             button.disabled = true
+            
 
         })
-        API.buttonClicked(invitee,date).then(res =>{
+        API.buttonClicked(invitee, id).then(res =>{
             console.log(res.data)
         })
     }
 
-    saveRate2 = (inviter, invitee,date) => {
+    saveRate2 = (event, inviter, invitee, id) => {
+        event.persist()
         let rating = this.state.rating
-        API.updateRate(invitee, rating).then(res => {
+        API.updateRate(invitee, rating, id ).then(res => {
             console.log(res.data)
-            let id = inviter + invitee + 'butt' + date
-            console.log(id)
-            let button = document.getElementById(id)
+            let buttonId = id + "button"
+            
+            let button = document.getElementById(buttonId)
             button.disabled = true
         })
-        API.buttonClicked2(inviter, date).then(res =>{
+        API.buttonClicked2(inviter, id).then(res =>{
            console.log(res.data)
         })
     }
@@ -79,16 +82,16 @@ class Past extends React.Component {
                 {this.state.pastJobs.map(job=> {
                        
                     return (
-                        <div key={job.date}>
+                        <div key={job.id}>
                             <Link to={`/dashboard/find/searched/${job.inviterUser}`} >{job.inviter}</Link>
                             <p>{job.date}</p>
 
-                            <button type="button" data-date={job.date} data-inviter={job.inviterUser} data-invitee={job.invitee} disabled={job.buttonClicked? true: false} id={`${job.inviterUser}${job.invitee}butt${job.date}`} className="btn btn-primary" data-toggle="modal" data-target={`#${job.inviterUser}${job.invitee}`}>
+                            <button type="button" disabled={job.buttonClicked? true: false} id={`${job.id}button`} className="btn btn-primary" data-toggle="modal" data-target={`#${job.id}`}>
                                 Rate
                              </button>
 
 
-                            <div className="modal fade" id={`${job.inviterUser}${job.invitee}`} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div className="modal fade" id={`${job.id}`} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div className="modal-dialog" role="document">
                                     <div className="modal-content">
                                         <div className="modal-header">
@@ -110,7 +113,7 @@ class Past extends React.Component {
                                         </div>
                                         <div className="modal-footer">
 
-                                            <button type="button"  className='btn btn-primary' id={`${job.inviterUser}${job.invitee}${job.date}butt`} onClick={(event) => this.saveRate(event, job.inviterUser, job.invitee, job.date)}>Save changes</button>
+                                            <button type="button"  className='btn btn-primary'  onClick={(event) => this.saveRate(event, job.inviterUser, job.invitee, job.id)}>Save changes</button>
                                         </div>
                                     </div>
                                 </div>
@@ -124,15 +127,15 @@ class Past extends React.Component {
                 {this.state.pastSubs.map(sub => {
                    
                     return (
-                        <div key={sub.date}>
+                        <div key={sub.id}>
                             <Link to={`/dashboard/find/searched/${sub.invitee}`} >{sub.invitee}</Link>
                             <p>{sub.date}</p>
 
-                            <button type="button" disabled={sub.buttonClicked? true: false} id={`${sub.inviterUser}${sub.invitee}butt`} className="btn btn-primary" data-toggle="modal" data-target={`#${sub.inviterUser}${sub.invitee}`}>
+                            <button type="button" disabled={sub.buttonClicked? true: false} id={`${sub.inviterUser}${sub.invitee}butt`} className="btn btn-primary" data-toggle="modal" data-target={`#${sub.id}`}>
                                 Rate</button>
 
 
-                            <div className="modal fade" id={`${sub.inviterUser}${sub.invitee}`} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div className="modal fade" id={`${sub.id}`} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div className="modal-dialog" role="document">
                                     <div className="modal-content">
                                         <div className="modal-header">
@@ -154,7 +157,7 @@ class Past extends React.Component {
                                         </div>
                                         <div className="modal-footer">
 
-                                            <button type="button" className="btn btn-primary" onClick={() => this.saveRate2(sub.inviterUser, sub.invitee, sub.date)}>Save changes</button>
+                                            <button type="button" className="btn btn-primary" onClick={() => this.saveRate2(sub.inviterUser, sub.invitee, sub.id)}>Save changes</button>
                                         </div>
                                     </div>
                                 </div>

@@ -86,34 +86,36 @@ export default {
         return axios.post('/findUserName2', {userName: userName})
     },
 
-    updateRate: function(userName, rating){
+    updateRate: function(userName, rating, id){
         let info = {
             userName: userName,
-            rating: rating
+            rating: rating,
+            id: id
         }
         return axios.post('/updateRate', {info: info})
     },
 
-    updateRate2: function(userName, rating){
+    updateRate2: function(userName, rating, id){
         let info = {
             userName: userName,
-            rating: rating
+            rating: rating,
+            id: id
         }
         return axios.post('/updateRate2', {info: info})
     },
 
-    buttonClicked: function(userName, date){
+    buttonClicked: function(userName, id){
         let info={
             userName: userName,
-            date: date
+            id: id
         }
         return axios.post('/buttonClicked', {info: info})
     },
 
-    buttonClicked2: function(userName, date){
+    buttonClicked2: function(userName, id){
         let info={
             userName: userName,
-            date: date
+            id: id
         }
         return axios.post('/buttonClicked2', {info: info})
     },

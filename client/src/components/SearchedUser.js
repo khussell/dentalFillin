@@ -82,6 +82,12 @@ class SearchedUser extends React.Component {
 
     invite = (event) => {
         event.preventDefault()
+        let num1 = (Math.floor(Math.random() * 200)).toString()
+        let num2 = ( Math.floor(Math.random()* 200)).toString()
+        let num3 = (Math.floor(Math.random()*200)).toString()
+        let id = "id" + num1 + num2 + num3
+
+        
         let userBeingInvited = this.state.userName
         let inviteDate = document.getElementById('inviteDate').value
         let inviter = window.localStorage.getItem('officeName')
@@ -92,7 +98,8 @@ class SearchedUser extends React.Component {
             inviter: inviter,
             inviterUser: inviterUser,
             inviteeName: this.state.firstName,
-            buttonClicked: false
+            buttonClicked: false,
+            id: id
         }
 
         console.log(info)
@@ -140,7 +147,7 @@ class SearchedUser extends React.Component {
                 {this.state.invitations.map(invite => {
                     if (invite.invitee === window.localStorage.getItem('userName')) {
                         return (
-                            <div key={invite.date}>
+                            <div key={invite.id}>
                                 <p>{invite.date}</p>
                                 <button onClick={() => this.accepted(invite)}>Accept</button>
                             </div>

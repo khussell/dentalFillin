@@ -100,7 +100,8 @@ module.exports = {
       date: req.body.info.date,
       invitee : req.body.info.invitee,
       inviteeName: req.body.info.inviteeName,
-      buttonClicked: req.body.info.buttonClicked
+      buttonClicked: req.body.info.buttonClicked,
+      id: req.body.info.id
 
     }
     console.log(info)
@@ -120,7 +121,8 @@ module.exports = {
       date: req.body.info.date,
       invitee : req.body.info.invitee,
       inviteeName: req.body.info.inviteeName,
-      buttonClicked: req.body.info.buttonClicked
+      buttonClicked: req.body.info.buttonClicked,
+      id: req.body.info.id
     }
     console.log(info)
     
@@ -204,11 +206,11 @@ updateRate2: function(req,res){
 },
 
 buttonClicked: function(req,res){
-  db.User.findOneAndUpdate({userName: req.body.info.userName, 'pastJobs.date': req.body.info.date}, {$set : {"pastJobs.$.buttonClicked": true}}).then(dbModel => res.json(dbModel))
+  db.User.findOneAndUpdate({userName: req.body.info.userName, 'pastJobs.id': req.body.info.id}, {$set : {"pastJobs.$.buttonClicked": true}}).then(dbModel => res.json(dbModel))
 },
 
 buttonClicked2: function(req,res){
-  db.User.findOneAndUpdate({userName: req.body.info.userName, 'pastSubs.date' : req.body.info.date}, {$set : {"pastSubs.$.buttonClicked"  : true}}).then(dbModel=> res.json(dbModel))
+  db.User.findOneAndUpdate({userName: req.body.info.userName, 'pastSubs.id' : req.body.info.id}, {$set : {"pastSubs.$.buttonClicked"  : true}}).then(dbModel=> res.json(dbModel))
 },
 
   email: function(req,res){
