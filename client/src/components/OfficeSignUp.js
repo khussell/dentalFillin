@@ -1,9 +1,16 @@
 import React from "react"
-import {Link} from "react-router-dom"
+import {Redirect} from "react-router-dom"
 import Flatpickr from "./Calendar"
 
 class OfficeSignUp extends React.Component{
     render(){
+        console.log(this.props.toLogin)
+
+        if(this.props.toLogin === true){
+            return(
+                <Redirect to="/login" />
+            )
+        }
         return(
             <div>
                 <h1>office</h1>

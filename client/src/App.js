@@ -48,6 +48,7 @@ class App extends React.Component {
 
   componentDidMount = () => {
     console.log(this.state.userInfo)
+    this.setState({toLogin : false})
     //this.loadUsers()
   }
 
@@ -105,6 +106,7 @@ class App extends React.Component {
     event.preventDefault()
     console.log(this.state.userInfo)
     console.log('here')
+    this.setState({toLogin : true})
 
     API.saveUser({
       firstName: this.state.userInfo.firstName,
@@ -132,14 +134,9 @@ class App extends React.Component {
       currentSubs: this.state.userInfo.currentSubs,
       searchParams: this.state.userInfo.searchParams,
       invitations: this.state.userInfo.invitations
-    }).then(res =>{ this.loadUsers()
-    
-    })
-      .catch(err => console.log(err));
-
-      console.log('hi')
-      console.log( this.props.history)
-     this.props.history.push('/login')
+    }).then(res =>{ this.loadUsers()})
+      .catch(err => console.log(err));  
+     
   }
 
   loadUsers = () => {
@@ -175,11 +172,8 @@ class App extends React.Component {
             invitations: []
           }
         })
-
-        
-        
-      }).catch(err => console.log(err));
-      
+      }).then().catch(err => console.log(err));  
+      window.location.reload()
   }
 
   handleDate = (date) => {
@@ -199,6 +193,10 @@ class App extends React.Component {
   render() {
     console.log(this.state.userInfo.nitrous)
     console.log(this.state.results)
+    
+    if(this.state.toLogin === true){
+      this.setState({toLogin : false})
+  }
     
     return (
       <Router>

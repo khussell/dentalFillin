@@ -5,12 +5,14 @@ import Flatpickr from './Calendar'
 class SubSignUp extends React.Component {
     
     render() {
+        console.log(this.props.toLogin)
+
         if(this.props.toLogin === true){
-            console.log('hey')
             return(
-                <Redirect to='/login'/>
-              )
+                <Redirect to="/login" />
+            )
         }
+        
         return (
             <div>
                 <h1>sub</h1>
@@ -210,11 +212,11 @@ class SubSignUp extends React.Component {
                     <Flatpickr {...this.props} />
                     </div>
 
-                    <button className="btn btn-primary" onClick={this.props.signUpSubmit}>Sign up and go to login</button>
+                    <button className="btn btn-primary" type="submit" onClick={this.props.signUpSubmit}>Sign up and go to login</button>
                   </form>  
 
              
-            </div>
+            </div> 
         )
     }
 }

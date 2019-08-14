@@ -64,7 +64,7 @@ submit = (event) => {
            
         }
         //const isAuthenticated = res.data.isAuthenticated
-        this.props.history.push("/dashboard", userInput)
+       // this.props.history.push("/dashboard", userInput)
         
     }).catch(error =>{
         alert("Email or password not valid")
@@ -73,7 +73,7 @@ submit = (event) => {
 }
 
     render() {
-
+      
         const isAuthenticated = window.localStorage.getItem('isAuthenticated')
         if(isAuthenticated === true){
          return <Redirect to='/dashboard'/>
