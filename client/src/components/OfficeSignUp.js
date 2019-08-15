@@ -1,6 +1,7 @@
 import React from "react"
 import {Redirect} from "react-router-dom"
 import Flatpickr from "./Calendar"
+import '../css/subAndOfficeSignIn.css'
 
 class OfficeSignUp extends React.Component{
     render(){
@@ -12,9 +13,9 @@ class OfficeSignUp extends React.Component{
             )
         }
         return(
-            <div>
-                <h1>office</h1>
-                <form>
+            <div className="signIns row">
+                <h1 className="col-sm-12 text-center officeSignInTitle">Office Sign Up</h1>
+                <form className="col officeSignIn">
                 <div className="form-group">
                         <label htmlFor="firstName">First Name</label>
                         <input type="text" 
@@ -84,7 +85,7 @@ class OfficeSignUp extends React.Component{
                                value={this.props.userInfo.photo}/>
                     </div>
                     <div className="form-group">
-                        <label htmlFor="location">Location</label>
+                        <label htmlFor="location">Zip code</label>
                         <input type="text" 
                                className="form-control"
                                id="location" 
@@ -102,7 +103,7 @@ class OfficeSignUp extends React.Component{
                                value={this.props.userInfo.officeName} />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="about">About</label>
+                        <label htmlFor="about">About your office</label>
                         <textarea className="form-control" 
                                   id="about" 
                                   rows="3"
@@ -110,23 +111,14 @@ class OfficeSignUp extends React.Component{
                                   name="about"
                                   value={this.props.userInfo.about}></textarea>
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="datesNeeded">Dates Needed: Example input:  1/7/2020, 1/8,2020</label>
-                        <input type="text" 
-                               className="form-control" 
-                               id="datesNeeded" 
-                               onChange={this.props.handleInputChange}
-                               name="datesNeeded"
-                               value={this.props.userInfo.datesNeeded}/>
-                    </div>
 
-                    <div>
+                    <div className="officeDatesNeeded">
                     <label>What dates do you need a sub?</label>
                     <Flatpickr {...this.props} />
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="whatKindOfHygienist">What kind of hygienist?</label>
+                        <label htmlFor="whatKindOfHygienist">Describe your ideal sub?</label>
                         <textarea className="form-control" 
                                   id="whatKindOfHygienist" 
                                   rows="3"
@@ -135,7 +127,7 @@ class OfficeSignUp extends React.Component{
                                   value={this.props.userInfo.whatKindOfHygienist}></textarea>
                     </div>
                     <div className="form-group">
-                        <label htmlFor="doctorsNames">Doctors' Names: Example input:  Dr. Smith, Dr. Lin</label>
+                        <label htmlFor="doctorsNames">Doctor's Name</label>
                         <input type="text" 
                                className="form-control" 
                                id="doctorsNames" 
@@ -144,7 +136,7 @@ class OfficeSignUp extends React.Component{
                                value={this.props.userInfo.doctorsNames}/>
                     </div>
                     
-                    <button className="btn btn-primary" onClick={this.props.signUpSubmit}>Sign up and go to login</button>
+                    <button id="officeSignButton" className="btn btn-primary signUpButtons col-sm-4 text-center" onClick={this.props.signUpSubmit}>Sign up and go to login</button>
                     </form>
             </div>
         )

@@ -87,7 +87,7 @@ submit = (event) => {
         return (
             <div id="loginContent" className="container">
                 <div className="row justify-content-center">
-                <h1 className="col-sm-12 text-center">Login</h1>
+                <h1 className="col-sm-12 text-center loginTitle">Login</h1>
 
                 <div className="row ">
                 <form id="loginForm" className="col text-center">

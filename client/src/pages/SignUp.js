@@ -17,6 +17,7 @@ class SignUp extends React.Component {
                 <div className="row">
                 <h1 id="signUpTitle" className="col text-center">Sign Up!</h1>
                 </div>
+                
                 <div className="form-group">
                     <div id="subOrOffice" className="col text-center">
                     <label>Which are you?</label>
@@ -31,6 +32,7 @@ class SignUp extends React.Component {
                         </div>
                     <Route exact path={`${this.props.match.url}/sub`} render={() => <SubSignUp {...this.props} />} />
                     <Route exact path={`${this.props.match.url}/office`} render={() => <OfficeSignUp {...this.props} />} />
+                
                 </div>
 
 

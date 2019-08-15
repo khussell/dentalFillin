@@ -24,3 +24,34 @@
     box-shadow: 2px 2px grey;
     margin-bottom: 20px;
 }
+
+.loginTitle{
+    margin-top: 20px;
+}
+
+
+
+
+@media only screen and (min-width: 768px){
+    #loginContent{
+        width: 40%;
+        margin-left: 30%;
+        margin-right: 30%;
+    }
+ }
+
+ @media only screen and (min-width: 992px){
+    #loginContent{
+        width: 35%;
+        margin-left: 32.5%;
+        margin-right: 32.5%;
+    }
+ }
+
+ @media only screen and (min-width: 1200px){
+    #loginContent{
+        width: 30%;
+        margin-left: 35%;
+        margin-right: 35%;
+    }
+ }
