@@ -1,0 +1,87 @@
+.allPast{
+    background-color: white;
+    color: rgb(70, 149, 155);
+    border: 1px grey solid;
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 30px;
+}
+
+.pastJob{
+    background-color:  #bed6d6;
+    color: white;
+    padding: 5px;
+    margin: 20px;
+    border: 1px grey solid;
+    box-shadow: 2px 2px grey;    
+}
+
+.pastTitle{
+    margin-top: 20px;
+}
+
+.rateBtn{
+    margin-bottom: 10px;
+    background-color: white;
+    color: grey;
+    border: 1px solid grey;
+    box-shadow: 2px 2px grey;
+}
+
+.pasts{
+    margin-bottom: 40px;
+}
+
+.saveRateBtn{
+    color: white;
+    box-shadow: 2px 2px grey;
+}
+
+.rateTitle{
+    color: rgb(70, 149, 155); 
+}
+
+
+
+
+
+
+
+@media only screen and (min-width: 768px){
+    .pastJob{
+        width: 60%;
+        margin-left: 20%;
+        
+    }
+ 
+    .allPast{
+        width: 60%;
+        margin-left: 20%;
+    }
+}
+
+@media only screen and (min-width: 992px){
+   .pastJob{
+       width: 60%;
+       margin-left: 20%;
+       
+   }
+
+   .allPast{
+       width: 60%;
+       margin-left: 20%;
+   }
+}
+
+@media only screen and (min-width: 1200px){
+    .pastJob{
+       width: 40%;
+       margin-left: 30%;
+       
+   }
+
+   .allPast{
+       width: 40%;
+       margin-left: 30%;
+   }
+}

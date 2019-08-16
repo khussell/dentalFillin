@@ -2,7 +2,9 @@ import React from "react"
 import Flatpickr from 'react-flatpickr'
 import API from '../utils/API'
 import Map from "../components/Map"
-import {Link, } from "react-router-dom"
+import { Link, } from "react-router-dom"
+import '../css/find.css'
+import Ratings from "react-ratings-declarative"
 
 
 class Find extends React.Component {
@@ -13,7 +15,9 @@ class Find extends React.Component {
             results1: [],
             results2: [],
             date: new Date(),
-            user: ""
+            user: "",
+            searchButtonClicked: 'false',
+            searchButtonClicked2: 'false',
         };
     }
 
@@ -53,6 +57,7 @@ class Find extends React.Component {
                 })
             })
         }
+        this.setState({ searchButtonClicked: 'true' })
     }
 
     findDate = (event) => {
@@ -85,20 +90,34 @@ class Find extends React.Component {
                 })
             })
         }
+        this.setState({ searchButtonClicked2: 'true' })
     }
 
-  
+
+    getRating = (starArr) => {
+        let total = 0
+
+        for (let i = 0; i < starArr.length; i++) {
+            total += starArr[i]
+        }
+        let avg = total / starArr.length
+
+        return avg
+
+    }
+
+
 
 
 
     render() {
         return (
-            <div id="allFind">
-                <h1>Find</h1>
-                <button onClick={this.findAll}>Search all dates</button>
+            <div id="allFind" className="col text-center ">
+                {window.localStorage.getItem('sub') === 'true' ? <h3 className="findTitle">Find an office.</h3> : <h3>Find a sub.</h3>}
+                <button className="search btn" onClick={this.findAll}>Search all dates</button>
 
                 <br></br>
-                <label>Search certain day:</label>
+                <label>OR</label>
                 <br></br>
                 <Flatpickr
                     value={this.state.date}
@@ -106,35 +125,76 @@ class Find extends React.Component {
                     options={{
                         dateFormat: "Y-m-d"
                     }} />
-                <button onClick={this.findDate}>Search Date</button>
+                <button className="search searchDate btn" onClick={this.findDate}>Search Date</button>
                 <div>
-                    {
+                {this.state.results1.length === 0 && this.state.searchButtonClicked1 === 'true' ? <h4>No dates found.</h4> :
                         this.state.results1.map(data => {
                             return (
-                                <div key={data._id}>
-                                    <h1>{data.officeName}</h1>
-                                    <h1>{data.userName}</h1>
-                                    <Map />
-                                    <Link className="btn btn-primary" to={`${this.props.match.url}/find/searched/${data.userName}`} >Profile</Link>
-                                    
+                                <div className='myCard' key={data._id}>
+                                    {window.localStorage.getItem('sub') === 'true' ? (<div>
+                                        <Link className="" to={`${this.props.match.url}/find/searched/${data.userName}`} >{data.officeName}</Link>
+                                        <div className='col-sm-12'>
+                                            <Ratings
+
+                                                widgetDimensions="20px"
+                                                widgetSpacings="2px"
+                                                rating={this.getRating(data.starRating)}
+
+
+                                                widgetRatedColors="orange"
+                                            >
+                                                <Ratings.Widget />
+                                                <Ratings.Widget />
+                                                <Ratings.Widget />
+                                                <Ratings.Widget />
+                                                <Ratings.Widget />
+                                            </Ratings>
+                                        </div>
+                                        <div className='map'>
+                                            <Map name={data.officeName} location={data.location} />
+                                        </div>
+                                    </div>) : (<div>
+                                        <h4>{data.firstName + " " + data.lastName}</h4>
+                                    </div>)}
                                 </div>
                             )
                         })
                     }
-                    {this.state.results2.map(data => {
+                    {this.state.results2.length === 0 && this.state.searchButtonClicked2 === 'true' ? <h4>No dates found.</h4> :
+                        this.state.results2.map(data => {
                             return (
-                                <div key={data._id}>
-                                    <h1>{data.officeName}</h1>
-                                    <h1>{data.userName}</h1>
-                                    <Map />
-                                    <Link className="btn btn-primary" to={`${this.props.match.url}/find/searched/${data.userName}`} >Profile</Link>
-                            
+                                <div className='myCard' key={data._id}>
+                                    {window.localStorage.getItem('sub') === 'true' ? (<div>
+                                        <Link className="" to={`${this.props.match.url}/find/searched/${data.userName}`} >{data.officeName}</Link>
+                                        <div className='col-sm-12'>
+                                            <Ratings
+
+                                                widgetDimensions="20px"
+                                                widgetSpacings="2px"
+                                                rating={this.getRating(data.starRating)}
+
+
+                                                widgetRatedColors="orange"
+                                            >
+                                                <Ratings.Widget />
+                                                <Ratings.Widget />
+                                                <Ratings.Widget />
+                                                <Ratings.Widget />
+                                                <Ratings.Widget />
+                                            </Ratings>
+                                        </div>
+                                        <div className='map'>
+                                            <Map name={data.officeName} location={data.location} />
+                                        </div>
+                                    </div>) : (<div>
+                                        <h4>{data.firstName + " " + data.lastName}</h4>
+                                    </div>)}
                                 </div>
                             )
-                        
-                    })}
+                        })
+                    }
                 </div>
-                
+
             </div>
         )
     }

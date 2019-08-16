@@ -24,7 +24,7 @@ class Map extends React.Component {
     }
 
     getCoords = () =>{
-        let location = window.localStorage.getItem('location')
+        let location = this.props.location
         let queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + location + "&key=AIzaSyAA5SlE2LTsTT6T1ly7vaSqbS3FL408yFg"
 
         Axios.get(queryURL).then(res => {
@@ -73,7 +73,8 @@ class Map extends React.Component {
                     <Marker
                         lat={this.state.lat}
                         lng={this.state.lng}
-                        name="Dentist 1"
+                        name={this.props.name}
+                        
                     />
                 </GoogleMapReact>
             </div>

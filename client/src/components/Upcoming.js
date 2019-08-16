@@ -1,6 +1,7 @@
 import React from 'react'
 import API from '../utils/API';
 import {Link} from 'react-router-dom'
+import '../css/upcoming.css'
 
 
 
@@ -48,29 +49,31 @@ class Upcoming extends React.Component{
         console.log(this.state)
         
         return(
-            <div>
-              <h1>Upcoming for: {window.localStorage.getItem('userName')}</h1>
-              {this.state.currentJobs.map(job => {
+            <div className='allUpcoming col text-center'>
+              <h4 className='upcomingTitle'>Your Upcoming Jobs</h4>
+              <div className="upcomingJobs">
+              {this.state.currentJobs.length === 0? <p>No current upcoming jobs.</p>: this.state.currentJobs.map(job => {
                   //this.findUserInfo(job.inviter)
                     return(
-                        <div key={job.id}>
-                            <Link to={`/dashboard/find/searched/${job.inviterUser}`} >{job.inviter}</Link>
+                        <div className='upcomingJob' key={job.id}>
+                            <Link to={`/dashboard/find/searched/${job.inviterUser}`} style={{color: 'white'}}>{job.inviter}</Link>
                             <p>{job.date}</p>
-                            <Link to={`/dashboard/past`} onClick={() => this.makePast(job)}>Did it!</Link>
+                            <Link to={`/dashboard/past`} className="btn didItBtn btn-primary" onClick={() => this.makePast(job)}>Did it!</Link>
                         </div>
                     )
              
             })}
-           {this.state.currentSubs.map(sub => {
+           {this.state.currentSubs.length === 0? <p>No current upcoming subs.</p> : this.state.currentSubs.map(sub => {
                
                     return(
-                        <div key={sub.id}>
-                            <Link to={`/dashboard/find/searched/${sub.invitee}`} >{sub.invitee}</Link>
+                        <div className='upcomingJob' key={sub.id}>
+                            <Link to={`/dashboard/find/searched/${sub.invitee}`} style={{color: 'white'}}>{sub.invitee}</Link>
                             <p>{sub.date}</p>
-                            <Link to={`/dashboard/past`} onClick={()=>this.makePast(sub)}>Did it!</Link>
+                            <Link to={`/dashboard/past`} className="btn didItBtn btn-primary" onClick={()=>this.makePast(sub)}>Did it!</Link>
                         </div>
                     )
                })}
+               </div>
             </div>
         )
     }

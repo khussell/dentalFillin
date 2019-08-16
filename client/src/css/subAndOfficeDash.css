@@ -2,23 +2,27 @@
     color: rgb(77, 148, 153);
     background-color: white;
     border: 1px solid grey;
-    width: 60%;
-    margin-left: 12%;
+    width: 80%;
+    margin-left: 10%;
     margin-top: 30px;
+    margin-bottom: 30px;
    
 }
 
 .profilePic{
     width: 150px;
-    border-radius: 30%;
+    border-radius: 50%;
     margin-left: 10%;
     margin: 0 auto;
     margin-top: 20px;
+    padding: 5px;
+    border: 2px lightgrey solid;
+   
 }
 
 
 .ratings{
-    width: 270px;
+    width: 215px;
     margin: 0 auto;
     margin-top: 20px;
 }
@@ -26,11 +30,114 @@
 
 .fullName{
     margin-top: 10px;
+    margin-bottom: 20px;
 }
 
 .profileCalendar > input{
     position: relative;
     display: none;
 }
+
+.profileCalendar{
+    position: relative;
+    right: 15%;
+    margin-top: 15px;
+}
+
+.infoGroup > p{
+    margin-top: 10px;
+}
+
+.infoGroup > h4 {
+    margin-top: 20px;
+}
+
+.invites{
+    color: rgb(77, 148, 153);
+    background-color: white; 
+    border: 1px solid grey;
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 20px;
+    padding-bottom: 25px;
+   
+}
+
+.inviteHeading{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: rgb(175, 175, 175);
+    
+}
+
+.invite{
+    background-color:  #88c0c0;
+    color: white;
+    padding: 5px;
+    margin: 20px;
+    border: 1px grey solid;
+    box-shadow: 2px 2px grey;
+    
+  
+}
+
+
+
+@media only screen and (min-width: 350px){
+    .profileCalendar{
+        position: relative;
+        right: 11%;
+    }
+}
+
+@media only screen and (min-width: 390px){
+    .profileCalendar{
+        position: none;
+        right: 0%;
+        width: 330px;
+        margin: 0 auto;
+    }
+
+    .invite{
+        width: 220px;
+        margin: 20px auto;
+    }
+}
+
+
+
+
+
+@media only screen and (min-width: 768px){
+   
+ }
+
+ @media only screen and (min-width: 992px){
+    .invites{
+        width: 60%;
+        margin-left: 20%;
+        
+    }
+
+    #subProfileContent{
+        width: 60%;
+        margin-left: 20%;
+    }
+ }
+
+ @media only screen and (min-width: 1200px){
+    .invites{
+        width: 40%;
+        margin-left: 30%;
+        
+    }
+
+    #subProfileContent{
+        width: 40%;
+        margin-left: 30%;
+    }
+ }
+
+
 
 

@@ -59,46 +59,66 @@ class ProfileSub extends React.Component {
 
 
         return (
-            <div id='subProfileContent' className=''>
-                <div className='row'></div>
-                {/*<h1>ProfileSub of {window.localStorage.getItem('firstName')}</h1>*/}
-                <div className='ratings col-sm-12'>
-                    <Ratings
+            <div>
+                <div className='col-sm-12 invites'>
+                   {this.state.invitations === ""? "": <h3 className="col text-center inviteHeading">You have invites!</h3> }
 
-                        widgetDimensions="30px"
-                        widgetSpacings="10px"
-                        rating={this.state.rating}
-                        widgetRatedColors="orange"
-                    >
-                        <Ratings.Widget />
-                        <Ratings.Widget />
-                        <Ratings.Widget />
-                        <Ratings.Widget />
-                        <Ratings.Widget />
-                    </Ratings>
-                </div>
-                <div className='row justify-content-center'>
-                    <img className="profilePic" alt="Pic" src={window.localStorage.getItem('photo')}></img>
-                </div>
-                <div className='col-sm-12 text-center fullName'>
-                    <h3>{window.localStorage.getItem('firstName') + " " + window.localStorage.getItem('lastName')}</h3>
-                </div>
-
-                <div className='col-sm-12 profileCalendar'>
-                    <StaticCalendar />
-                </div>
-                <div className='col-sm-12'>
-                    <h3>You have invites!</h3>
-
-                    {this.state.invitations.map(invite => {
+                    {this.state.invitations === [] ? "" : this.state.invitations.map(invite => {
                         return (
-                            <div key={invite.date}>
 
-                                <Link to={`/dashboard/find/searched/${this.state.inviterUserName}`} onClick={() => this.findUserInfo(`${invite.inviter}`)}>{invite.inviter}</Link>
+                            <div className="invite" key={invite.date}>
+                                
+                                <Link to={`/dashboard/find/searched/${this.state.inviterUserName}`} style={{color: "white"}} onClick={() => this.findUserInfo(`${invite.inviter}`)}>{invite.inviter +" Profile"}</Link>
                                 <p>Date: {invite.date}</p>
                             </div>
                         )
                     })}
+                </div>
+                <div id='subProfileContent' className=''>
+                    <div className='row'></div>
+                    {/*<h1>ProfileSub of {window.localStorage.getItem('firstName')}</h1>*/}
+                    <div className='ratings col-sm-12'>
+                        <Ratings
+
+                            widgetDimensions="25px"
+                            widgetSpacings="7px"
+                            rating={this.state.rating}
+                            widgetRatedColors="orange"
+                        >
+                            <Ratings.Widget />
+                            <Ratings.Widget />
+                            <Ratings.Widget />
+                            <Ratings.Widget />
+                            <Ratings.Widget />
+                        </Ratings>
+                    </div>
+                    <div className='row justify-content-center'>
+                        <img className="profilePic" alt="Pic" src={window.localStorage.getItem('photo')}></img>
+                    </div>
+                    <div className='col-sm-12 text-center fullName'>
+                        <h3>{window.localStorage.getItem('firstName') + " " + window.localStorage.getItem('lastName')}</h3>
+                    </div>
+                    <div className='col-sm-12 text-center'>
+                        <h6>Your Availability:</h6>
+                    </div>
+
+
+                    <div className='col-sm-12 profileCalendar'>
+
+                        <StaticCalendar />
+                    </div>
+
+                    <div className='col-sm-12 text-center infoGroup'>
+                        <h4>{window.localStorage.getItem('yearsExp') + ' Years Experience'}</h4>
+                        <p>{window.localStorage.getItem('nitrous') === 'true' ? "Nitrous &#x2713" : "Not nitrous certified"}</p>
+                        <p>{window.localStorage.getItem('anesthesia') === 'true' ? "Anesthesia &#x2713" : "Not anesthesia certified"}</p>
+                        <h4>About You</h4>
+                        <p>{window.localStorage.getItem('about')}</p>
+                    </div>
+
+
+
+
                 </div>
             </div>
         )

@@ -2,6 +2,7 @@ import React from "react"
 import API from "../utils/API"
 import { Link, } from "react-router-dom"
 import Ratings from 'react-ratings-declarative';
+import '../css/past.css'
 
 
 class Past extends React.Component {
@@ -81,17 +82,18 @@ class Past extends React.Component {
     render() {
         
         return (
-            <div>
-                <h1>Past for: {window.localStorage.getItem('userName')}</h1>
-                {this.state.pastJobs.map(job=> {
+            <div className="allPast col text-center">
+                <h1 className='pastTitle'>Your Past Jobs</h1>
+                <div className='pasts'>
+                {this.state.pastJobs.length === 0? <p>No past jobs.</p>:this.state.pastJobs.map(job=> {
                        
                     return (
-                        <div key={job.id}>
-                            <Link to={`/dashboard/find/searched/${job.inviterUser}`} >{job.inviter}</Link>
+                        <div className='pastJob' key={job.id}>
+                            <Link to={`/dashboard/find/searched/${job.inviterUser}`} style={{color: 'white'}}>{job.inviter}</Link>
                             <p>{job.date}</p>
 
-                            <button type="button" disabled={job.buttonClicked? true: false} id={`${job.id}button`} className="btn btn-primary" data-toggle="modal" data-target={`#${job.id}`}>
-                                Rate
+                            <button type="button"  disabled={job.buttonClicked? true: false} id={`${job.id}button`} className="btn rateBtn " data-toggle="modal" data-target={`#${job.id}`}>
+                                {job.buttonClicked? "Already Rated": 'Rate'}
                              </button>
 
 
@@ -99,7 +101,7 @@ class Past extends React.Component {
                                 <div className="modal-dialog" role="document">
                                     <div className="modal-content">
                                         <div className="modal-header">
-                                            <h5 className="modal-title" id="exampleModalLabel">Rate {job.inviterUser}</h5>
+                                            <h5 className="modal-title rateTitle" id="exampleModalLabel">Rate {job.inviter}</h5>
 
                                         </div>
                                         <div className="modal-body">
@@ -117,7 +119,7 @@ class Past extends React.Component {
                                         </div>
                                         <div className="modal-footer">
 
-                                            <button type="button"  className='btn btn-primary'  onClick={(event) => this.saveRate(event, job.inviterUser, job.invitee, job.id)}>Save changes</button>
+                                            <button type="button"  className='btn saveRateBtn btn-info'  onClick={(event) => this.saveRate(event, job.inviterUser, job.invitee, job.id)}>Save changes</button>
                                         </div>
                                     </div>
                                 </div>
@@ -128,14 +130,14 @@ class Past extends React.Component {
                     )
 
                 })}
-                {this.state.pastSubs.map(sub => {
+                {this.state.pastSubs.length === 0? <p>No past subs.</p>:this.state.pastSubs.map(sub => {
                    
                     return (
                         <div key={sub.id}>
-                            <Link to={`/dashboard/find/searched/${sub.invitee}`} >{sub.invitee}</Link>
+                            <Link to={`/dashboard/find/searched/${sub.invitee}`} style={{color: 'white'}} >{sub.invitee}</Link>
                             <p>{sub.date}</p>
 
-                            <button type="button" disabled={sub.buttonClicked? true: false} id={`${sub.id}button`} className="btn btn-primary" data-toggle="modal" data-target={`#${sub.id}`}>
+                            <button  type="button" disabled={sub.buttonClicked? true: false} id={`${sub.id}button`} className="btn rateBtn " data-toggle="modal" data-target={`#${sub.id}`}>
                                 Rate</button>
 
 
@@ -143,7 +145,7 @@ class Past extends React.Component {
                                 <div className="modal-dialog" role="document">
                                     <div className="modal-content">
                                         <div className="modal-header">
-                                            <h5 className="modal-title" id="exampleModalLabel">Rate {sub.inviteeName}</h5>
+                                            <h5 className="modal-title rateTitle" id="exampleModalLabel">Rate {sub.inviteeName}</h5>
 
                                         </div>
                                         <div className="modal-body">
@@ -161,7 +163,7 @@ class Past extends React.Component {
                                         </div>
                                         <div className="modal-footer">
 
-                                            <button type="button" className="btn btn-primary" onClick={(event) => this.saveRate2(event, sub.inviterUser, sub.invitee, sub.id)}>Save changes</button>
+                                            <button type="button" className="btn saveRateBtn btn-info" onClick={(event) => this.saveRate2(event, sub.inviterUser, sub.invitee, sub.id)}>Save changes</button>
                                         </div>
                                     </div>
                                 </div>
@@ -169,6 +171,7 @@ class Past extends React.Component {
                         </div>
                     )
                 })}
+                </div>
             </div>
         )
     }
