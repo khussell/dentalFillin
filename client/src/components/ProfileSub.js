@@ -3,6 +3,7 @@ import StaticCalendar from "./StaticCalendar"
 import API from "../utils/API";
 import { Link } from "react-router-dom"
 import Ratings from 'react-ratings-declarative'
+import '../css/subAndOfficeDash.css'
 
 
 class ProfileSub extends React.Component {
@@ -18,11 +19,11 @@ class ProfileSub extends React.Component {
         let rates = window.localStorage.getItem('starRating').split(",")
         console.log(rates)
         let total = 0
-        for (let i =0; i< rates.length; i++){
-               total += rates[i]
+        for (let i = 0; i < rates.length; i++) {
+            total += rates[i]
         }
-        let avg = total/ rates.length
-        this.setState({rating : avg})
+        let avg = total / rates.length
+        this.setState({ rating: avg })
 
     }
 
@@ -42,7 +43,7 @@ class ProfileSub extends React.Component {
             let inviterUser = res.data.userName
             this.setState({ inviterUserName: inviterUser, load: 'true' })
         })
-        
+
 
     }
 
@@ -58,32 +59,47 @@ class ProfileSub extends React.Component {
 
 
         return (
-            <div>
-                <h1>ProfileSub of {window.localStorage.getItem('firstName')}</h1>
-                <Ratings
+            <div id='subProfileContent' className=''>
+                <div className='row'></div>
+                {/*<h1>ProfileSub of {window.localStorage.getItem('firstName')}</h1>*/}
+                <div className='ratings col-sm-12'>
+                    <Ratings
 
-                    widgetDimensions="40px"
-                    widgetSpacings="15px"
-                    rating={this.state.rating}
-                    widgetRatedColors="orange"
-                >
-                    <Ratings.Widget />
-                    <Ratings.Widget />
-                    <Ratings.Widget />
-                    <Ratings.Widget />
-                    <Ratings.Widget />
-                </Ratings>
-                <StaticCalendar />
-                <h3>You have invites!</h3>
-                {this.state.invitations.map(invite => {
-                    return (
-                        <div key={invite.date}>
+                        widgetDimensions="30px"
+                        widgetSpacings="10px"
+                        rating={this.state.rating}
+                        widgetRatedColors="orange"
+                    >
+                        <Ratings.Widget />
+                        <Ratings.Widget />
+                        <Ratings.Widget />
+                        <Ratings.Widget />
+                        <Ratings.Widget />
+                    </Ratings>
+                </div>
+                <div className='row justify-content-center'>
+                    <img className="profilePic" alt="Pic" src={window.localStorage.getItem('photo')}></img>
+                </div>
+                <div className='col-sm-12 text-center fullName'>
+                    <h3>{window.localStorage.getItem('firstName') + " " + window.localStorage.getItem('lastName')}</h3>
+                </div>
 
-                            <Link to={`/dashboard/find/searched/${this.state.inviterUserName}`} onClick={() => this.findUserInfo(`${invite.inviter}`)}>{invite.inviter}</Link>
-                            <p>Date: {invite.date}</p>
-                        </div>
-                    )
-                })}
+                <div className='col-sm-12 profileCalendar'>
+                    <StaticCalendar />
+                </div>
+                <div className='col-sm-12'>
+                    <h3>You have invites!</h3>
+
+                    {this.state.invitations.map(invite => {
+                        return (
+                            <div key={invite.date}>
+
+                                <Link to={`/dashboard/find/searched/${this.state.inviterUserName}`} onClick={() => this.findUserInfo(`${invite.inviter}`)}>{invite.inviter}</Link>
+                                <p>Date: {invite.date}</p>
+                            </div>
+                        )
+                    })}
+                </div>
             </div>
         )
     }

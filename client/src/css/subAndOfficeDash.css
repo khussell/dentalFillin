@@ -1,0 +1,36 @@
+#subProfileContent{
+    color: rgb(77, 148, 153);
+    background-color: white;
+    border: 1px solid grey;
+    width: 60%;
+    margin-left: 12%;
+    margin-top: 30px;
+   
+}
+
+.profilePic{
+    width: 150px;
+    border-radius: 30%;
+    margin-left: 10%;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+
+.ratings{
+    width: 270px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+
+.fullName{
+    margin-top: 10px;
+}
+
+.profileCalendar > input{
+    position: relative;
+    display: none;
+}
+
+

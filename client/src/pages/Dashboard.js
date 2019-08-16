@@ -3,12 +3,13 @@ import API from "../utils/API";
 import Navbar from "../components/Navbar"
 import ProfileSub from "../components/ProfileSub"
 import ProfileOffice from "../components/ProfileOffice"
-import {Route, Switch} from "react-router-dom"
+import { Route, Switch } from "react-router-dom"
 import Find from "./Find"
 import SearchedUser from '../components/SearchedUser'
 import Upcoming from '../components/Upcoming'
 import Past from '../components/Past'
 import Rate from '../components/Rate'
+import '../css/dashboard.css'
 
 
 
@@ -33,7 +34,7 @@ class Dashboard extends React.Component {
     window.localStorage.removeItem('location')
     window.localStorage.removeItem('photo')
     window.localStorage.removeItem('starRating')
-    window.localStorage.removeItem('avail' )
+    window.localStorage.removeItem('avail')
     window.localStorage.removeItem('pastJobs')
     window.localStorage.removeItem('currentJobs')
     window.localStorage.removeItem('searchParams')
@@ -55,26 +56,29 @@ class Dashboard extends React.Component {
 
   render() {
     const isSub = localStorage.getItem('sub')
-    
-    const firstName = window.localStorage.getItem('firstName')
-    
-    return (
-      
 
-      <div className="dashboardContent">
+    const firstName = window.localStorage.getItem('firstName')
+
+    return (
+
+<div>
+      <div className="dashboardContent ">
         <Navbar {...this.props} logout={this.logout} />
-        <h1>Dashboard for {firstName}</h1>
-        <Switch>
-          <Route exact path={`${this.props.match.url}/upcoming`}  component={Upcoming}/>
-          <Route exact path={`${this.props.match.url}/find`} render={() => <Find {...this.props} />} />
-          <Route exact path={`${this.props.match.url}/past`} component={Past} />
-          <Route exact path={`${this.props.match.url}/rate`} component={Rate} />
-          <Route exact path={`${this.props.match.url}/find/searched/:user`} render={() => <SearchedUser {...this.props}/>}/>
-          {isSub === "true" && `${this.props.match.url}` !== '/dashboard/find'&& `${this.props.match.url}` !== '/dashboard/rate' && `${this.props.match.url}` !== "/find/searched/"  ? <ProfileSub {...this.props}/> :  <ProfileOffice {...this.props} />}
-        </Switch>
-        
-        
+        <h1 className='profileWelcome '>Hello, {firstName}</h1>
         </div>
+        <div className='subOrOfficeProfile'>
+          <Switch>
+            <Route exact path={`${this.props.match.url}/upcoming`} component={Upcoming} />
+            <Route exact path={`${this.props.match.url}/find`} render={() => <Find {...this.props} />} />
+            <Route exact path={`${this.props.match.url}/past`} component={Past} />
+            <Route exact path={`${this.props.match.url}/rate`} component={Rate} />
+            <Route exact path={`${this.props.match.url}/find/searched/:user`} render={() => <SearchedUser {...this.props} />} />
+            {isSub === "true" && `${this.props.match.url}` !== '/dashboard/find' && `${this.props.match.url}` !== '/dashboard/rate' && `${this.props.match.url}` !== "/find/searched/" ? <ProfileSub {...this.props} /> : <ProfileOffice {...this.props} />}
+          </Switch>
+        </div>
+        </div>
+
+      
 
     )
   }
