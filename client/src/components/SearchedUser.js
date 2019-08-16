@@ -2,6 +2,8 @@ import React from 'react'
 import API from '../utils/API'
 import EmailForm from '../components/EmailForm'
 import Ratings from 'react-ratings-declarative'
+import '../css/searchedUser.css'
+import StaticCalendar from '../components/StaticCalendar'
 
 class SearchedUser extends React.Component {
     state = {
@@ -36,7 +38,7 @@ class SearchedUser extends React.Component {
     componentDidMount = () => {
         console.log(this.props.history.location.pathname)
         console.log(`${this.props.match.url}`)
-        
+
         API.findUser(this.props.history.location.pathname).then(res => {
             console.log(res.data)
             this.setState({
@@ -70,24 +72,24 @@ class SearchedUser extends React.Component {
             let rates = this.state.starRating
             console.log(rates)
             let total = 0
-            
-            for (let i =0; i< rates.length; i++){
-                   total += rates[i]
+
+            for (let i = 0; i < rates.length; i++) {
+                total += rates[i]
             }
-            let avg = total/ rates.length
-            
-            this.setState({rating: avg})
+            let avg = total / rates.length
+
+            this.setState({ rating: avg })
         })
     }
 
     invite = (event) => {
         event.preventDefault()
         let num1 = (Math.floor(Math.random() * 200)).toString()
-        let num2 = ( Math.floor(Math.random()* 200)).toString()
-        let num3 = (Math.floor(Math.random()*200)).toString()
+        let num2 = (Math.floor(Math.random() * 200)).toString()
+        let num3 = (Math.floor(Math.random() * 200)).toString()
         let id = "id" + num1 + num2 + num3
 
-        
+
         let userBeingInvited = this.state.userName
         let inviteDate = document.getElementById('inviteDate').value
         let inviter = window.localStorage.getItem('officeName')
@@ -128,42 +130,89 @@ class SearchedUser extends React.Component {
 
 
         return (
-            <div>
-                <Ratings
+            <div className='profileContent'>
+                {this.state.sub === 'true' ? (
+                    <div>
+                        <Ratings
 
-                    widgetDimensions="40px"
-                    widgetSpacings="15px"
-                    rating={this.state.rating}
-                    widgetRatedColors="orange"
-                >
-                    <Ratings.Widget />
-                    <Ratings.Widget />
-                    <Ratings.Widget  />
-                    <Ratings.Widget />
-                    <Ratings.Widget />
-                </Ratings>
-                <h1>{this.state.userName}</h1>
-                <h3>They have invited you for?</h3>
-                {this.state.invitations.map(invite => {
-                    if (invite.invitee === window.localStorage.getItem('userName')) {
-                        return (
-                            <div key={invite.id}>
-                                <p>{invite.date}</p>
-                                <button onClick={() => this.accepted(invite)}>Accept</button>
-                            </div>
-                        )
-                    } else {
-                        return (
-                            <div></div>
-                        )
-                    }
-                })}
-                <EmailForm />
-                <form>
-                    <label>If you would like to invite for work, please enter a date</label>
-                    <input id="inviteDate" type="text" />
-                    <button onClick={this.invite}>Invite for work</button>
-                </form>
+                            widgetDimensions="25px"
+                            widgetSpacings="7px"
+                            rating={this.state.rating}
+                            widgetRatedColors="orange"
+                        >
+                            <Ratings.Widget />
+                            <Ratings.Widget />
+                            <Ratings.Widget />
+                            <Ratings.Widget />
+                            <Ratings.Widget />
+                        </Ratings>
+                        <h3>{this.state.firstName + " " + this.state.lastName}</h3>
+                        <div className='row justify-content-center'>
+                        <img className="profilePic" alt="Pic" src={this.state.photo}></img>
+                    </div>
+                    
+                    <div className='col-sm-12 text-center'>
+                        <h6>Availability:</h6>
+                    </div>
+
+
+                    <div className='col-sm-12 profileCalendar'>
+
+                        <StaticCalendar />
+                    </div>
+
+                    <div className='col-sm-12 text-center infoGroup'>
+                        <h4>{this.state.yearsExp + ' Years Experience'}</h4>
+                        <p>{this.state.nitrous === 'true' ? "Nitrous &#x2713" : "Not nitrous certified"}</p>
+                        <p>{this.state.anesthesia === 'true' ? "Anesthesia &#x2713" : "Not anesthesia certified"}</p>
+                        <h4>About</h4>
+                        <p>{this.state.about}</p>
+                    </div>
+                        <h4 className='col-sm-12 text-center'>Contact</h4>
+                        <EmailForm />
+                        <form>
+                            <label>If you would like to invite for work, please enter a date</label>
+                            <input id="inviteDate" type="text" />
+                            <button onClick={this.invite}>Invite for work</button>
+                        </form>
+
+                    </div>) : (<div>    <Ratings
+
+                        widgetDimensions="25px"
+                        widgetSpacings="7px"
+                        rating={this.state.rating}
+                        widgetRatedColors="orange"
+                    >
+                        <Ratings.Widget />
+                        <Ratings.Widget />
+                        <Ratings.Widget />
+                        <Ratings.Widget />
+                        <Ratings.Widget />
+                    </Ratings>
+                        <h1>{this.state.firstName + " " + this.state.lastName}</h1>
+                        <h3>They have invited you for?</h3>
+                        {this.state.invitations.map(invite => {
+                            if (invite.invitee === window.localStorage.getItem('userName')) {
+                                return (
+                                    <div key={invite.id}>
+                                        <p>{invite.date}</p>
+                                        <button onClick={() => this.accepted(invite)}>Accept</button>
+                                    </div>
+                                )
+                            } else {
+                                return (
+                                    <div></div>
+                                )
+                            }
+                        })}
+                        <EmailForm />
+                        <form>
+                            <label>If you would like to invite for work, please enter a date</label>
+                            <input id="inviteDate" type="text" />
+                            <button onClick={this.invite}>Invite for work</button>
+                        </form>
+
+                    </div>)}
             </div>
 
         )

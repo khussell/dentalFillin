@@ -113,7 +113,7 @@ class Find extends React.Component {
     render() {
         return (
             <div id="allFind" className="col text-center ">
-                {window.localStorage.getItem('sub') === 'true' ? <h3 className="findTitle">Find an office.</h3> : <h3>Find a sub.</h3>}
+                {window.localStorage.getItem('sub') === 'true' ? <h3 className="findTitle">Find an office.</h3> : <h3 className="findTitle">Find a sub.</h3>}
                 <button className="search btn" onClick={this.findAll}>Search all dates</button>
 
                 <br></br>
@@ -153,9 +153,31 @@ class Find extends React.Component {
                                         <div className='map'>
                                             <Map name={data.officeName} location={data.location} />
                                         </div>
-                                    </div>) : (<div>
-                                        <h4>{data.firstName + " " + data.lastName}</h4>
-                                    </div>)}
+                                    </div>) : <div>
+                                        
+                                        <Link className="" style={{color: 'rgb(70, 149, 155)'}} to={`${this.props.match.url}/find/searched/${data.userName}`} >{data.firstName + " " + data.lastName}</Link>
+                                        <div className='col-sm-12'>
+                                            <Ratings
+
+                                                widgetDimensions="20px"
+                                                widgetSpacings="2px"
+                                                rating={this.getRating(data.starRating)}
+
+
+                                                widgetRatedColors="orange"
+                                            >
+                                                <Ratings.Widget />
+                                                <Ratings.Widget />
+                                                <Ratings.Widget />
+                                                <Ratings.Widget />
+                                                <Ratings.Widget />
+                                            </Ratings>
+                                        </div>
+                                        <div>
+                                            <p>{data.avail}</p>
+                                        </div>
+                                        <img className="findPhoto" src={data.photo} alt="phot0"></img>
+                                    </div>}
                                 </div>
                             )
                         })
@@ -187,7 +209,29 @@ class Find extends React.Component {
                                             <Map name={data.officeName} location={data.location} />
                                         </div>
                                     </div>) : (<div>
-                                        <h4>{data.firstName + " " + data.lastName}</h4>
+                                        
+                                        <Link className="" style={{color: 'rgb(70, 149, 155)'}} to={`${this.props.match.url}/find/searched/${data.userName}`} >{data.firstName + " " + data.lastName}</Link>
+                                        <div className='col-sm-12'>
+                                            <Ratings
+
+                                                widgetDimensions="20px"
+                                                widgetSpacings="2px"
+                                                rating={this.getRating(data.starRating)}
+
+
+                                                widgetRatedColors="orange"
+                                            >
+                                                <Ratings.Widget />
+                                                <Ratings.Widget />
+                                                <Ratings.Widget />
+                                                <Ratings.Widget />
+                                                <Ratings.Widget />
+                                            </Ratings>
+                                        </div>
+                                        <div>
+                                            <p>{data.avail}</p>
+                                        </div>
+                                        <img className="findPhoto" src={data.photo} alt="sub"></img>
                                     </div>)}
                                 </div>
                             )
