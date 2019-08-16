@@ -52,7 +52,7 @@ class Upcoming extends React.Component{
             <div className='allUpcoming col text-center'>
               <h4 className='upcomingTitle'>Your Upcoming Jobs</h4>
               <div className="upcomingJobs">
-              {this.state.currentJobs.length === 0? <p>No current upcoming jobs.</p>: this.state.currentJobs.map(job => {
+              {this.state.currentJobs.length === 0 && window.localStorage.getItem('sub') === 'true'? <p>No current upcoming jobs.</p>: this.state.currentJobs.map(job => {
                   //this.findUserInfo(job.inviter)
                     return(
                         <div className='upcomingJob' key={job.id}>
@@ -63,7 +63,7 @@ class Upcoming extends React.Component{
                     )
              
             })}
-           {this.state.currentSubs.length === 0? <p>No current upcoming subs.</p> : this.state.currentSubs.map(sub => {
+           {this.state.currentSubs.length === 0 && window.localStorage.getItem('sub') === ''? <p>No current upcoming subs.</p> : this.state.currentSubs.map(sub => {
                
                     return(
                         <div className='upcomingJob' key={sub.id}>

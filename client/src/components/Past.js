@@ -85,7 +85,7 @@ class Past extends React.Component {
             <div className="allPast col text-center">
                 <h1 className='pastTitle'>Your Past Jobs</h1>
                 <div className='pasts'>
-                {this.state.pastJobs.length === 0? <p>No past jobs.</p>:this.state.pastJobs.map(job=> {
+                {this.state.pastJobs.length === 0 && window.localStorage.getItem('sub') === 'true'? <p>No past jobs.</p>:this.state.pastJobs.map(job=> {
                        
                     return (
                         <div className='pastJob' key={job.id}>
@@ -130,15 +130,15 @@ class Past extends React.Component {
                     )
 
                 })}
-                {this.state.pastSubs.length === 0? <p>No past subs.</p>:this.state.pastSubs.map(sub => {
+                {this.state.pastSubs.length === 0 && window.localStorage.getItem('sub') === ''? <p>No past subs.</p>:this.state.pastSubs.map(sub => {
                    
                     return (
-                        <div key={sub.id}>
-                            <Link to={`/dashboard/find/searched/${sub.invitee}`} style={{color: 'white'}} >{sub.invitee}</Link>
+                        <div className="pastSub" key={sub.id}>
+                            <Link to={`/dashboard/find/searched/${sub.invitee}`} style={{color: 'white'}} >{sub.inviteeName}</Link>
                             <p>{sub.date}</p>
 
                             <button  type="button" disabled={sub.buttonClicked? true: false} id={`${sub.id}button`} className="btn rateBtn " data-toggle="modal" data-target={`#${sub.id}`}>
-                                Rate</button>
+                            {sub.buttonClicked? "Already Rated": 'Rate'}</button>
 
 
                             <div className="modal fade" id={`${sub.id}`} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

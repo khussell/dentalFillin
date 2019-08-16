@@ -2,6 +2,7 @@ import React from "react"
 import StaticCalendar from "./StaticCalendar"
 import Map from "../components/Map"
 import Ratings from 'react-ratings-declarative'
+import '../css/subAndOfficeDash.css'
 
 
 
@@ -9,37 +10,58 @@ class ProfileOffice extends React.Component {
     state = {
         rating: 5
     }
-    componentDidMount = () =>{
+    componentDidMount = () => {
         let rates = window.localStorage.getItem('starRating').split(",")
         console.log(rates)
         let total = 0
-        
-        for (let i =0; i< rates.length; i++){
-               total += rates[i]
+
+        for (let i = 0; i < rates.length; i++) {
+            total += rates[i]
         }
-        let avg = total/ rates.length
-        this.setState({rating : avg})
+        let avg = total / rates.length
+        this.setState({ rating: avg })
     }
 
     render() {
         return (
-            <div>
-                <h1>ProfileOffice of {window.localStorage.getItem('firstName')}</h1>
-                <Ratings
+            <div id="officeProfileContent">
+                <div className='ratings col-sm-12'>
+                    <Ratings
 
-                    widgetDimensions="40px"
-                    widgetSpacings="15px"
-                    rating={this.state.rating}
-                    widgetRatedColors="orange"
-                >
-                    <Ratings.Widget />
-                    <Ratings.Widget />
-                    <Ratings.Widget />
-                    <Ratings.Widget />
-                    <Ratings.Widget />
-                </Ratings>
-                <StaticCalendar />
-                <Map />
+                        widgetDimensions="25px"
+                        widgetSpacings="7px"
+                        rating={this.state.rating}
+                        widgetRatedColors="orange"
+                    >
+                        <Ratings.Widget />
+                        <Ratings.Widget />
+                        <Ratings.Widget />
+                        <Ratings.Widget />
+                        <Ratings.Widget />
+                    </Ratings>
+                </div>
+                <div className='row justify-content-center'>
+                    <img className="profilePic" alt="Pic" src={window.localStorage.getItem('photo')}></img>
+                </div>
+                <div className='col-sm-12 text-center neededDatesTitle'>
+                        <h6>Your Needed Dates:</h6>
+                    </div>
+                <div className='col-sm-12 profileCalendar'>
+
+                    <StaticCalendar />
+                </div>
+                
+
+                <div className='col-sm-12 text-center infoGroup'>
+                    <h4>About your Office</h4>
+                    <p>{window.localStorage.getItem('about')}</p>
+                    <h4>You are looking for... </h4>
+                    <p>{window.localStorage.getItem('kindOfPerson')}</p>
+                </div>
+                <div className='col-sm-12 text-center'><h4>Your Location</h4></div>
+                <div className="map">
+                <Map location={window.localStorage.getItem('location')} />
+                </div>
             </div>
         )
     }
