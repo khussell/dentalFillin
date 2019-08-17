@@ -14,11 +14,11 @@ class ProfileOffice extends React.Component {
         let rates = window.localStorage.getItem('starRating').split(",")
         console.log(rates)
         let total = 0
-
         for (let i = 0; i < rates.length; i++) {
-            total += rates[i]
+            total += parseInt(rates[i])
         }
         let avg = total / rates.length
+        console.log(avg)
         this.setState({ rating: avg })
     }
 
@@ -40,6 +40,9 @@ class ProfileOffice extends React.Component {
                         <Ratings.Widget />
                     </Ratings>
                 </div>
+                <div className="col-sm-12 text-center fullName">
+                        <h3 >{window.localStorage.getItem('officeName')}</h3>
+                        </div>
                 <div className='row justify-content-center'>
                     <img className="profilePic" alt="Pic" src={window.localStorage.getItem('photo')}></img>
                 </div>

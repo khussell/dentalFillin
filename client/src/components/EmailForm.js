@@ -1,5 +1,6 @@
 import React from "react"
 import API from "../utils/API";
+import '../css/emailForm.css'
 
 
 
@@ -23,12 +24,12 @@ class EmailForm extends React.Component {
         
         return (
             <div>
-                <form>
-                    <label>Title:</label>
+                <form className="col text-center email">
+                    <label className="col text-center">Title:</label>
                     <input id="emailTitle" type="text"/>
-                    <label>Message:</label>
+                    <label className="col text-center">Message:</label>
                     <textarea id="emailMessage"></textarea>
-                    <button onClick={this.email}>Submit</button>
+                    <button className=" emailBtn btn btn-info" onClick={this.email}>Submit</button>
                 </form>
             </div>
         )

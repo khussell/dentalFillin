@@ -20,7 +20,7 @@ class ProfileSub extends React.Component {
         console.log(rates)
         let total = 0
         for (let i = 0; i < rates.length; i++) {
-            total += rates[i]
+            total += parseInt(rates[i])
         }
         let avg = total / rates.length
         this.setState({ rating: avg })

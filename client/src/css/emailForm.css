@@ -1,0 +1,20 @@
+#emailMessage{
+    height: 150px;
+    width: 80%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.email{
+    text-align: center;
+}
+
+.emailBtn{
+    width: 100px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+#emailTitle{
+    width: 60%;
+}

@@ -14,7 +14,7 @@
     border-radius: 50%;
     margin-left: 10%;
     margin: 0 auto;
-    margin-top: 20px;
+    margin-top: 10px;
     padding: 5px;
     border: 2px lightgrey solid;
    
@@ -92,6 +92,50 @@
     margin-bottom: 10px;
 }
 
+.invitation{
+    background-color: #bed6d6;
+    margin: 20px;
+    box-shadow: 2px 2px grey;
+    border: 1px grey solid;
+    color: white;
+    text-align: center;
+}
+
+.acceptBtn{
+    box-shadow: 2px 2px grey;
+    width: 100px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    margin-top: -5px;
+}
+
+.invitationTitle{
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.inviteMe{
+    background-color: #bed6d6;
+    margin: 20px;
+    box-shadow: 2px 2px grey;
+    border: 1px grey solid;
+    color: white;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.inviteMeBtn{
+    width: 130px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.inviteInput{
+    width: 60%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
 
 
 @media only screen and (min-width: 350px){
@@ -99,6 +143,8 @@
         position: relative;
         right: 11%;
     }
+
+    
 }
 
 @media only screen and (min-width: 390px){
@@ -113,6 +159,16 @@
         width: 220px;
         margin: 20px auto;
     }
+
+    .invitation{
+        width: 80%;
+        margin-left: 10%;
+     }
+
+     .inviteMe{
+        width: 70%;
+        margin-left: 15%;
+    }
 }
 
 
@@ -120,7 +176,15 @@
 
 
 @media only screen and (min-width: 768px){
-   
+    .invitation{
+        width: 50%;
+        margin-left: 25%;
+     }
+
+     .inviteMe{
+        width: 55%;
+        margin-left: 22.5%;
+    }
  }
 
  @media only screen and (min-width: 992px){
@@ -130,9 +194,19 @@
         
     }
 
-    #subProfileContent, #officeProfileContent{
+    #subProfileContent, #officeProfileContent, .profileContent{
         width: 60%;
         margin-left: 20%;
+    }
+
+    .invitation{
+        width: 40%;
+        margin-left: 30%;
+     }
+
+     .inviteMe{
+        width: 50%;
+        margin-left: 25%;
     }
  }
 
@@ -143,8 +217,13 @@
         
     }
 
-    #subProfileContent, #officeProfileContent{
+    #subProfileContent, #officeProfileContent, .profileContent{
         width: 40%;
         margin-left: 30%;
     }
+
+    .invitation{
+        width: 50%;
+        margin-left: 25%;
+     }
  }
