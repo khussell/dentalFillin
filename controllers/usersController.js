@@ -86,8 +86,8 @@ module.exports = {
 
   findByUserName: function(req,res){
     console.log(req.params.user)
-    let user = req.params.user
-    db.User.findOne({userName: user}).then(dbModel => res.json(dbModel))
+    
+    db.User.find({userName: req.params.user}).then(dbModel => res.json(dbModel))
   },
 
   updateInvitations: function(req, res) {

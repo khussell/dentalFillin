@@ -39,10 +39,41 @@ class SearchedUser extends React.Component {
     componentDidMount = () => {
         console.log(this.props.history.location.pathname)
         console.log(`${this.props.match.url}`)
+        
 
         API.findUser(this.props.history.location.pathname).then(res => {
             console.log(res.data)
-            let rates = res.data.starRating
+            console.log(res.data[0].location)
+            window.localStorage.setItem('searchedLocation', res.data[0].location)
+            this.setState({
+                firstName: res.data[0].firstName,
+                lastName: res.data[0].lastName,
+                userName: res.data[0].userName,
+                password: res.data[0].password,
+                sub: res.data[0].sub,
+                photo: res.data[0].photo,
+                location: res.data[0].location,
+                yearsExp: res.data[0].yearsExp,
+                about: res.data[0].about,
+                anesthesia: res.data[0].anesthesia,
+                nitrous: res.data[0].nitrous,
+                avail: res.data[0].avail,
+                officeName: res.data[0].officeName,
+                doctors: res.data[0].doctors,
+                datesNeeded: res.data[0].datesNeeded,
+                kindOfPerson: res.data[0].kindOfPerson,
+                starRating: res.data[0].starRating,
+                howManyTimesSubbed: res.data[0].howManyTimesSubbed,
+                howManySubsHaveYouHad: res.data[0].howManySubsHaveYouHad,
+                pastJobs: res.data[0].pastJobs,
+                currentJobs: res.data[0].currentJobs,
+                pastSubs: res.data[0].pastSubs,
+                currentSubs: res.data[0].currentSubs,
+                searchParams: res.data[0].searchParams,
+                invitations: res.data[0].invitations
+            })
+
+            let rates = this.state.starRating
             console.log(rates)
             let total = 0
 
@@ -50,36 +81,8 @@ class SearchedUser extends React.Component {
                 total += rates[i]
             }
             let avg = total / rates.length
-            this.setState({
-                firstName: res.data.firstName,
-                lastName: res.data.lastName,
-                userName: res.data.userName,
-                password: res.data.password,
-                sub: res.data.sub,
-                photo: res.data.photo,
-                location: res.data.location,
-                yearsExp: res.data.yearsExp,
-                about: res.data.about,
-                anesthesia: res.data.anesthesia,
-                nitrous: res.data.nitrous,
-                avail: res.data.avail,
-                officeName: res.data.officeName,
-                doctors: res.data.doctors,
-                datesNeeded: res.data.datesNeeded,
-                kindOfPerson: res.data.kindOfPerson,
-                starRating: res.data.starRating,
-                howManyTimesSubbed: res.data.howManyTimesSubbed,
-                howManySubsHaveYouHad: res.data.howManySubsHaveYouHad,
-                pastJobs: res.data.pastJobs,
-                currentJobs: res.data.currentJobs,
-                pastSubs: res.data.pastSubs,
-                currentSubs: res.data.currentSubs,
-                searchParams: res.data.searchParams,
-                invitations: res.data.invitations,
-                rating: avg
-            })
 
-        
+            this.setState({ rating: avg })
         })
     }
 
@@ -127,7 +130,6 @@ class SearchedUser extends React.Component {
     render() {
         console.log(this.state)
         console.log("invites: " + this.state.invitations)
-        console.log(this.state.location)
 
 
 
@@ -157,7 +159,7 @@ class SearchedUser extends React.Component {
                     <div>
                           <form className=" inviteMe">
                             <label className="col text-center">If you would like to invite me for work, please enter a date:</label>
-                            <input className='col inviteInput' id="inviteDate" type="text" />
+                            <input className='col text-center inviteInput' id="inviteDate" type="text" />
                             <button className="col-sm-12 inviteMeBtn btn btn-info" onClick={this.invite}>Invite for work</button>
                         </form>
                         <div className='ratings col-sm-12'>
@@ -235,14 +237,14 @@ class SearchedUser extends React.Component {
                             </div>
                             <div className='col-sm-12 text-center infoGroup'>
                                 <h4>About our Office</h4>
-                                <p>{window.localStorage.getItem('about')}</p>
+                                <p>{this.state.about}</p>
                                 <h4>We are looking for... </h4>
-                                <p>{window.localStorage.getItem('kindOfPerson')}</p>
+                                <p>{this.state.kindOfPerson}</p>
                             </div>
                             <div className='col-sm-12 text-center'><h4>Our Location</h4></div>
                             <div className="map">
-                                <Map location={this.state.location} />
-                                
+                                {console.log(this.state.location)}
+                                <Map location={window.localStorage.getItem('searchedLocation')} />
                             </div>
 
 

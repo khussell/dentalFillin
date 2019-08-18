@@ -67,7 +67,7 @@ class Upcoming extends React.Component{
                
                     return(
                         <div className='upcomingJob' key={sub.id}>
-                            <Link to={`/dashboard/find/searched/${sub.invitee}`} style={{color: 'white'}}>{sub.invitee}</Link>
+                            <Link to={`/dashboard/find/searched/${sub.invitee}`} style={{color: 'white'}}>{sub.inviteeName}</Link>
                             <p>{sub.date}</p>
                             <Link to={`/dashboard/past`} className="btn didItBtn btn-primary" onClick={()=>this.makePast(sub)}>Did it!</Link>
                         </div>

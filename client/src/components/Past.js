@@ -137,7 +137,7 @@ class Past extends React.Component {
                             <Link to={`/dashboard/find/searched/${sub.invitee}`} style={{color: 'white'}} >{sub.inviteeName}</Link>
                             <p>{sub.date}</p>
 
-                            <button  type="button" disabled={sub.buttonClicked? true: false} id={`${sub.id}button`} className="btn rateBtn " data-toggle="modal" data-target={`#${sub.id}`}>
+                            <button  type="button" disabled={sub.buttonClicked? true: false} id={`${sub.id}button`} className="btn rateBtn btn-info" data-toggle="modal" data-target={`#${sub.id}`}>
                             {sub.buttonClicked? "Already Rated": 'Rate'}</button>
 
 

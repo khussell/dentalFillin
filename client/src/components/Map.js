@@ -5,7 +5,7 @@ import Marker from "../components/Marker"
 
 
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
+//const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 class Map extends React.Component {
 
@@ -46,7 +46,9 @@ class Map extends React.Component {
     }
 
     componentDidMount = () => {
+        console.log(this.props.location)
         this.getCoords()
+        
 
     }
 

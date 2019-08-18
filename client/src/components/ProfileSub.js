@@ -61,9 +61,9 @@ class ProfileSub extends React.Component {
         return (
             <div>
                 <div className='col-sm-12 invites'>
-                   {this.state.invitations === ""? "": <h3 className="col text-center inviteHeading">You have invites!</h3> }
+                   {this.state.invitations.length === 0? "": <h3 className="col text-center inviteHeading">You have invites!</h3> }
 
-                    {this.state.invitations === [] ? "" : this.state.invitations.map(invite => {
+                    {this.state.invitations.length === 0 ? "" : this.state.invitations.map(invite => {
                         return (
 
                             <div className="invite" key={invite.date}>
