@@ -23,8 +23,15 @@ class Map extends React.Component {
         load: false
     }
 
-    getCoords = () =>{
-        let location = this.props.location
+    componentDidMount = () => {
+        console.log(this.props.location)
+        this.getCoords(this.props.location)
+        
+
+    }
+
+    getCoords = (location) =>{
+        
         let queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + location + "&key=AIzaSyAA5SlE2LTsTT6T1ly7vaSqbS3FL408yFg"
 
         Axios.get(queryURL).then(res => {
@@ -45,12 +52,7 @@ class Map extends React.Component {
         
     }
 
-    componentDidMount = () => {
-        console.log(this.props.location)
-        this.getCoords()
-        
-
-    }
+ 
 
 
 

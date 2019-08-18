@@ -1,10 +1,12 @@
 import React from "react"
+import 'flatpickr/dist/themes/material_blue.css'
 import Flatpickr from 'react-flatpickr'
 import API from '../utils/API'
 import Map from "../components/Map"
 import { Link, } from "react-router-dom"
 import '../css/find.css'
 import Ratings from "react-ratings-declarative"
+
 
 
 class Find extends React.Component {
@@ -107,6 +109,29 @@ class Find extends React.Component {
     }
 
 
+    parseDates = (avail) => {
+        console.log(avail)
+        let needed=[]
+        for (let i = 0; i < avail.length; i++) {
+            let splitStr = avail[i].split('')
+            
+            
+            for (let j = 0; j < splitStr.length; j++) {
+                if (splitStr[j] === "T") {
+                    let fixedDate =splitStr.slice(0, 10)
+                    let join =fixedDate.join('')
+                     needed.push(join)
+                    
+                }
+            }
+
+        }
+        console.log(needed)
+        return needed.join(' | ')
+    }
+    
+
+
 
 
 
@@ -150,6 +175,7 @@ class Find extends React.Component {
                                                 <Ratings.Widget />
                                             </Ratings>
                                         </div>
+                                        <p>{this.parseDates(data.datesNeeded)}</p>
                                         <div className='map'>
                                             <Map name={data.officeName} location={data.location} />
                                         </div>
@@ -174,7 +200,7 @@ class Find extends React.Component {
                                             </Ratings>
                                         </div>
                                         <div>
-                                            <p>{data.avail}</p>
+                                            <p>{this.parseDates(data.avail)}</p>
                                         </div>
                                         <img className="findPhoto" src={data.photo} alt="phot0"></img>
                                     </div>}
@@ -229,7 +255,7 @@ class Find extends React.Component {
                                             </Ratings>
                                         </div>
                                         <div>
-                                            <p>{data.avail}</p>
+                                            <p>{this.parseDates(data.avail)}</p>
                                         </div>
                                         <img className="findPhoto" src={data.photo} alt="sub"></img>
                                     </div>)}

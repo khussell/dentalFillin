@@ -92,12 +92,13 @@ class ProfileSub extends React.Component {
                             <Ratings.Widget />
                         </Ratings>
                     </div>
-                    <div className='row justify-content-center'>
-                        <img className="profilePic" alt="Pic" src={window.localStorage.getItem('photo')}></img>
-                    </div>
                     <div className='col-sm-12 text-center fullName'>
                         <h3>{window.localStorage.getItem('firstName') + " " + window.localStorage.getItem('lastName')}</h3>
                     </div>
+                    <div className='row justify-content-center'>
+                        <img className="profilePic" alt="Pic" src={window.localStorage.getItem('photo')}></img>
+                    </div>
+                  
                     <div className='col-sm-12 text-center'>
                         <h6>Your Availability:</h6>
                     </div>
@@ -105,13 +106,13 @@ class ProfileSub extends React.Component {
 
                     <div className='col-sm-12 profileCalendar'>
 
-                        <StaticCalendar />
+                        <StaticCalendar dates={window.localStorage.getItem('avail').split(',')}/>
                     </div>
 
                     <div className='col-sm-12 text-center infoGroup'>
                         <h4>{window.localStorage.getItem('yearsExp') + ' Years Experience'}</h4>
-                        <p>{window.localStorage.getItem('nitrous') === 'true' ? "Nitrous &#x2713" : "Not nitrous certified"}</p>
-                        <p>{window.localStorage.getItem('anesthesia') === 'true' ? "Anesthesia &#x2713" : "Not anesthesia certified"}</p>
+                        <p>{window.localStorage.getItem('nitrous') === 'true' ?  <span>Nitrous &#10003;</span> : "Not nitrous certified"}</p>
+                        <p>{window.localStorage.getItem('anesthesia') === 'true' ?  <span>Anesthesia &#10003;</span> : "Not anesthesia certified"}</p>
                         <h4>About You</h4>
                         <p>{window.localStorage.getItem('about')}</p>
                     </div>

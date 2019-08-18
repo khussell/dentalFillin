@@ -15,14 +15,8 @@ class StaticCalendar extends Component {
 
 
     render() {
-        let dates;
-        const isSub = window.localStorage.getItem('sub')
-        if(isSub){
-            dates = window.localStorage.getItem('avail')
-        }else{
-            dates = window.localStorage.getItem('datesNeeded')
-        }
-        let arr = dates.split(",")
+       
+        
         
         const parseDates = function(arr){
             let needed=[]
@@ -42,9 +36,9 @@ class StaticCalendar extends Component {
             }
             return needed
         }
-        const correctDates = parseDates(arr)
+        const correctDates = parseDates(this.props.dates)
 
-        console.log(parseDates(arr))
+        console.log(parseDates(this.props.dates))
 
         
 

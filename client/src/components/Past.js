@@ -59,6 +59,9 @@ class Past extends React.Component {
         API.buttonClicked(invitee, id).then(res =>{
             console.log(res.data)
         })
+
+        event.target.disabled = true
+        event.target.innerText = 'Saved'
     }
 
     saveRate2 = (event, inviter, invitee, id) => {
@@ -76,6 +79,9 @@ class Past extends React.Component {
         API.buttonClicked2(inviter, id).then(res =>{
            console.log(res.data)
         })
+
+        event.target.disabled = true
+        event.target.innerText = 'Saved'
     }
 
 
@@ -92,7 +98,7 @@ class Past extends React.Component {
                             <Link to={`/dashboard/find/searched/${job.inviterUser}`} style={{color: 'white'}}>{job.inviter}</Link>
                             <p>{job.date}</p>
 
-                            <button type="button"  disabled={job.buttonClicked? true: false} id={`${job.id}button`} className="btn rateBtn " data-toggle="modal" data-target={`#${job.id}`}>
+                            <button type="button"  disabled={job.buttonClicked? true: false} id={`${job.id}button`} className="btn rateBtn btn-info " data-toggle="modal" data-target={`#${job.id}`}>
                                 {job.buttonClicked? "Already Rated": 'Rate'}
                              </button>
 
@@ -119,7 +125,7 @@ class Past extends React.Component {
                                         </div>
                                         <div className="modal-footer">
 
-                                            <button type="button"  className='btn saveRateBtn btn-info'  onClick={(event) => this.saveRate(event, job.inviterUser, job.invitee, job.id)}>Save changes</button>
+                                            <button type="button"  className='btn saveRateBtn btn-info'  onClick={(event) => this.saveRate(event, job.inviterUser, job.invitee, job.id)}>Save</button>
                                         </div>
                                     </div>
                                 </div>
@@ -163,7 +169,7 @@ class Past extends React.Component {
                                         </div>
                                         <div className="modal-footer">
 
-                                            <button type="button" className="btn saveRateBtn btn-info" onClick={(event) => this.saveRate2(event, sub.inviterUser, sub.invitee, sub.id)}>Save changes</button>
+                                            <button type="button" className="btn saveRateBtn btn-info" onClick={(event) => this.saveRate2(event, sub.inviterUser, sub.invitee, sub.id)}>Save</button>
                                         </div>
                                     </div>
                                 </div>

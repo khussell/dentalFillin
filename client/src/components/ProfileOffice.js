@@ -51,7 +51,7 @@ class ProfileOffice extends React.Component {
                     </div>
                 <div className='col-sm-12 profileCalendar'>
 
-                    <StaticCalendar />
+                    <StaticCalendar dates={window.localStorage.getItem('datesNeeded').split(',')}/>
                 </div>
                 
 

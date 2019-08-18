@@ -5,6 +5,7 @@ import Ratings from 'react-ratings-declarative'
 import '../css/searchedUser.css'
 import StaticCalendar from '../components/StaticCalendar'
 import Map from '../components/Map'
+import {Redirect} from 'react-router-dom'
 
 class SearchedUser extends React.Component {
     state = {
@@ -42,9 +43,20 @@ class SearchedUser extends React.Component {
         
 
         API.findUser(this.props.history.location.pathname).then(res => {
+            window.localStorage.setItem('searchedLocation', res.data[0].location)
             console.log(res.data)
             console.log(res.data[0].location)
-            window.localStorage.setItem('searchedLocation', res.data[0].location)
+            let rates = res.data[0].starRating
+            console.log(rates)
+            let total = 0
+
+            for (let i = 0; i < rates.length; i++) {
+                total += rates[i]
+            }
+            let avg = total / rates.length
+
+            
+           // window.localStorage.setItem('searchedLocation', res.data[0].location)
             this.setState({
                 firstName: res.data[0].firstName,
                 lastName: res.data[0].lastName,
@@ -70,19 +82,11 @@ class SearchedUser extends React.Component {
                 pastSubs: res.data[0].pastSubs,
                 currentSubs: res.data[0].currentSubs,
                 searchParams: res.data[0].searchParams,
-                invitations: res.data[0].invitations
+                invitations: res.data[0].invitations,
+                rating: avg
             })
 
-            let rates = this.state.starRating
-            console.log(rates)
-            let total = 0
-
-            for (let i = 0; i < rates.length; i++) {
-                total += rates[i]
-            }
-            let avg = total / rates.length
-
-            this.setState({ rating: avg })
+            
         })
     }
 
@@ -124,13 +128,16 @@ class SearchedUser extends React.Component {
     accepted = (invite) => {
         API.acceptedInvite(invite).then(res => {
             console.log(res.data)
+            this.setState({accepted: 'true'})
         })
     }
 
     render() {
         console.log(this.state)
         console.log("invites: " + this.state.invitations)
-
+         if(this.state.accepted === "true"){
+             return <Redirect to="/dashboard/upcoming" />
+         }
 
 
         return (
@@ -190,14 +197,14 @@ class SearchedUser extends React.Component {
 
 
                         <div className='col-sm-12 profileCalendar'>
-
-                            <StaticCalendar />
+                        {console.log(this.state.avail)}
+                            <StaticCalendar dates={this.state.avail}/>
                         </div>
 
                         <div className='col-sm-12 text-center infoGroup'>
                             <h4>{this.state.yearsExp + ' Years Experience'}</h4>
-                            <p>{this.state.nitrous === 'true' ? "Nitrous &#x2713" : "Not nitrous certified"}</p>
-                            <p>{this.state.anesthesia === 'true' ? "Anesthesia &#x2713" : "Not anesthesia certified"}</p>
+                            <p>{this.state.nitrous === 'true' ? <span>Nitrous &#10003;</span> : "Not nitrous certified"}</p>
+                            <p>{this.state.anesthesia === 'true' ?  <span>Anesthesia &#10003;</span>: "Not anesthesia certified"}</p>
                             <h4>About Me</h4>
                             <p>{this.state.about}</p>
                         </div>
@@ -233,7 +240,8 @@ class SearchedUser extends React.Component {
                                 <h6>Our Needed Dates:</h6>
                             </div>
                             <div className='col-sm-12 profileCalendar'>
-                                <StaticCalendar />
+                            {console.log(this.state.datesNeeded)}
+                                <StaticCalendar dates={this.state.datesNeeded}/>
                             </div>
                             <div className='col-sm-12 text-center infoGroup'>
                                 <h4>About our Office</h4>
@@ -245,6 +253,7 @@ class SearchedUser extends React.Component {
                             <div className="map">
                                 {console.log(this.state.location)}
                                 <Map location={window.localStorage.getItem('searchedLocation')} />
+                                
                             </div>
 
 

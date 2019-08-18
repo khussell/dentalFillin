@@ -124,7 +124,7 @@ class OfficeSignUp extends React.Component{
                                   rows="3"
                                   onChange={this.props.handleInputChange}
                                   name="whatKindOfHygienist"
-                                  value={this.props.userInfo.whatKindOfHygienist}></textarea>
+                                  value={this.props.userInfo.kindOfPerson}></textarea>
                     </div>
                     <div className="form-group">
                         <label htmlFor="doctorsNames">Doctor's Name</label>
