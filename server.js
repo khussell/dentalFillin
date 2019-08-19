@@ -46,7 +46,7 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://user:password1@ds255107.mlab.com:55107/heroku_gmpz2nfn", { useNewUrlParser: true })
+mongoose.connect(process.env.MONGODB_URI || "mongodb://user:Flamingo3@ds117535.mlab.com:17535/heroku_lhdwh62t", { useNewUrlParser: true })
 .then(()=>console.log("connected"))
 .catch(err => console.log(err))
 
