@@ -118,12 +118,12 @@ class OfficeSignUp extends React.Component{
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="whatKindOfHygienist">Describe your ideal sub?</label>
+                        <label htmlFor="kindOfPerson">Describe your ideal sub?</label>
                         <textarea className="form-control" 
-                                  id="whatKindOfHygienist" 
+                                  id="kindOfPerson" 
                                   rows="3"
                                   onChange={this.props.handleInputChange}
-                                  name="whatKindOfHygienist"
+                                  name="kindOfPerson"
                                   value={this.props.userInfo.kindOfPerson}></textarea>
                     </div>
                     <div className="form-group">
@@ -136,7 +136,7 @@ class OfficeSignUp extends React.Component{
                                value={this.props.userInfo.doctorsNames}/>
                     </div>
                     
-                    <button id="officeSignButton" className="btn btn-primary signUpButtons col-sm-4 text-center" onClick={this.props.signUpSubmit}>Sign up and go to login</button>
+                    <button id="officeSignButton" className="btn btn-primary signUpButtons col-sm-6 offset-sm-3 text-center" onClick={this.props.signUpSubmit}>Sign up and go to login</button>
                     </form>
             </div>
         )

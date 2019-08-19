@@ -60,7 +60,9 @@ class ProfileSub extends React.Component {
 
         return (
             <div>
-                <div className='col-sm-12 invites'>
+             
+                <div id='subProfileContent' className=''>
+                <div className='col-sm-12 invitesToWork'>
                    {this.state.invitations.length === 0? "": <h3 className="col text-center inviteHeading">You have invites!</h3> }
 
                     {this.state.invitations.length === 0 ? "" : this.state.invitations.map(invite => {
@@ -74,7 +76,6 @@ class ProfileSub extends React.Component {
                         )
                     })}
                 </div>
-                <div id='subProfileContent' className=''>
                     <div className='row'></div>
                     {/*<h1>ProfileSub of {window.localStorage.getItem('firstName')}</h1>*/}
                     <div className='ratings col-sm-12'>

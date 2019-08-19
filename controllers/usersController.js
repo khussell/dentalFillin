@@ -1,6 +1,7 @@
 const db = require("../models");
 const bcrypt = require('bcryptjs') 
 const nodemailer = require('nodemailer')
+const xoauth2 = require('xoauth2')
 
 // Defining methods for the usersController
 module.exports = {
@@ -215,7 +216,7 @@ buttonClicked2: function(req,res){
 
   email: function(req,res){
    console.log(req.body.emailInfo)
-   nodemailer.createTestAccount((err,account)=>{
+  // nodemailer.createTestAccount((err,account)=>{
      const htmlEmail = `
      <h3>Contact Details</h3>
      <ul>
@@ -225,21 +226,30 @@ buttonClicked2: function(req,res){
      `
 
      let transporter = nodemailer.createTransport({
-      host: "smtp.ethereal.email",
-      port: 587,
-      secure: false, // true for 465, false for other ports
+      //host: "smtp.ethereal.email",
+      service: 'gmail',
+      //port: 587,
+      //secure: false, // true for 465, false for other ports
       auth: {
-        user: 'romaine.osinski87@ethereal.email', // generated ethereal user
-        pass: 'DAZuxQnKKVUpx3KYy5' // generated ethereal password
+          type: 'OAuth2',
+          user: 'khussell@gmail.com',
+          clientId: '944591278896-csua7iljqdkuds6hajbmgfmb7ca00tei.apps.googleusercontent.com',
+          clientSecret: 'YdKObYOvKUsU3NveS0ZV3Flc',
+          refreshToken: '1/ku-2yR6GHSNs_9gv7pHrd7dvYhOPojjy3n0gTUpVEdY'
+
+        
+       // type: 'login',
+       // user: process.env.emailUser, // generated ethereal user
+       // pass: process.env.emailPass // generated ethereal password
       }
     });
 
      let mailOptions = {
-       from:'test@testaccount.com',
-       to: 'romaine.osinski87@ethereal.email',
-       replyTo: 'test@testaccount.com',
+       from:'khussell@gmail.com',
+       to: 'khussell@gmail.com',
+       replyTo: 'kevin.schlitter@gmail.com',
        subject: 'new message',
-       test: req.body.message,
+       text: req.body.message,
        html: htmlEmail
      }
 
@@ -250,7 +260,7 @@ buttonClicked2: function(req,res){
 
        console.log('Message Sent')
      })
-   })
+   //})
   }
 };
 

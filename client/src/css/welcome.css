@@ -64,7 +64,7 @@ background-color: rgb(104, 205, 212);
 #welcomeBottom{
     
     color: white;
-    height: 200px;
+    height: 220px;
     
     width: 80%;
     margin-left: 10%;
@@ -79,9 +79,56 @@ background-color: rgb(104, 205, 212);
 #question{
     font-size: 17px;
     margin-top: 20px;
-    padding: 10px;
+    padding: 20px 20px 0px 20px;
+    letter-spacing: 2px;
 }
 
+@media only screen and (max-width: 308px){
+    #logoTooth{
+        position: relative;
+        z-index: 3;
+        left: 76%;
+        bottom: 45px;
+    }
+}
+
+@media only screen and (max-width: 360px){
+    #logoTooth{
+        position: relative;
+        z-index: 3;
+        left: 72%;
+        bottom: 45px;
+    }
+}
+
+@media only screen and (max-width: 342px){
+    #logoTooth{
+        position: relative;
+        z-index: 3;
+        left: 73%;
+        bottom: 45px;
+    }
+}
+
+
+@media only screen and (max-width: 330px){
+    #logoTooth{
+        position: relative;
+        z-index: 3;
+        left: 74%;
+        bottom: 45px;
+    }
+}
+
+
+@media only screen and (max-width: 314px){
+    #logoTooth{
+        position: relative;
+        z-index: 3;
+        left: 76%;
+        bottom: 45px;
+    }
+}
 
 
 

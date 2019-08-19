@@ -16,7 +16,7 @@ class Welcome extends React.Component {
                         <img id="logoTooth" alt="tooth" src="/images/tooth4.png" height="40px"></img>
                     </div>
                     <div id="welcomeBottom">
-                        <p id="question" className="col-sm-12 text-center">Are you looking for a fillin' hygienist or an office to work for?</p>
+                        <p id="question" className="col-sm-12 text-center">Are you looking for a fillin' hygienist or an office to fillin' for?</p>
                         <div className="container">
                             <div className='row'>
                                 <div className="col text-center">

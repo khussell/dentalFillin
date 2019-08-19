@@ -52,15 +52,8 @@
     margin-top: 20px;
 }
 
-.invites{
-    color: rgb(77, 148, 153);
-    background-color: white; 
-    border: 1px solid grey;
-    width: 80%;
-    margin-left: 10%;
-    margin-top: 20px;
-    
-   
+.invitesToWork{
+    text-align: center;
 }
 
 .inviteHeading{
