@@ -5,6 +5,7 @@ class Rate extends React.Component {
     state = {
         rating: 0
     }
+    
     changeRating =( newRating ) => {
       this.setState({
         rating: newRating
@@ -12,7 +13,7 @@ class Rate extends React.Component {
     }
  
     render() {
-        console.log(this.state.rating)
+        
       return (
           <Ratings
             rating={this.state.rating}

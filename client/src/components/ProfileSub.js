@@ -17,7 +17,6 @@ class ProfileSub extends React.Component {
     componentDidMount = () => {
         this.findInvites()
         let rates = window.localStorage.getItem('starRating').split(",")
-        console.log(rates)
         let total = 0
         for (let i = 0; i < rates.length; i++) {
             total += parseInt(rates[i])
@@ -37,9 +36,7 @@ class ProfileSub extends React.Component {
     }
 
     findUserInfo = (userName) => {
-        console.log('yo')
         API.findUserInfo(userName).then(res => {
-            console.log(res.data.userName)
             let inviterUser = res.data.userName
             this.setState({ inviterUserName: inviterUser, load: 'true' })
         })
@@ -49,7 +46,6 @@ class ProfileSub extends React.Component {
 
 
     render() {
-        console.log(this.state.invitations)
 
         if (this.state.load === 'true') {
             let url = `/dashboard/find/searched/${this.state.inviterUserName}`
@@ -60,27 +56,24 @@ class ProfileSub extends React.Component {
 
         return (
             <div>
-             
+
                 <div id='subProfileContent' className=''>
-                <div className='col-sm-12 invitesToWork'>
-                   {this.state.invitations.length === 0? "": <h3 className="col text-center inviteHeading">You have invites!</h3> }
+                    <div className='col-sm-12 invitesToWork'>
+                        {this.state.invitations.length === 0 ? "" : <h3 className="col text-center inviteHeading">You have invites!</h3>}
 
-                    {this.state.invitations.length === 0 ? "" : this.state.invitations.map(invite => {
-                        return (
-
-                            <div className="invite" key={invite.date}>
-                                
-                                <Link to={`/dashboard/find/searched/${this.state.inviterUserName}`} style={{color: "white"}} onClick={() => this.findUserInfo(`${invite.inviter}`)}>{invite.inviter +" Profile"}</Link>
-                                <p>Date: {invite.date}</p>
-                            </div>
-                        )
-                    })}
-                </div>
+                        {this.state.invitations.length === 0 ? "" : this.state.invitations.map(invite => {
+                            return (
+                                <div className="invite" key={invite.date}>
+                                    <Link to={`/dashboard/find/searched/${this.state.inviterUserName}`} style={{ color: "white" }} onClick={() => this.findUserInfo(`${invite.inviter}`)}>{invite.inviter + " Profile"}</Link>
+                                    <p>Date: {invite.date}</p>
+                                </div>
+                            )
+                        })}
+                    </div>
                     <div className='row'></div>
                     {/*<h1>ProfileSub of {window.localStorage.getItem('firstName')}</h1>*/}
                     <div className='ratings col-sm-12'>
                         <Ratings
-
                             widgetDimensions="25px"
                             widgetSpacings="7px"
                             rating={this.state.rating}
@@ -99,29 +92,21 @@ class ProfileSub extends React.Component {
                     <div className='row justify-content-center'>
                         <img className="profilePic" alt="Pic" src={window.localStorage.getItem('photo')}></img>
                     </div>
-                  
                     <div className='col-sm-12 text-center availabilityTitle'>
                         <h6>Your Availability:</h6>
                     </div>
-
-
                     <div className='col-sm-12 profileCalendar'>
-
-                        <StaticCalendar dates={window.localStorage.getItem('avail').split(',')}/>
+                        <StaticCalendar dates={window.localStorage.getItem('avail').split(',')} />
                     </div>
-                      <hr></hr>
+                    <hr></hr>
                     <div className='col-sm-12 text-center infoGroup'>
                         <h4>{window.localStorage.getItem('yearsExp') + ' Years Experience'}</h4>
-                        <p className='nitrous'>{window.localStorage.getItem('nitrous') === 'true' ?  <span>Nitrous &#10003;</span> : "Not nitrous certified"}</p>
-                        <p>{window.localStorage.getItem('anesthesia') === 'true' ?  <span>Anesthesia &#10003;</span> : "Not anesthesia certified"}</p>
+                        <p className='nitrous'>{window.localStorage.getItem('nitrous') === 'true' ? <span>Nitrous &#10003;</span> : "Not nitrous certified"}</p>
+                        <p>{window.localStorage.getItem('anesthesia') === 'true' ? <span>Anesthesia &#10003;</span> : "Not anesthesia certified"}</p>
                         <hr></hr>
                         <h4>About You</h4>
                         <p className='aboutSub'>{window.localStorage.getItem('about')}</p>
                     </div>
-
-
-
-
                 </div>
             </div>
         )

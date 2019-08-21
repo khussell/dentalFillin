@@ -10,7 +10,6 @@ import Dashboard from "./pages/Dashboard"
 
 class App extends React.Component {
 
-
   state = {
     results: [],
     toLogin: false,
@@ -40,56 +39,37 @@ class App extends React.Component {
       currentSubs: [],
       searchParams: [],
       invitations: [],
-
     }
-
-
   }
 
   componentDidMount = () => {
     console.log(this.state.userInfo)
-    this.setState({toLogin : false})
+    this.setState({ toLogin: false })
     //this.loadUsers()
   }
-
-
-
 
 
   handleInputChange = (event) => {
     const name = event.target.name
     const value = event.target.value
-
     if (name === "yearsExp") {
-      console.log("hi")
-
-
       this.setState({ userInfo: { ...this.state.userInfo, [name]: value } })
-
-      console.log("did it")
     }
-
-
     this.setState({ userInfo: { ...this.state.userInfo, [name]: value } })
-
-
-
-    console.log(this.state.userInfo)
   }
+
 
   handleNitrousRadioChange = (event) => {
     this.setState({
       userInfo: { ...this.state.userInfo, nitrous: event.target.value }
     })
-    console.log(this.state.userInfo)
-
   }
+
 
   handleAnesthesiaRadioChange = (event) => {
     this.setState({
       userInfo: { ...this.state.userInfo, anesthesia: event.target.value }
     })
-    console.log(this.state.userInfo)
   }
 
 
@@ -98,15 +78,12 @@ class App extends React.Component {
     this.setState({
       userInfo: { ...this.state.userInfo, sub: event.target.value }
     })
-    console.log(this.state.userInfo)
   }
 
 
   signUpSubmit = (event) => {
     event.preventDefault()
-    console.log(this.state.userInfo)
-    console.log('here')
-    this.setState({toLogin : true})
+    this.setState({ toLogin: true })
 
     API.saveUser({
       firstName: this.state.userInfo.firstName,
@@ -134,17 +111,18 @@ class App extends React.Component {
       currentSubs: this.state.userInfo.currentSubs,
       searchParams: this.state.userInfo.searchParams,
       invitations: this.state.userInfo.invitations
-    }).then(res =>{ this.loadUsers()})
-      .catch(err => console.log(err));  
-     
+    }).then(res => { this.loadUsers() })
+      .catch(err => console.log(err));
   }
+
 
   loadUsers = () => {
     API.getUsers()
       .then(res => {
         this.setState({
           toLogin: true,
-          results: res.data, userInfo: {...this.state.userInfo,
+          results: res.data, userInfo: {
+            ...this.state.userInfo,
             firstName: "",
             lastName: "",
             userName: "",
@@ -172,9 +150,10 @@ class App extends React.Component {
             invitations: []
           }
         })
-      }).then().catch(err => console.log(err));  
-      window.location.reload()
+      }).then().catch(err => console.log(err));
+    window.location.reload()
   }
+
 
   handleDate = (date) => {
     const value = date
@@ -182,7 +161,7 @@ class App extends React.Component {
       this.setState({
         userInfo: { ...this.state.userInfo, avail: value }
       })
-    }else{
+    } else {
       this.setState({
         userInfo: { ...this.state.userInfo, datesNeeded: value }
       })
@@ -191,26 +170,21 @@ class App extends React.Component {
 
 
   render() {
-    console.log(this.state.userInfo.nitrous)
-    console.log(this.state.results)
-    
-    if(this.state.toLogin === true){
-      this.setState({toLogin : false})
-  }
-    
+    if (this.state.toLogin === true) {
+      this.setState({ toLogin: false })
+    }
+
     return (
       <Router>
 
         <div className="App">
           <Route exact path="/" component={Welcome} />
-          <Route exact path="/login"  render={(props) => <Login {...props} results={this.state.results} />} />
+          <Route exact path="/login" render={(props) => <Login {...props} results={this.state.results} />} />
           <Route path="/signUp"
             render={(props) => <SignUp {...props} results={this.state.results}
-
               handleInputChange={this.handleInputChange}
               userInfo={this.state.userInfo}
               toLogin={this.state.toLogin}
-
 
               firstName={this.state.userInfo.firstName}
               lastName={this.state.userInfo.lastName}
@@ -231,7 +205,6 @@ class App extends React.Component {
               invitations={this.state.userInfo.invitations}
               starRating={this.state.userInfo.starRating}
 
-
               handleDate={this.handleDate}
               handleFormSubmit={this.handleFormSubmit}
               signUpSubmit={this.signUpSubmit}
@@ -239,14 +212,10 @@ class App extends React.Component {
               handleAnesthesiaRadioChange={this.handleAnesthesiaRadioChange}
               handleLicenseRadioChange={this.handleLicenseRadioChange}
               {...props} />}
-
           />
           <Route path="/dashboard" component={Dashboard} />
-          
         </div>
-
       </Router>
-
     );
   }
 }

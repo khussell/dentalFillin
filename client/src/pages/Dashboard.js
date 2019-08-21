@@ -13,8 +13,6 @@ import '../css/dashboard.css'
 import Edit from '../pages/Edit'
 
 
-
-
 class Dashboard extends React.Component {
 
   getUserName = () => {
@@ -23,8 +21,8 @@ class Dashboard extends React.Component {
     })
   }
 
+
   logout = () => {
-    console.log('hi')
     const isAuthenticated = false
     window.localStorage.setItem('isAuthenticated', isAuthenticated)
     window.localStorage.removeItem('sub')
@@ -56,17 +54,16 @@ class Dashboard extends React.Component {
     this.props.history.push("/login")
   }
 
+
   render() {
     const isSub = localStorage.getItem('sub')
-
     const firstName = window.localStorage.getItem('firstName')
-
     return (
 
-<div>
-      <div className="dashboardContent ">
-        <Navbar {...this.props} logout={this.logout} />
-        <h1 className='profileWelcome '>Hello, {firstName}</h1>
+      <div>
+        <div className="dashboardContent ">
+          <Navbar {...this.props} logout={this.logout} />
+          <h1 className='profileWelcome '>Hello, {firstName}</h1>
         </div>
         <div className='subOrOfficeProfile'>
           <Switch>
@@ -74,15 +71,12 @@ class Dashboard extends React.Component {
             <Route exact path={`${this.props.match.url}/find`} render={() => <Find {...this.props} />} />
             <Route exact path={`${this.props.match.url}/past`} component={Past} />
             <Route exact path={`${this.props.match.url}/rate`} component={Rate} />
-            <Route exact path={`${this.props.match.url}/edit`} render={() => <Edit {...this.props} />} /> 
+            <Route exact path={`${this.props.match.url}/edit`} render={() => <Edit {...this.props} />} />
             <Route exact path={`${this.props.match.url}/find/searched/:user`} render={() => <SearchedUser {...this.props} />} />
             {isSub === "true" && `${this.props.match.url}` !== '/dashboard/find' && `${this.props.match.url}` !== '/dashboard/rate' && `${this.props.match.url}` !== "/find/searched/" ? <ProfileSub {...this.props} /> : <ProfileOffice {...this.props} />}
           </Switch>
         </div>
-        </div>
-
-      
-
+      </div>
     )
   }
 }

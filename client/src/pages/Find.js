@@ -8,7 +8,6 @@ import '../css/find.css'
 import Ratings from "react-ratings-declarative"
 
 
-
 class Find extends React.Component {
     constructor() {
         super();
@@ -23,6 +22,7 @@ class Find extends React.Component {
         };
     }
 
+
     componentDidMount = () => {
         this.setState({
             results1: [],
@@ -35,16 +35,13 @@ class Find extends React.Component {
     findAll = (event) => {
         event.preventDefault()
         const isSub = window.localStorage.getItem('sub')
-        console.log(isSub)
         if (isSub) {
             API.getAllOffices().then(res => {
-                console.log(res.data)
                 this.setState({
                     results1: res.data,
                     results2: [],
                     load1: "true",
                     load2: 'false',
-
                 })
             })
         } else {
@@ -55,40 +52,34 @@ class Find extends React.Component {
                     results2: [],
                     load1: "true",
                     load2: 'false',
-
                 })
             })
         }
         this.setState({ searchButtonClicked: 'true' })
     }
 
+
     findDate = (event) => {
         event.preventDefault()
         const isSub = window.localStorage.getItem('sub')
         const date = this.state.date
-        console.log(isSub)
-        console.log(date)
 
         if (isSub) {
             API.getAllOfficesFromDate({ date: date }).then(res => {
-                console.log(res.data)
                 this.setState({
                     results1: [],
                     results2: res.data,
                     load1: 'false',
                     load2: "true",
-
                 })
             })
         } else {
             API.getAllSubsFromDate({ date: date }).then(res => {
-                console.log(res.data)
                 this.setState({
                     results1: [],
                     results2: res.data,
                     load1: "false",
                     load2: "true",
-
                 })
             })
         }
@@ -98,41 +89,30 @@ class Find extends React.Component {
 
     getRating = (starArr) => {
         let total = 0
-
         for (let i = 0; i < starArr.length; i++) {
             total += starArr[i]
         }
         let avg = total / starArr.length
-
         return avg
-
     }
 
 
     parseDates = (avail) => {
-        console.log(avail)
         let needed=[]
         for (let i = 0; i < avail.length; i++) {
             let splitStr = avail[i].split('')
-            
-            
+             
             for (let j = 0; j < splitStr.length; j++) {
                 if (splitStr[j] === "T") {
                     let fixedDate =splitStr.slice(0, 10)
                     let join =fixedDate.join('')
-                     needed.push(join)
-                    
+                     needed.push(join)     
                 }
             }
-
         }
-        console.log(needed)
         return needed.join(' | ')
     }
     
-
-
-
 
 
     render() {
@@ -140,7 +120,6 @@ class Find extends React.Component {
             <div id="allFind" className="col text-center ">
                 {window.localStorage.getItem('sub') === 'true' ? <h3 className="findTitle">Find an office.</h3> : <h3 className="findTitle">Find a sub.</h3>}
                 <button className="search btn" onClick={this.findAll}>Search all dates</button>
-
                 <br></br>
                 <label>OR</label>
                 <br></br>
@@ -160,12 +139,9 @@ class Find extends React.Component {
                                         <Link className="" to={`${this.props.match.url}/find/searched/${data.userName}`} >{data.officeName}</Link>
                                         <div className='officeFound col-sm-12'>
                                             <Ratings
-
                                                 widgetDimensions="20px"
                                                 widgetSpacings="2px"
                                                 rating={this.getRating(data.starRating)}
-
-
                                                 widgetRatedColors="orange"
                                             >
                                                 <Ratings.Widget />
@@ -184,12 +160,9 @@ class Find extends React.Component {
                                         <Link className="" style={{color: 'rgb(70, 149, 155)'}} to={`${this.props.match.url}/find/searched/${data.userName}`} >{data.firstName + " " + data.lastName}</Link>
                                         <div className='col-sm-12'>
                                             <Ratings
-
                                                 widgetDimensions="20px"
                                                 widgetSpacings="2px"
                                                 rating={this.getRating(data.starRating)}
-
-
                                                 widgetRatedColors="orange"
                                             >
                                                 <Ratings.Widget />
@@ -216,12 +189,9 @@ class Find extends React.Component {
                                         <Link className="" to={`${this.props.match.url}/find/searched/${data.userName}`} >{data.officeName}</Link>
                                         <div className='col-sm-12'>
                                             <Ratings
-
                                                 widgetDimensions="20px"
                                                 widgetSpacings="2px"
                                                 rating={this.getRating(data.starRating)}
-
-
                                                 widgetRatedColors="orange"
                                             >
                                                 <Ratings.Widget />
@@ -239,12 +209,9 @@ class Find extends React.Component {
                                         <Link className="" style={{color: 'rgb(70, 149, 155)'}} to={`${this.props.match.url}/find/searched/${data.userName}`} >{data.firstName + " " + data.lastName}</Link>
                                         <div className='col-sm-12'>
                                             <Ratings
-
                                                 widgetDimensions="20px"
                                                 widgetSpacings="2px"
                                                 rating={this.getRating(data.starRating)}
-
-
                                                 widgetRatedColors="orange"
                                             >
                                                 <Ratings.Widget />
@@ -264,8 +231,6 @@ class Find extends React.Component {
                         })
                     }
                 </div>
-                
-
             </div>
         )
     }

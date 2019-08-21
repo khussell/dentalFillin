@@ -10,6 +10,7 @@ class ProfileOffice extends React.Component {
     state = {
         rating: 5
     }
+
     componentDidMount = () => {
         let rates = window.localStorage.getItem('starRating').split(",")
         console.log(rates)
@@ -27,7 +28,6 @@ class ProfileOffice extends React.Component {
             <div id="officeProfileContent">
                 <div className='ratings col-sm-12'>
                     <Ratings
-
                         widgetDimensions="25px"
                         widgetSpacings="7px"
                         rating={this.state.rating}

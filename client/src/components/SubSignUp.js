@@ -6,7 +6,6 @@ import '../css/subAndOfficeSignIn.css'
 class SubSignUp extends React.Component {
 
     render() {
-        console.log(this.props.toLogin)
 
         if (this.props.toLogin === true) {
             return (
@@ -197,7 +196,6 @@ class SubSignUp extends React.Component {
                             No
                         </label>
                     </div>
-
                     <div>
                         <label className="whatDates">What dates are you available to work?</label>
                         <Flatpickr {...this.props} />
@@ -205,8 +203,6 @@ class SubSignUp extends React.Component {
 
                     <button className="btn btn-primary signUpButtons col-sm-8 offset-sm-2 text-center" type="submit" onClick={this.props.signUpSubmit}>Sign up and go to login</button>
                 </form>
-
-
             </div>
         )
     }

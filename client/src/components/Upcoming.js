@@ -35,12 +35,13 @@ class Upcoming extends React.Component{
         })
     }
 
-    makePast = (past =>{
+
+    makePast = (past) =>{
         
       API.makePast(past).then(res =>{
           console.log(res.data)
       })
-    })
+    }
 
 
 
@@ -61,10 +62,8 @@ class Upcoming extends React.Component{
                             <Link to={`/dashboard/past`} className="btn didItBtn btn-primary" onClick={() => this.makePast(job)}>Did it!</Link>
                         </div>
                     )
-             
             })}
            {this.state.currentSubs.length === 0 && window.localStorage.getItem('sub') === ''? <p>No current upcoming subs.</p> : this.state.currentSubs.map(sub => {
-               
                     return(
                         <div className='upcomingJob' key={sub.id}>
                             <Link to={`/dashboard/find/searched/${sub.invitee}`} style={{color: 'white'}}>{sub.inviteeName}</Link>

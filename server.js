@@ -43,19 +43,16 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-app.get('*', (request, response) => {
-	response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-});
 
 // Add routes, both API and view
 app.use(routes);
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://user:Flamingo3@ds117535.mlab.com:17535/heroku_lhdwh62t", { useNewUrlParser: true })
-.then(()=>console.log("connected"))
-.catch(err => console.log(err))
+//mongoose.connect(process.env.MONGODB_URI || "mongodb://user:Flamingo3@ds117535.mlab.com:17535/heroku_lhdwh62t", { useNewUrlParser: true })
+//.then(()=>console.log("connected"))
+//.catch(err => console.log(err))
 
-//mongoose.connect('mongodb://localhost:27017/dentalFillin', {useNewUrlParser: true});
+mongoose.connect('mongodb://localhost:27017/dentalFillin', {useNewUrlParser: true});
 
 // Start the API server
 app.listen(PORT, function() {

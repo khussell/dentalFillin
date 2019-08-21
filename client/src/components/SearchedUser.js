@@ -5,9 +5,10 @@ import Ratings from 'react-ratings-declarative'
 import '../css/searchedUser.css'
 import StaticCalendar from '../components/StaticCalendar'
 import Map from '../components/Map'
-import {Redirect} from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 class SearchedUser extends React.Component {
+    
     state = {
         user: [],
         firstName: "",
@@ -37,26 +38,21 @@ class SearchedUser extends React.Component {
         invitations: [],
         rating: 0
     }
+    
     componentDidMount = () => {
         console.log(this.props.history.location.pathname)
         console.log(`${this.props.match.url}`)
-        
 
         API.findUser(this.props.history.location.pathname).then(res => {
             window.localStorage.setItem('searchedLocation', res.data[0].location)
-            console.log(res.data)
-            console.log(res.data[0].location)
             let rates = res.data[0].starRating
-            console.log(rates)
             let total = 0
-
             for (let i = 0; i < rates.length; i++) {
                 total += rates[i]
             }
             let avg = total / rates.length
 
-            
-           // window.localStorage.setItem('searchedLocation', res.data[0].location)
+            // window.localStorage.setItem('searchedLocation', res.data[0].location)
             this.setState({
                 firstName: res.data[0].firstName,
                 lastName: res.data[0].lastName,
@@ -85,10 +81,9 @@ class SearchedUser extends React.Component {
                 invitations: res.data[0].invitations,
                 rating: avg
             })
-
-            
         })
     }
+
 
     invite = (event) => {
         event.preventDefault()
@@ -96,8 +91,6 @@ class SearchedUser extends React.Component {
         let num2 = (Math.floor(Math.random() * 200)).toString()
         let num3 = (Math.floor(Math.random() * 200)).toString()
         let id = "id" + num1 + num2 + num3
-
-
         let userBeingInvited = this.state.userName
         let inviteDate = document.getElementById('inviteDate').value
         let inviter = window.localStorage.getItem('officeName')
@@ -112,13 +105,10 @@ class SearchedUser extends React.Component {
             id: id
         }
 
-        console.log(info)
         API.inviteUser(info).then(res => {
-            console.log(res.data)
         })
 
         API.putInviteIntoOffice(info).then(res => {
-            console.log(res.data)
         })
 
         document.getElementById('inviteDate').innerHTML = ""
@@ -127,85 +117,76 @@ class SearchedUser extends React.Component {
 
     accepted = (invite) => {
         API.acceptedInvite(invite).then(res => {
-            console.log(res.data)
-            this.setState({accepted: 'true'})
+            this.setState({ accepted: 'true' })
         })
     }
 
     render() {
-        console.log(this.state)
-        console.log("invites: " + this.state.invitations)
-         if(this.state.accepted === "true"){
-             return <Redirect to="/dashboard/upcoming" />
-         }
-
+        if (this.state.accepted === "true") {
+            return <Redirect to="/dashboard/upcoming" />
+        }
 
         return (
             <div className='profileContent'>
-
-              <div>
-                {this.state.invitations.map(invite => {
-                    if (invite.invitee === window.localStorage.getItem('userName') && invite.inviterUser === this.state.userName) {
-                        return (
-                            <div className='  invitation' key={invite.id}>
-                                <p className="invitationTitle col text-center">They have invited you for:</p>
-                                <p className="col text-center">{invite.date}</p>
-                                <button className="acceptBtn btn btn-info" onClick={() => this.accepted(invite)}>Accept</button>
-                            </div>
-                        )
-                    } else {
-                        return (
-                            <div></div>
-                        )
-                    }
-                })}
+                <div>
+                    {this.state.invitations.map(invite => {
+                        if (invite.invitee === window.localStorage.getItem('userName') && invite.inviterUser === this.state.userName) {
+                            return (
+                                <div className='  invitation' key={invite.id}>
+                                    <p className="invitationTitle col text-center">They have invited you for:</p>
+                                    <p className="col text-center">{invite.date}</p>
+                                    <button className="acceptBtn btn btn-info" onClick={() => this.accepted(invite)}>Accept</button>
+                                </div>
+                            )
+                        } else {
+                            return (
+                                <div></div>
+                            )
+                        }
+                    })}
                 </div>
 
 
                 {this.state.sub === 'true' ? (
                     <div>
-                          <form className=" inviteMe">
+                        <form className=" inviteMe">
                             <label className="col text-center">If you would like to invite me for work, please enter a date:</label>
                             <input className='col text-center inviteInput' id="inviteDate" type="text" />
                             <button className="col-sm-12 inviteMeBtn btn btn-info" onClick={this.invite}>Invite for work</button>
                         </form>
                         <div className='ratings col-sm-12'>
-                        <Ratings
-
-                            widgetDimensions="25px"
-                            widgetSpacings="7px"
-                            rating={this.state.rating}
-                            widgetRatedColors="orange"
-                        >
-                            <Ratings.Widget />
-                            <Ratings.Widget />
-                            <Ratings.Widget />
-                            <Ratings.Widget />
-                            <Ratings.Widget />
-                        </Ratings>
+                            <Ratings
+                                widgetDimensions="25px"
+                                widgetSpacings="7px"
+                                rating={this.state.rating}
+                                widgetRatedColors="orange"
+                            >
+                                <Ratings.Widget />
+                                <Ratings.Widget />
+                                <Ratings.Widget />
+                                <Ratings.Widget />
+                                <Ratings.Widget />
+                            </Ratings>
                         </div>
                         <div className="col-sm-12 text-center fullName">
-                        <h3 >{this.state.firstName + " " + this.state.lastName}</h3>
+                            <h3 >{this.state.firstName + " " + this.state.lastName}</h3>
                         </div>
                         <div className='row justify-content-center'>
                             <img className="profilePic" alt="Pic" src={this.state.photo}></img>
                         </div>
-
                         <div className='col-sm-12 text-center neededDatesTitle'>
-                                <h6>My Availability:</h6>
-                            </div>
-
-
+                            <h6>My Availability:</h6>
+                        </div>
                         <div className='col-sm-12 profileCalendar'>
-                        {console.log(this.state.avail)}
-                            <StaticCalendar dates={this.state.avail}/>
+                            {console.log(this.state.avail)}
+                            <StaticCalendar dates={this.state.avail} />
                         </div>
                         <hr></hr>
 
                         <div className='col-sm-12 text-center infoGroup'>
                             <h4>{this.state.yearsExp + ' Years Experience'}</h4>
                             <p>{this.state.nitrous === 'true' ? <span>Nitrous &#10003;</span> : "Not nitrous certified"}</p>
-                            <p>{this.state.anesthesia === 'true' ?  <span>Anesthesia &#10003;</span>: "Not anesthesia certified"}</p>
+                            <p>{this.state.anesthesia === 'true' ? <span>Anesthesia &#10003;</span> : "Not anesthesia certified"}</p>
                             <hr></hr>
                             <h4>About Me</h4>
                             <p className='aboutP'>{this.state.about}</p>
@@ -213,14 +194,11 @@ class SearchedUser extends React.Component {
                         <hr></hr>
                         <h4 className='col-sm-12 text-center'>Contact Me</h4>
                         <EmailForm />
-                      
-
                     </div>) : (
                         <div>
 
                             <div className='ratings col-sm-12'>
                                 <Ratings
-
                                     widgetDimensions="25px"
                                     widgetSpacings="7px"
                                     rating={this.state.rating}
@@ -243,8 +221,8 @@ class SearchedUser extends React.Component {
                                 <h6>Our Needed Dates:</h6>
                             </div>
                             <div className='col-sm-12 profileCalendar'>
-                            {console.log(this.state.datesNeeded)}
-                                <StaticCalendar dates={this.state.datesNeeded}/>
+                                {console.log(this.state.datesNeeded)}
+                                <StaticCalendar dates={this.state.datesNeeded} />
                             </div>
                             <hr></hr>
                             <div className='col-sm-12 text-center infoGroup'>
@@ -254,27 +232,21 @@ class SearchedUser extends React.Component {
                                 <h4>We are looking for... </h4>
                                 <p className='aboutP'>{this.state.kindOfPerson}</p>
                             </div>
-
                             <hr></hr>
                             <div className='col-sm-12 text-center locationTitle'><h4>Our Location</h4></div>
                             <div className="searchedMap">
                                 {console.log("outer location" + this.state.location)}
-                                {this.state.location? <Map location={this.state.location} /> : <div></div>}
-                                
-                                
+                                {this.state.location ? <Map location={this.state.location} /> : <div></div>}
                             </div>
                             <hr></hr>
-
                             <h4 className='col text-center'>Contact Us</h4>
                             <EmailForm />
-                            {this.state.sub === 'true'? (<form>
+                            {this.state.sub === 'true' ? (<form>
                                 <label>If you would like to invite for work, please enter a date</label>
                                 <input id="inviteDate" type="text" />
-                                
-                                <button onClick={this.invite}>Invite for work</button>
-                            </form>) : (<div></div>)  }
-                            
 
+                                <button onClick={this.invite}>Invite for work</button>
+                            </form>) : (<div></div>)}
                         </div>)}
             </div>
 

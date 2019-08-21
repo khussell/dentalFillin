@@ -15,23 +15,23 @@ router.route('/allSubsFromDate')
   .post(usersController.findAllSubsFromDate)
 
 
-    //matches "/api/users/allOffices"
-    router.route('/allOffices')
-    .get(usersController.findByNotSub)
+//matches "/api/users/allOffices"
+router.route('/allOffices')
+  .get(usersController.findByNotSub)
 
-    router.route('/allSubs')
-      .get(usersController.findByIsSub)
+router.route('/allSubs')
+  .get(usersController.findByIsSub)
 
-    
 
-      router.route('/dashboard/find/searched/:user')
-      .get(usersController.findByUserName)
 
-    
+router.route('/dashboard/find/searched/:user')
+  .get(usersController.findByUserName)
+
+
 //router.route('/emailForm')
 //       post(usersController.email)
 
- 
+
 
 // Matches with "/api/users/:id"
 router
@@ -39,8 +39,6 @@ router
   .get(usersController.findById)
   .put(usersController.update)
   .delete(usersController.remove);
-
-
 
 
 module.exports = router;

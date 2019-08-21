@@ -1,6 +1,5 @@
 import 'flatpickr/dist/themes/material_blue.css'
 import React from "react"
-
 import Flatpickr from 'react-flatpickr'
 import { Component } from 'react'
 
@@ -14,18 +13,18 @@ class App extends Component {
   }
 
 
-  render() { 
-    const  avail  = this.props.avail;
+  render() {
+    const avail = this.props.avail;
     return (
-      <Flatpickr 
+      <Flatpickr
         id='dates'
         value={avail}
-        onChange={avail => {this.props.handleDate(avail)}} 
+        onChange={avail => { this.props.handleDate(avail) }}
         options={{
-            mode: "multiple",
-            dateFormat: "Y-m-d"
+          mode: "multiple",
+          dateFormat: "Y-m-d"
         }}
-        />
+      />
     )
   }
 }

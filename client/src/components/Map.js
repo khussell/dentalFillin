@@ -27,8 +27,6 @@ class Map extends React.Component {
     componentDidMount = () => {
         console.log("inner location: " + this.props.location)
         this.getCoords(this.props.location)
-        
-
     }
 
     getCoords = (location) =>{
@@ -49,23 +47,11 @@ class Map extends React.Component {
                lat: JSON.stringify(res.data.results[0].geometry.location.lat),
                lng: JSON.stringify(res.data.results[0].geometry.location.lng)
         })
-    })
-        
+    })    
     }
-
- 
-
-
-
 
 
     render() {
-
-        
-       console.log(this.state)
-    
-
-        
         return (
             
             // Important! Always set the container height explicitly
@@ -78,8 +64,7 @@ class Map extends React.Component {
                     <Marker
                         lat={this.state.lat}
                         lng={this.state.lng}
-                        name={this.props.name}
-                        
+                        name={this.props.name}  
                     />
                 </GoogleMapReact>
             </div>
