@@ -26,9 +26,9 @@ class Navbar extends React.Component {
                             <li className="nav-item">
                                 <Link to={`${this.props.match.url}/past`} className="nav-link" >Past</Link>
                             </li>
-                            {/*<li className="nav-item">
-                                <Link to="edit" className="nav-link" >Edit</Link>
-        </li>*/}
+                            <li className="nav-item">
+                                <Link to={`${this.props.match.url}/edit`} className="nav-link" >Edit</Link>
+        </li>
                             <li className="nav-item">
                                 <Link to="#" onClick={this.props.logout} className="nav-link">Logout</Link>
                             </li>

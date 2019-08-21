@@ -1,6 +1,7 @@
 import React from 'react'
 import Flatpickr from '../components/Calendar'
 import API from '../utils/API'
+import '../css/edit.css'
 
 class Edit extends React.Component {
     state= {
@@ -38,6 +39,21 @@ class Edit extends React.Component {
         console.log(this.state)
       }
 
+      handleNitrousRadioChange = (event) => {
+        this.setState({
+          nitrous: event.target.value 
+        })
+        console.log(this.state)
+    
+      }
+    
+      handleAnesthesiaRadioChange = (event) => {
+        this.setState({
+          anesthesia: event.target.value 
+        })
+        console.log(this.state)
+      }
+
 
 
       edit = (event) => {
@@ -56,9 +72,33 @@ class Edit extends React.Component {
           datesNeeded: this.state.datesNeeded,
           kindOfPerson: this.state.kindOfPerson,
         
-        }).then(res =>{ this.loadUsers()})
+        }).then(res =>{ 
+            console.log(res.data)
+            window.localStorage.setItem('photo', this.state.photo)
+            window.localStorage.setItem('yearsExp', this.state.yearsExp)
+            window.localStorage.setItem('about', this.state.about)
+            window.localStorage.setItem('anesthesia', this.state.anesthesia)
+            window.localStorage.setItem('nitrous', this.state.nitrous)
+            window.localStorage.setItem('avail', res.data.avail)
+            window.localStorage.setItem('datesNeeded', res.data.datesNeeded)
+            window.localStorage.setItem('kindOfPerson', this.state.kindOfPerson)
+            alert('Profile Updated')
+        
+        })
           .catch(err => console.log(err));  
+
+          //if(this.state.photo){ window.localStorage.setItem('photo', this.state.photo)}
+          //if(this.state.yearsExp){window.localStorage.setItem('yearsExp', this.state.yearsExp)}
+         // if(this.state.about){window.localStorage.setItem('about', this.state.about)}
+          //if(this.state.anesthesia){window.localStorage.setItem('anesthesia', this.state.anesthesia)}
+         // if(this.state.nitrous){window.localStorage.setItem('nitrous', this.state.nitrous)}
+         // if(this.state.avail.length === 0){window.localStorage.setItem('avail', this.state.avail)}
+         // if(this.state.datesNeeded.length === 0){window.localStorage.setItem('datesNeeded', this.state.datesNeeded)}
+         // if(this.state.kindOfPerson){window.localStorage.setItem('kindOfPerson', this.state.kindOfPerson)}
+        
          
+
+
       }
 
 
@@ -67,11 +107,12 @@ class Edit extends React.Component {
         return (
             <div>
                 <div className="allEditContent">
-                    <h4>Edit Your Profile Content</h4>
+                    <h4 className='editTitle'>Edit Your Profile Content</h4>
+                    <h6 className='editSubTitle'>Please fill out all sections.</h6>
                     <div>
                         {window.localStorage.getItem('sub') === 'true' ? (
                             <div>
-                                <form className="col subSignIn">
+                                <form className="col">
                             
 
                                     <div className="form-group">
@@ -162,16 +203,16 @@ class Edit extends React.Component {
 
                                     <div>
                                         <label className="whatDates">What dates are you available to work?</label>
-                                        <Flatpickr />
+                                        <Flatpickr handleDate={this.handleDate} />
                                     </div>
-                                    <button className="btn btn-primary signUpButtons col-sm-8 offset-sm-2 text-center" type="submit" onClick={this.edit}>Update</button>
+                                    <button className="btn btn-info editButton text-center" type="submit" onClick={this.edit}>Update</button>
                                    
                                 </form>
 
                             </div>
                         ) : (
 
-                <form className="col officeSignIn">
+                <form className="col">
                 
                 
                     <div className="form-group">
@@ -211,7 +252,7 @@ class Edit extends React.Component {
                     </div>
                     
                     
-                    <button className="btn btn-primary signUpButtons col-sm-8 offset-sm-2 text-center" type="submit" onClick={this.edit}>Update</button>
+                    <button className="btn btn-info editButton text-center" type="submit" onClick={this.edit}>Update</button>
                     </form>
                         )}
                     </div>

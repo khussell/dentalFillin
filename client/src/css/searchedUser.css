@@ -44,6 +44,11 @@
     margin-top: 15px;
 }
 
+.aboutP{
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
 .infoGroup > p{
     margin-top: 10px;
 }
@@ -84,8 +89,16 @@
 .map{
     width: 200px;
     margin: 0 auto;
-    padding-bottom: 40px;
+    
 }
+
+.searchedMap{
+    width: 200px;
+    margin: 0 auto;
+   
+}
+
+
 
 .neededDatesTitle{
     margin-top: 20px;

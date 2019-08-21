@@ -54,14 +54,16 @@ class ProfileOffice extends React.Component {
                     <StaticCalendar dates={window.localStorage.getItem('datesNeeded').split(',')}/>
                 </div>
                 
-
+                <hr></hr>
                 <div className='col-sm-12 text-center infoGroup'>
-                    <h4>About your Office</h4>
+                    <h4 className='aboutOffice'>About your Office</h4>
                     <p>{window.localStorage.getItem('about')}</p>
-                    <h4>You are looking for... </h4>
+                    <hr></hr>
+                    <h4 className='aboutOffice'>You are looking for... </h4>
                     <p>{window.localStorage.getItem('kindOfPerson')}</p>
                 </div>
-                <div className='col-sm-12 text-center'><h4>Your Location</h4></div>
+                <hr></hr>
+                <div className='col-sm-12 text-center locationTitle'><h4>Your Location</h4></div>
                 <div className="map">
                 <Map location={window.localStorage.getItem('location')} />
                 </div>

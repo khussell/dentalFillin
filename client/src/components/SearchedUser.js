@@ -200,14 +200,17 @@ class SearchedUser extends React.Component {
                         {console.log(this.state.avail)}
                             <StaticCalendar dates={this.state.avail}/>
                         </div>
+                        <hr></hr>
 
                         <div className='col-sm-12 text-center infoGroup'>
                             <h4>{this.state.yearsExp + ' Years Experience'}</h4>
                             <p>{this.state.nitrous === 'true' ? <span>Nitrous &#10003;</span> : "Not nitrous certified"}</p>
                             <p>{this.state.anesthesia === 'true' ?  <span>Anesthesia &#10003;</span>: "Not anesthesia certified"}</p>
+                            <hr></hr>
                             <h4>About Me</h4>
-                            <p>{this.state.about}</p>
+                            <p className='aboutP'>{this.state.about}</p>
                         </div>
+                        <hr></hr>
                         <h4 className='col-sm-12 text-center'>Contact Me</h4>
                         <EmailForm />
                       
@@ -243,20 +246,24 @@ class SearchedUser extends React.Component {
                             {console.log(this.state.datesNeeded)}
                                 <StaticCalendar dates={this.state.datesNeeded}/>
                             </div>
+                            <hr></hr>
                             <div className='col-sm-12 text-center infoGroup'>
-                                <h4>About our Office</h4>
-                                <p>{this.state.about}</p>
+                                <h4 >About our Office</h4>
+                                <p className='aboutP'>{this.state.about}</p>
+                                <hr></hr>
                                 <h4>We are looking for... </h4>
-                                <p>{this.state.kindOfPerson}</p>
+                                <p className='aboutP'>{this.state.kindOfPerson}</p>
                             </div>
-                            <div className='col-sm-12 text-center'><h4>Our Location</h4></div>
-                            <div className="map">
+
+                            <hr></hr>
+                            <div className='col-sm-12 text-center locationTitle'><h4>Our Location</h4></div>
+                            <div className="searchedMap">
                                 {console.log("outer location" + this.state.location)}
                                 {this.state.location? <Map location={this.state.location} /> : <div></div>}
                                 
                                 
                             </div>
-
+                            <hr></hr>
 
                             <h4 className='col text-center'>Contact Us</h4>
                             <EmailForm />

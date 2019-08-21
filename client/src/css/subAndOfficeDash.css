@@ -17,12 +17,17 @@
     margin-top: 20px;
     padding: 5px;
     border: 2px lightgrey solid;
+    margin-bottom: 20px;
    
+}
+
+.availabilityTitle{
+    margin-top: 30px;
 }
 
 
 .ratings{
-    width: 215px;
+    width: 215px; 
     margin: 0 auto;
     margin-top: 20px;
 }
@@ -42,6 +47,15 @@
     position: relative;
     right: 15%;
     margin-top: 15px;
+}
+
+.nitrous{
+    padding-top: 15px;
+}
+
+.locationTitle{
+    padding-bottom: 20px;
+    padding-top: 20px;
 }
 
 .infoGroup > p{
@@ -83,6 +97,20 @@
 .neededDatesTitle{
     margin-top: 20px;
     margin-bottom: 10px;
+}
+
+.aboutSub, .aboutOffice{
+    margin-left:50px;
+    margin-right: 50px;
+}
+
+.aboutSub{
+    margin-bottom: 50px;
+}
+
+hr{
+    width: 80%;
+    margin-top: 40px;
 }
 
 

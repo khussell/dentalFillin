@@ -216,9 +216,18 @@ buttonClicked2: function(req,res){
 
 
 updateUser: function(req,res){
-console.log(req.body.info.userName)
-console.log(req.body.info.info)
-//db.User.findOneAndUpdate({userName: req.body.info.userName}, $set : {})
+  console.log('here')
+console.log(req.body.data)
+console.log(req.body.data)
+db.User.findOneAndUpdate({userName: req.body.data.userName}, {$set : {
+        'photo': req.body.data.info.photo, 
+        'yearsExp': req.body.data.info.yearsExp, 
+        'about': req.body.data.info.about,
+        'anesthesia': req.body.data.info.anesthesia, 
+        'nitrous' : req.body.data.info.nitrous,
+        'avail' : req.body.data.info.avail,
+        'datesNeeded' : req.body.data.info.datesNeeded,
+        'kindOfPerson' : req.body.data.info.kindOfPerson}}).then(dbModel => res.json(dbModel))
 
 
 },

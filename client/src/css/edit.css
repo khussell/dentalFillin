@@ -1,0 +1,54 @@
+.allEditContent{
+    color: white;
+    width: 80%;
+    margin-left: 10%;
+    box-shadow: 3px 2px grey;
+    background-color: #bed6d6;
+    border: 3px white solid;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.editTitle{
+   text-align: center;
+   margin-top: 30px;
+   margin-bottom: 20px;
+}
+
+.editSubTitle{
+   text-align: center;
+   margin-bottom: 20px;
+}
+
+.editButton{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100px;
+    margin-left: calc(50% - 50px)
+}
+
+
+
+@media only screen and (min-width: 768px){
+    .allEditContent{
+        width: 55%;
+        margin-left: 22.5%;
+        margin-right: 22.5%;
+    }
+ }
+
+ @media only screen and (min-width: 992px){
+    .allEditContent{
+        width: 45%;
+        margin-left: 27.50%;
+        margin-right: 27.5%;
+    }
+ }
+
+ @media only screen and (min-width: 1200px){
+    .allEditContent{
+        width: 40%;
+        margin-left: 30%;
+        margin-right: 30%;
+    }
+ }

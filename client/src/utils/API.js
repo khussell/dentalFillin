@@ -130,7 +130,7 @@ export default {
             info: info
         }
         console.log(data)
-        return axios.post('updateUser', {info: data})
+        return axios.post('/updateUser', {data: data})
     }
     
 }
