@@ -89,7 +89,7 @@ class Past extends React.Component {
         
         return (
             <div className="allPast col text-center">
-                <h1 className='pastTitle'>Your Past Jobs</h1>
+                {window.localStorage.getItem('sub') === 'true'? <h1 className='pastTitle'> Your Past Jobs</h1> : <h1 className='pastTitle'>Your Past Subs</h1>}
                 <div className='pasts'>
                 {this.state.pastJobs.length === 0 && window.localStorage.getItem('sub') === 'true'? <p>No past jobs.</p>:this.state.pastJobs.map(job=> {
                        
