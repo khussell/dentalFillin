@@ -88,4 +88,7 @@ router.route('/buttonClicked2')
 router.route('/email')
 .post(usersController.email)
 
+router.route('/updateUser')
+.post(usersController.updateUser)
+
 module.exports = router;

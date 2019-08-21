@@ -2,7 +2,7 @@ import React from 'react';
 import Welcome from './pages/Welcome'
 import Login from './pages/Login'
 import SignUp from './pages/SignUp'
-import { BrowserRouter as Router, Route, Redirect} from "react-router-dom"
+import { BrowserRouter as Router, Route, } from "react-router-dom"
 import API from './utils/API'
 import Dashboard from "./pages/Dashboard"
 

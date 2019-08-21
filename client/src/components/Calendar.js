@@ -14,7 +14,7 @@ class App extends Component {
   }
 
 
-  render() {
+  render() { 
     const  avail  = this.props.avail;
     return (
       <Flatpickr 

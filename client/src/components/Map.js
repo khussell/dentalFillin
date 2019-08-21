@@ -14,6 +14,7 @@ class Map extends React.Component {
             lat: 28.5383355,
             lng: -81.3792365
         },
+
         zoom: 9
     };
 
@@ -24,7 +25,7 @@ class Map extends React.Component {
     }
 
     componentDidMount = () => {
-        console.log(this.props.location)
+        console.log("inner location: " + this.props.location)
         this.getCoords(this.props.location)
         
 

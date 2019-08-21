@@ -122,6 +122,15 @@ export default {
 
     email: function(emailInfo){
         return axios.post('/email', {emailInfo: emailInfo})
+    },
+
+    updateUserInfo: function(userName, info){
+        let data={
+            userName: userName,
+            info: info
+        }
+        console.log(data)
+        return axios.post('updateUser', {info: data})
     }
     
 }

@@ -10,6 +10,7 @@ import Upcoming from '../components/Upcoming'
 import Past from '../components/Past'
 import Rate from '../components/Rate'
 import '../css/dashboard.css'
+//import Edit from '../pages/Edit'
 
 
 
@@ -73,6 +74,7 @@ class Dashboard extends React.Component {
             <Route exact path={`${this.props.match.url}/find`} render={() => <Find {...this.props} />} />
             <Route exact path={`${this.props.match.url}/past`} component={Past} />
             <Route exact path={`${this.props.match.url}/rate`} component={Rate} />
+            {/*<Route exact path={`${this.props.match.url}/edit`} render={() => <Edit {...this.props} />} /> */}
             <Route exact path={`${this.props.match.url}/find/searched/:user`} render={() => <SearchedUser {...this.props} />} />
             {isSub === "true" && `${this.props.match.url}` !== '/dashboard/find' && `${this.props.match.url}` !== '/dashboard/rate' && `${this.props.match.url}` !== "/find/searched/" ? <ProfileSub {...this.props} /> : <ProfileOffice {...this.props} />}
           </Switch>

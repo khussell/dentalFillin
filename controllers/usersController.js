@@ -214,6 +214,15 @@ buttonClicked2: function(req,res){
   db.User.findOneAndUpdate({userName: req.body.info.userName, 'pastSubs.id' : req.body.info.id}, {$set : {"pastSubs.$.buttonClicked"  : true}}).then(dbModel=> res.json(dbModel))
 },
 
+
+updateUser: function(req,res){
+console.log(req.body.info.userName)
+console.log(req.body.info.info)
+//db.User.findOneAndUpdate({userName: req.body.info.userName}, $set : {})
+
+
+},
+
   email: function(req,res){
    console.log(req.body.emailInfo)
   // nodemailer.createTestAccount((err,account)=>{

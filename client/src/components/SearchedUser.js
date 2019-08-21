@@ -251,8 +251,9 @@ class SearchedUser extends React.Component {
                             </div>
                             <div className='col-sm-12 text-center'><h4>Our Location</h4></div>
                             <div className="map">
-                                {console.log(this.state.location)}
-                                <Map location={window.localStorage.getItem('searchedLocation')} />
+                                {console.log("outer location" + this.state.location)}
+                                {this.state.location? <Map location={this.state.location} /> : <div></div>}
+                                
                                 
                             </div>
 

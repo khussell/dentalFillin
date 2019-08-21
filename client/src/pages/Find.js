@@ -155,10 +155,10 @@ class Find extends React.Component {
                 {this.state.results1.length === 0 && this.state.searchButtonClicked1 === 'true' ? <h4>No dates found.</h4> :
                         this.state.results1.map(data => {
                             return (
-                                <div className='myCard' key={data._id}>
+                                <div className='' key={data._id}>
                                     {window.localStorage.getItem('sub') === 'true' ? (<div>
                                         <Link className="" to={`${this.props.match.url}/find/searched/${data.userName}`} >{data.officeName}</Link>
-                                        <div className='col-sm-12'>
+                                        <div className='myCard col-sm-12'>
                                             <Ratings
 
                                                 widgetDimensions="20px"
@@ -179,7 +179,7 @@ class Find extends React.Component {
                                         <div className='map'>
                                             <Map name={data.officeName} location={data.location} />
                                         </div>
-                                    </div>) : <div>
+                                    </div>) : <div className='cardForFoundSubs'>
                                         
                                         <Link className="" style={{color: 'rgb(70, 149, 155)'}} to={`${this.props.match.url}/find/searched/${data.userName}`} >{data.firstName + " " + data.lastName}</Link>
                                         <div className='col-sm-12'>
@@ -264,6 +264,7 @@ class Find extends React.Component {
                         })
                     }
                 </div>
+                
 
             </div>
         )
