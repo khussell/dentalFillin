@@ -15,7 +15,7 @@ class Map extends React.Component {
             lng: -81.3792365
         },
 
-        zoom: 10
+        zoom: 8
     };
 
     state = {
