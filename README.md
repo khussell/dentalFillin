@@ -1,6 +1,18 @@
 # dentalFillin
 
+## What? 
 
-on submit button you are going to post to api/users/subs if the person is a sub else it will be posted yo api/users/offices
+Dental Fillin' is an app to connect dental offices with substitute dental hygienists while their permanent dental hygienists are sick or on vacation.
 
-when a sub clicks see offices router will go to api/users/offices and pull all info
+## Why?
+
+This is important because if a hygienist is not available for a day, the doctor loses the hygienist's production for that day.
+
+## How?
+
+This app was made with HTML, CSS, Bootstrap, React, Vanilla JavaScript, Google Maps and Geocode API's, Flatpickr calendar API, Nodemailer, and Passport Authentication.
+
+## Where?
+
+Demo can be seen at: https://dentalfillin.herokuapp.com/
+
