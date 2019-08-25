@@ -1,11 +1,12 @@
 #allFind{
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.897);
     color: rgb(77, 148, 153);
     border: 1px solid grey;
     width: 80%;
     margin-left: 10%;
     margin-top: 40px;
     margin-bottom: 30px;
+    box-shadow: 5px 5px 5px grey;
 }
 
 .search{

@@ -1,11 +1,14 @@
 .navbar-custom{
     /*background-image: linear-gradient(to bottom,#bed6d6 0,#bed6d6 100%) !important;*/
-     background-image: linear-gradient(to bottom,white 0,white 100%) !important;
-    
+     background-image: linear-gradient(to bottom,rgba(255, 255, 255, 0.938) 0,rgba(255, 255, 255, 0.897) 100%) !important; 
+     
     border-bottom: 2px white solid;
-    box-shadow: 2px 2px grey;
+    box-shadow: 5px 5px 5px rgb(184, 182, 182);
+    margin-bottom: 100px;
     
 }
+
+
 
 #navTitle{
     color: rgb(77, 148, 153);

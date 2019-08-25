@@ -1,3 +1,9 @@
+.signUpContent{
+    margin-top: 100px;
+  
+}
+
+
 #subClick, 
 #officeClick{
    background-color: white;
@@ -10,12 +16,12 @@
 }
 
 #signUpTitle{
-    margin-top: 50px;
-    color: white;
+    margin-top: 0px;
+    color: grey;
 }
 
 #subOrOffice{
-    color: white;
+    color: grey;
     margin-top: 20px;
     font-size: 18px;
     margin-bottom: 10px;

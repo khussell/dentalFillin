@@ -1,13 +1,31 @@
 #loginContent{
-    box-shadow: 3px 2px grey;
-    background-color: #bed6d6;
+    box-shadow: 10px 10px 5px grey;
     border: 3px white solid;
-    color: white;
-    margin-top: 80px;
+    color: grey;
+    /*background-color: #bed6d6;*/
+    padding: 0;
+    margin-top: 30px;
     width: 80%;
+    height: 420px;
 }
 
+.loginTrans{
+    width: 100%;
+    background-color: white;
+    height: 100%;
+    position: relative;
+    opacity: .7;
+}
 
+.loginForm{
+    position: relative;
+    top: -420px;
+}
+
+.signUpForm{
+    position: relative;
+    top: -420px;
+}
 
 #loginButton{
     background-color: rgb(104, 205, 212);
@@ -33,12 +51,20 @@
 
 
 
+@media only screen and (min-width: 576px){
+    #loginContent{
+        width: 50%;
+        margin-left: 25%;
+        margin-top: 80px;
+    }
+ }
+
 
 @media only screen and (min-width: 768px){
     #loginContent{
         width: 40%;
         margin-left: 30%;
-        margin-right: 30%;
+        margin-top: 80px;
     }
  }
 
@@ -46,7 +72,7 @@
     #loginContent{
         width: 35%;
         margin-left: 32.5%;
-        margin-right: 32.5%;
+        margin-top: 100px;
     }
  }
 
@@ -54,6 +80,6 @@
     #loginContent{
         width: 30%;
         margin-left: 35%;
-        margin-right: 35%;
+       
     }
  }

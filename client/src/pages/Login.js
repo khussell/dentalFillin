@@ -61,7 +61,7 @@ class Login extends React.Component {
                     window.localStorage.setItem('kindOfPerson', res.data.kindOfPerson)
                     window.localStorage.setItem('howManySubsHaveYouHad', res.data.howManySubsHaveYouHad)
                     window.localStorage.setItem('searchParams', res.data.searchParams)
-                }
+                } 
 
             }
             //const isAuthenticated = res.data.isAuthenticated
@@ -85,7 +85,8 @@ class Login extends React.Component {
                 
             
             <div id="loginContent" className="container">
-                <div className="row justify-content-center">
+                <div className='loginTrans'></div>
+                <div className="row justify-content-center loginForm">
                     <h1 className="col-sm-12 text-center loginTitle">Login</h1>
 
                     <div className="row ">
@@ -103,7 +104,7 @@ class Login extends React.Component {
                     </div>
                 </div>
 
-                <div className="row justify-content-center">
+                <div className="row justify-content-center signUpForm">
                     <p id="signUpIntro" className="col-sm-12 text-center">Don't have an account?</p>
                     <Link to={"/signup"}>
                         <button id='signUpButton' className="col-sm-12 btn btn-primary">Sign Up</button>

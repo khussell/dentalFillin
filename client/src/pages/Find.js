@@ -130,11 +130,13 @@ class Find extends React.Component {
                         dateFormat: "Y-m-d"
                     }} />
                 <button className="search searchDate btn" onClick={this.findDate}>Search Date</button>
+                
                 <div>
                 {this.state.results1.length === 0 && this.state.searchButtonClicked1 === 'true' ? <h4>No dates found.</h4> :
                         this.state.results1.map(data => {
                             return (
                                 <div className='officeFound' key={data._id}>
+                            
                                     {window.localStorage.getItem('sub') === 'true' ? (<div>
                                         <Link className="" to={`${this.props.match.url}/find/searched/${data.userName}`} >{data.officeName}</Link>
                                         <div className='officeFound col-sm-12'>
@@ -155,6 +157,7 @@ class Find extends React.Component {
                                         <div className='map'>
                                             <Map name={data.officeName} location={data.location} />
                                         </div>
+                                        <hr></hr>
                                     </div>) : <div className='cardForFoundSubs'>
                                         
                                         <Link className="" style={{color: 'rgb(70, 149, 155)'}} to={`${this.props.match.url}/find/searched/${data.userName}`} >{data.firstName + " " + data.lastName}</Link>
@@ -176,6 +179,7 @@ class Find extends React.Component {
                                             <p>{this.parseDates(data.avail)}</p>
                                         </div>
                                         <img className="findPhoto" src={data.photo} alt="phot0"></img>
+                                        <hr></hr>
                                     </div>}
                                 </div>
                             )
@@ -204,6 +208,7 @@ class Find extends React.Component {
                                         <div className='map'>
                                             <Map name={data.officeName} location={data.location} />
                                         </div>
+                                        <hr></hr>
                                     </div>) : (<div>
                                         
                                         <Link className="" style={{color: 'rgb(70, 149, 155)'}} to={`${this.props.match.url}/find/searched/${data.userName}`} >{data.firstName + " " + data.lastName}</Link>
@@ -225,6 +230,7 @@ class Find extends React.Component {
                                             <p>{this.parseDates(data.avail)}</p>
                                         </div>
                                         <img className="findPhoto" src={data.photo} alt="sub"></img>
+                                        <hr></hr>
                                     </div>)}
                                 </div>
                             )

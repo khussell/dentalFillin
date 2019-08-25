@@ -1,23 +1,24 @@
 #subProfileContent, #officeProfileContent{
     color: rgb(77, 148, 153);
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.89);
     border: 1px solid grey;
     width: 80%;
     margin-left: 10%;
     margin-top: 30px;
     margin-bottom: 30px;
+    box-shadow: 5px 5px 5px grey;
    
 }
 
 .profilePic{
-    width: 150px;
-    border-radius: 50%;
+    width: 200px;
     margin-left: 10%;
     margin: 0 auto;
     margin-top: 20px;
     padding: 5px;
     border: 2px lightgrey solid;
     margin-bottom: 20px;
+    box-shadow: 3px 3px 3px grey;
    
 }
 

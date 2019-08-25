@@ -7,7 +7,7 @@ class Navbar extends React.Component {
     render() {
         return (
             <div>
-                <nav id='nav' className="navbar navbar-expand-lg navbar-light bg-light navbar-custom">
+                <nav id='nav' className="navbar bg-transparent fixed-top  navbar-expand-lg navbar-light bg-light navbar-custom">
                     <Link to="/dashboard" id="navTitle" className="navbar-brand">Dental Fillin'</Link>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
