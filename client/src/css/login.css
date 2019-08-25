@@ -3,9 +3,11 @@
     background-color: #bed6d6;
     border: 3px white solid;
     color: white;
-    margin-top: 100px;
+    margin-top: 80px;
     width: 80%;
 }
+
+
 
 #loginButton{
     background-color: rgb(104, 205, 212);

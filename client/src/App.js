@@ -5,6 +5,7 @@ import SignUp from './pages/SignUp'
 import { BrowserRouter as Router, Route, } from "react-router-dom"
 import API from './utils/API'
 import Dashboard from "./pages/Dashboard"
+import './css/app.css'
 
 
 
@@ -176,8 +177,11 @@ class App extends React.Component {
 
     return (
       <Router>
-
+      
         <div className="App">
+          <div className='backgroundAll'>
+           <div className='backgroundImage'></div>
+          </div>
           <Route exact path="/" component={Welcome} />
           <Route exact path="/login" render={(props) => <Login {...props} results={this.state.results} />} />
           <Route path="/signUp"

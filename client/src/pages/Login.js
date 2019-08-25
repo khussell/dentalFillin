@@ -80,6 +80,10 @@ class Login extends React.Component {
             return <Redirect to='/dashboard' />
         }
         return (
+            <div>
+                
+                
+            
             <div id="loginContent" className="container">
                 <div className="row justify-content-center">
                     <h1 className="col-sm-12 text-center loginTitle">Login</h1>
@@ -105,6 +109,7 @@ class Login extends React.Component {
                         <button id='signUpButton' className="col-sm-12 btn btn-primary">Sign Up</button>
                     </Link>
                 </div>
+            </div>
             </div>
         )
     }
