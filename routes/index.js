@@ -3,6 +3,7 @@ const router = require("express").Router();
 const apiRoutes = require("./api");
 const passport = require('../config/passport')
 const usersController = require('../controllers/usersController')
+const path = require('path')
 
 // API Routes
 router.use("/api", apiRoutes);
@@ -12,7 +13,10 @@ router.use("/api", apiRoutes);
 // res.send("Sorry");
 //});
 
-
+router.use(function(req, res) {
+  res.sendFile(path.join(__dirname, "../../client/build/index.html"));
+ });
+ 
 
 
 //login handler
