@@ -13,8 +13,10 @@ router.use("/api", apiRoutes);
 // res.send("Sorry");
 //});
 
+
+
 router.use(function(req, res) {
-  res.sendFile(path.join(__dirname, "../../client/build/index.html"));
+  res.sendFile(path.join(__dirname, "/client/build/index.html"));
  });
  
 
