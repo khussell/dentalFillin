@@ -171,7 +171,7 @@ class SearchedUser extends React.Component {
                         <div className="col-sm-12 text-center fullName">
                             <h3 >{this.state.firstName + " " + this.state.lastName}</h3>
                         </div>
-                        <div className='row justify-content-center'>
+                        <div className='row'>
                             <img className="profilePic" alt="Pic" src={this.state.photo}></img>
                         </div>
                         <div className='col-sm-12 text-center neededDatesTitle'>
@@ -214,7 +214,7 @@ class SearchedUser extends React.Component {
                             <div className='col-sm-12 text-center fullName'>
                                 <h3>{this.state.officeName}</h3>
                             </div>
-                            <div className='row justify-content-center'>
+                            <div className='row '>
                                 <img className="profilePic" alt="Pic" src={this.state.photo}></img>
                             </div>
                             <div className='col-sm-12 text-center neededDatesTitle'>

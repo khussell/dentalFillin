@@ -89,7 +89,7 @@ class ProfileSub extends React.Component {
                     <div className='col-sm-12 text-center fullName'>
                         <h3>{window.localStorage.getItem('firstName') + " " + window.localStorage.getItem('lastName')}</h3>
                     </div>
-                    <div className='row justify-content-center'>
+                    <div className='row '>
                         <img className="profilePic" alt="Pic" src={window.localStorage.getItem('photo')}></img>
                     </div>
                     <div className='col-sm-12 text-center availabilityTitle'>
