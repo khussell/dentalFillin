@@ -7,7 +7,7 @@
     border: 3px white solid;
     margin-top: 30px;
     margin-bottom: 50px;
-    height: 1550px;
+    height: 1650px;
 }
 
 .signUpTrans{
@@ -20,7 +20,7 @@
 
 .allForm{
     position: relative;
-    top: -1550px;
+    top: -1650px;
     width: 100%;
     
 }
